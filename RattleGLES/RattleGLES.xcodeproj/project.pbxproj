@@ -1,0 +1,752 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		506228E71AC0533F00CBC40A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506228E61AC0533F00CBC40A /* AppDelegate.swift */; };
+		506228E91AC0533F00CBC40A /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 506228E81AC0533F00CBC40A /* Shader.fsh */; };
+		506228EB1AC0533F00CBC40A /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 506228EA1AC0533F00CBC40A /* Shader.vsh */; };
+		506228ED1AC0533F00CBC40A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506228EC1AC0533F00CBC40A /* GameViewController.swift */; };
+		506228F01AC0533F00CBC40A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 506228EE1AC0533F00CBC40A /* Main.storyboard */; };
+		506228F21AC0533F00CBC40A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 506228F11AC0533F00CBC40A /* Images.xcassets */; };
+		506228F51AC0533F00CBC40A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506228F31AC0533F00CBC40A /* LaunchScreen.xib */; };
+		506229011AC0533F00CBC40A /* RattleGLESTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229001AC0533F00CBC40A /* RattleGLESTests.swift */; };
+		5062295C1AC053F800CBC40A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5062290E1AC053F800CBC40A /* AppDelegate.m */; };
+		5062295D1AC053F800CBC40A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5062290F1AC053F800CBC40A /* LaunchScreen.xib */; };
+		5062295E1AC053F800CBC40A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 506229111AC053F800CBC40A /* Main.storyboard */; };
+		506229601AC053F800CBC40A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 506229151AC053F800CBC40A /* Images.xcassets */; };
+		506229611AC053F800CBC40A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 506229161AC053F800CBC40A /* Info.plist */; };
+		506229621AC053F800CBC40A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 506229171AC053F800CBC40A /* main.m */; };
+		506229631AC053F800CBC40A /* RMXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506229191AC053F800CBC40A /* RMXViewController.m */; };
+		506229641AC053F800CBC40A /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 5062291B1AC053F800CBC40A /* Shader.fsh */; };
+		506229651AC053F800CBC40A /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 5062291C1AC053F800CBC40A /* Shader.vsh */; };
+		506229661AC053F800CBC40A /* texture_numbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 5062291D1AC053F800CBC40A /* texture_numbers.png */; };
+		506229671AC053F800CBC40A /* cStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 506229201AC053F800CBC40A /* cStuff.m */; };
+		506229681AC053F800CBC40A /* Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 506229221AC053F800CBC40A /* Geometry.m */; };
+		5062296A1AC053F800CBC40A /* RMXKeyboardProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 506229261AC053F800CBC40A /* RMXKeyboardProcessor.m */; };
+		5062296B1AC053F800CBC40A /* RMXMaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 506229281AC053F800CBC40A /* RMXMaths.m */; };
+		5062296C1AC053F800CBC40A /* RMXMouseProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5062292A1AC053F800CBC40A /* RMXMouseProcessor.m */; };
+		5062296D1AC053F800CBC40A /* RMXShapes.m in Sources */ = {isa = PBXBuildFile; fileRef = 5062292C1AC053F800CBC40A /* RMXShapes.m */; };
+		506229761AC053F800CBC40A /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 506229391AC053F800CBC40A /* art.scnassets */; };
+		5062297A1AC053F800CBC40A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5062293E1AC053F800CBC40A /* Images.xcassets */; };
+		5062297E1AC053F800CBC40A /* RMSActionProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229431AC053F800CBC40A /* RMSActionProcessor.swift */; };
+		5062297F1AC053F800CBC40A /* RMSArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229441AC053F800CBC40A /* RMSArt.swift */; };
+		506229801AC053F800CBC40A /* RMSGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229451AC053F800CBC40A /* RMSGeometry.swift */; };
+		506229811AC053F800CBC40A /* RMSKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229461AC053F800CBC40A /* RMSKeys.swift */; };
+		506229821AC053F800CBC40A /* RMSMaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229471AC053F800CBC40A /* RMSMaths.swift */; };
+		506229831AC053F800CBC40A /* RMSParticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229481AC053F800CBC40A /* RMSParticle.swift */; };
+		506229841AC053F800CBC40A /* RMSPhysicsBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229491AC053F800CBC40A /* RMSPhysicsBody.swift */; };
+		506229861AC053F800CBC40A /* RMSWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5062294B1AC053F800CBC40A /* RMSWorld.swift */; };
+		506229871AC053F800CBC40A /* RMX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5062294C1AC053F800CBC40A /* RMX.swift */; };
+		506229881AC053F800CBC40A /* RMXCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5062294D1AC053F800CBC40A /* RMXCamera.swift */; };
+		506229891AC053F800CBC40A /* RMXController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5062294E1AC053F800CBC40A /* RMXController.swift */; };
+		5062298A1AC053F800CBC40A /* RMXDebugger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5062294F1AC053F800CBC40A /* RMXDebugger.swift */; };
+		5062298C1AC053F800CBC40A /* RMXDPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229511AC053F800CBC40A /* RMXDPad.swift */; };
+		5062298E1AC053F800CBC40A /* RMXInitialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229531AC053F800CBC40A /* RMXInitialize.swift */; };
+		5062298F1AC053F800CBC40A /* RMXMouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229541AC053F800CBC40A /* RMXMouse.swift */; };
+		506229901AC053F800CBC40A /* RMXObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229551AC053F800CBC40A /* RMXObject.swift */; };
+		506229911AC053F800CBC40A /* RMXPhysics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229561AC053F800CBC40A /* RMXPhysics.swift */; };
+		506229931AC053F800CBC40A /* RMXShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229581AC053F800CBC40A /* RMXShape.swift */; };
+		506229941AC053F800CBC40A /* RMXSpriteActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229591AC053F800CBC40A /* RMXSpriteActions.swift */; };
+		506229951AC053F800CBC40A /* RMXValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5062295A1AC053F800CBC40A /* RMXValue.swift */; };
+		506229961AC053F800CBC40A /* RMXWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5062295B1AC053F800CBC40A /* RMXWorld.swift */; };
+		50780FE81AC05644009AAEAE /* RMSEquations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50780FE71AC05644009AAEAE /* RMSEquations.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		506228FB1AC0533F00CBC40A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 506228D91AC0533F00CBC40A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 506228E01AC0533F00CBC40A;
+			remoteInfo = RattleGLES;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		506228E11AC0533F00CBC40A /* RattleGLES.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RattleGLES.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		506228E51AC0533F00CBC40A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		506228E61AC0533F00CBC40A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		506228E81AC0533F00CBC40A /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
+		506228EA1AC0533F00CBC40A /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
+		506228EC1AC0533F00CBC40A /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		506228EF1AC0533F00CBC40A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		506228F11AC0533F00CBC40A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		506228F41AC0533F00CBC40A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		506228FA1AC0533F00CBC40A /* RattleGLESTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RattleGLESTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		506228FF1AC0533F00CBC40A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		506229001AC0533F00CBC40A /* RattleGLESTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattleGLESTests.swift; sourceTree = "<group>"; };
+		5062290A1AC0536F00CBC40A /* RattleGLES-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RattleGLES-Bridging-Header.h"; sourceTree = "<group>"; };
+		5062290D1AC053F800CBC40A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5062290E1AC053F800CBC40A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		506229101AC053F800CBC40A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		506229121AC053F800CBC40A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		506229131AC053F800CBC40A /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		506229141AC053F800CBC40A /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		506229151AC053F800CBC40A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		506229161AC053F800CBC40A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		506229171AC053F800CBC40A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		506229181AC053F800CBC40A /* RattleGLS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RattleGLS-Bridging-Header.h"; sourceTree = "<group>"; };
+		506229191AC053F800CBC40A /* RMXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMXViewController.m; sourceTree = "<group>"; };
+		5062291B1AC053F800CBC40A /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		5062291C1AC053F800CBC40A /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
+		5062291D1AC053F800CBC40A /* texture_numbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture_numbers.png; sourceTree = "<group>"; };
+		5062291F1AC053F800CBC40A /* cStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cStuff.h; sourceTree = "<group>"; };
+		506229201AC053F800CBC40A /* cStuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cStuff.m; sourceTree = "<group>"; };
+		506229211AC053F800CBC40A /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geometry.h; sourceTree = "<group>"; };
+		506229221AC053F800CBC40A /* Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Geometry.m; sourceTree = "<group>"; };
+		506229231AC053F800CBC40A /* RMXEquations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMXEquations.h; sourceTree = "<group>"; };
+		506229241AC053F800CBC40A /* RMXEquations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMXEquations.m; sourceTree = "<group>"; };
+		506229251AC053F800CBC40A /* RMXKeyboardProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMXKeyboardProcessor.h; sourceTree = "<group>"; };
+		506229261AC053F800CBC40A /* RMXKeyboardProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMXKeyboardProcessor.m; sourceTree = "<group>"; };
+		506229271AC053F800CBC40A /* RMXMaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMXMaths.h; sourceTree = "<group>"; };
+		506229281AC053F800CBC40A /* RMXMaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMXMaths.m; sourceTree = "<group>"; };
+		506229291AC053F800CBC40A /* RMXMouseProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMXMouseProcessor.h; sourceTree = "<group>"; };
+		5062292A1AC053F800CBC40A /* RMXMouseProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMXMouseProcessor.m; sourceTree = "<group>"; };
+		5062292B1AC053F800CBC40A /* RMXShapes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMXShapes.h; sourceTree = "<group>"; };
+		5062292C1AC053F800CBC40A /* RMXShapes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMXShapes.m; sourceTree = "<group>"; };
+		5062292D1AC053F800CBC40A /* run.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = run.h; sourceTree = "<group>"; };
+		5062292E1AC053F800CBC40A /* run.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = run.m; sourceTree = "<group>"; };
+		506229301AC053F800CBC40A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		506229321AC053F800CBC40A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		506229331AC053F800CBC40A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		506229341AC053F800CBC40A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		506229351AC053F800CBC40A /* rattle1.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = rattle1.icns; sourceTree = "<group>"; };
+		506229361AC053F800CBC40A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		506229381AC053F800CBC40A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		506229391AC053F800CBC40A /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		5062293B1AC053F800CBC40A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		5062293C1AC053F800CBC40A /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		5062293D1AC053F800CBC40A /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		5062293E1AC053F800CBC40A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5062293F1AC053F800CBC40A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		506229401AC053F800CBC40A /* RMXNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXNode.swift; sourceTree = "<group>"; };
+		506229421AC053F800CBC40A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		506229431AC053F800CBC40A /* RMSActionProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMSActionProcessor.swift; sourceTree = "<group>"; };
+		506229441AC053F800CBC40A /* RMSArt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMSArt.swift; sourceTree = "<group>"; };
+		506229451AC053F800CBC40A /* RMSGeometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMSGeometry.swift; sourceTree = "<group>"; };
+		506229461AC053F800CBC40A /* RMSKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMSKeys.swift; sourceTree = "<group>"; };
+		506229471AC053F800CBC40A /* RMSMaths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMSMaths.swift; sourceTree = "<group>"; };
+		506229481AC053F800CBC40A /* RMSParticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMSParticle.swift; sourceTree = "<group>"; };
+		506229491AC053F800CBC40A /* RMSPhysicsBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMSPhysicsBody.swift; sourceTree = "<group>"; };
+		5062294A1AC053F800CBC40A /* RMSView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMSView.swift; sourceTree = "<group>"; };
+		5062294B1AC053F800CBC40A /* RMSWorld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMSWorld.swift; sourceTree = "<group>"; };
+		5062294C1AC053F800CBC40A /* RMX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMX.swift; sourceTree = "<group>"; };
+		5062294D1AC053F800CBC40A /* RMXCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXCamera.swift; sourceTree = "<group>"; };
+		5062294E1AC053F800CBC40A /* RMXController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXController.swift; sourceTree = "<group>"; };
+		5062294F1AC053F800CBC40A /* RMXDebugger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXDebugger.swift; sourceTree = "<group>"; };
+		506229501AC053F800CBC40A /* RMXDesktopController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXDesktopController.swift; sourceTree = "<group>"; };
+		506229511AC053F800CBC40A /* RMXDPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXDPad.swift; sourceTree = "<group>"; };
+		506229521AC053F800CBC40A /* RMXGLut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXGLut.swift; sourceTree = "<group>"; };
+		506229531AC053F800CBC40A /* RMXInitialize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXInitialize.swift; sourceTree = "<group>"; };
+		506229541AC053F800CBC40A /* RMXMouse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXMouse.swift; sourceTree = "<group>"; };
+		506229551AC053F800CBC40A /* RMXObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXObject.swift; sourceTree = "<group>"; };
+		506229561AC053F800CBC40A /* RMXPhysics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXPhysics.swift; sourceTree = "<group>"; };
+		506229571AC053F800CBC40A /* RMXScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXScene.swift; sourceTree = "<group>"; };
+		506229581AC053F800CBC40A /* RMXShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXShape.swift; sourceTree = "<group>"; };
+		506229591AC053F800CBC40A /* RMXSpriteActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXSpriteActions.swift; sourceTree = "<group>"; };
+		5062295A1AC053F800CBC40A /* RMXValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXValue.swift; sourceTree = "<group>"; };
+		5062295B1AC053F800CBC40A /* RMXWorld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXWorld.swift; sourceTree = "<group>"; };
+		50780FE71AC05644009AAEAE /* RMSEquations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMSEquations.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		506228DE1AC0533F00CBC40A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		506228F71AC0533F00CBC40A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		506228D81AC0533F00CBC40A = {
+			isa = PBXGroup;
+			children = (
+				5062290C1AC053F800CBC40A /* iOSView */,
+				5062291E1AC053F800CBC40A /* Objective-C */,
+				5062292F1AC053F800CBC40A /* OSX */,
+				506229371AC053F800CBC40A /* OSX SceneKit */,
+				506229411AC053F800CBC40A /* Swift */,
+				506228E31AC0533F00CBC40A /* RattleGLES */,
+				506228FD1AC0533F00CBC40A /* RattleGLESTests */,
+				506228E21AC0533F00CBC40A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		506228E21AC0533F00CBC40A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				506228E11AC0533F00CBC40A /* RattleGLES.app */,
+				506228FA1AC0533F00CBC40A /* RattleGLESTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		506228E31AC0533F00CBC40A /* RattleGLES */ = {
+			isa = PBXGroup;
+			children = (
+				506228E61AC0533F00CBC40A /* AppDelegate.swift */,
+				506228E81AC0533F00CBC40A /* Shader.fsh */,
+				506228EA1AC0533F00CBC40A /* Shader.vsh */,
+				506228EC1AC0533F00CBC40A /* GameViewController.swift */,
+				506228EE1AC0533F00CBC40A /* Main.storyboard */,
+				506228F11AC0533F00CBC40A /* Images.xcassets */,
+				506228F31AC0533F00CBC40A /* LaunchScreen.xib */,
+				506228E41AC0533F00CBC40A /* Supporting Files */,
+				5062290A1AC0536F00CBC40A /* RattleGLES-Bridging-Header.h */,
+				50780FE71AC05644009AAEAE /* RMSEquations.swift */,
+			);
+			path = RattleGLES;
+			sourceTree = "<group>";
+		};
+		506228E41AC0533F00CBC40A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				506228E51AC0533F00CBC40A /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		506228FD1AC0533F00CBC40A /* RattleGLESTests */ = {
+			isa = PBXGroup;
+			children = (
+				506229001AC0533F00CBC40A /* RattleGLESTests.swift */,
+				506228FE1AC0533F00CBC40A /* Supporting Files */,
+			);
+			path = RattleGLESTests;
+			sourceTree = "<group>";
+		};
+		506228FE1AC0533F00CBC40A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				506228FF1AC0533F00CBC40A /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5062290C1AC053F800CBC40A /* iOSView */ = {
+			isa = PBXGroup;
+			children = (
+				5062290D1AC053F800CBC40A /* AppDelegate.h */,
+				5062290E1AC053F800CBC40A /* AppDelegate.m */,
+				5062290F1AC053F800CBC40A /* LaunchScreen.xib */,
+				506229111AC053F800CBC40A /* Main.storyboard */,
+				506229131AC053F800CBC40A /* GameViewController.h */,
+				506229141AC053F800CBC40A /* GameViewController.m */,
+				506229151AC053F800CBC40A /* Images.xcassets */,
+				506229161AC053F800CBC40A /* Info.plist */,
+				506229171AC053F800CBC40A /* main.m */,
+				506229181AC053F800CBC40A /* RattleGLS-Bridging-Header.h */,
+				506229191AC053F800CBC40A /* RMXViewController.m */,
+				5062291A1AC053F800CBC40A /* Shaders */,
+				5062291D1AC053F800CBC40A /* texture_numbers.png */,
+			);
+			name = iOSView;
+			path = ../RattleGLS/iOSView;
+			sourceTree = "<group>";
+		};
+		5062291A1AC053F800CBC40A /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				5062291B1AC053F800CBC40A /* Shader.fsh */,
+				5062291C1AC053F800CBC40A /* Shader.vsh */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		5062291E1AC053F800CBC40A /* Objective-C */ = {
+			isa = PBXGroup;
+			children = (
+				5062291F1AC053F800CBC40A /* cStuff.h */,
+				506229201AC053F800CBC40A /* cStuff.m */,
+				506229211AC053F800CBC40A /* Geometry.h */,
+				506229221AC053F800CBC40A /* Geometry.m */,
+				506229231AC053F800CBC40A /* RMXEquations.h */,
+				506229241AC053F800CBC40A /* RMXEquations.m */,
+				506229251AC053F800CBC40A /* RMXKeyboardProcessor.h */,
+				506229261AC053F800CBC40A /* RMXKeyboardProcessor.m */,
+				506229271AC053F800CBC40A /* RMXMaths.h */,
+				506229281AC053F800CBC40A /* RMXMaths.m */,
+				506229291AC053F800CBC40A /* RMXMouseProcessor.h */,
+				5062292A1AC053F800CBC40A /* RMXMouseProcessor.m */,
+				5062292B1AC053F800CBC40A /* RMXShapes.h */,
+				5062292C1AC053F800CBC40A /* RMXShapes.m */,
+				5062292D1AC053F800CBC40A /* run.h */,
+				5062292E1AC053F800CBC40A /* run.m */,
+			);
+			name = "Objective-C";
+			path = "../RattleGLS/Objective-C";
+			sourceTree = "<group>";
+		};
+		5062292F1AC053F800CBC40A /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				506229301AC053F800CBC40A /* AppDelegate.swift */,
+				506229311AC053F800CBC40A /* Main.storyboard */,
+				506229331AC053F800CBC40A /* Images.xcassets */,
+				506229341AC053F800CBC40A /* Info.plist */,
+				506229351AC053F800CBC40A /* rattle1.icns */,
+				506229361AC053F800CBC40A /* ViewController.swift */,
+			);
+			name = OSX;
+			path = ../RattleGLS/OSX;
+			sourceTree = "<group>";
+		};
+		506229371AC053F800CBC40A /* OSX SceneKit */ = {
+			isa = PBXGroup;
+			children = (
+				506229381AC053F800CBC40A /* AppDelegate.swift */,
+				506229391AC053F800CBC40A /* art.scnassets */,
+				5062293A1AC053F800CBC40A /* MainMenu.xib */,
+				5062293C1AC053F800CBC40A /* GameView.swift */,
+				5062293D1AC053F800CBC40A /* GameViewController.swift */,
+				5062293E1AC053F800CBC40A /* Images.xcassets */,
+				5062293F1AC053F800CBC40A /* Info.plist */,
+				506229401AC053F800CBC40A /* RMXNode.swift */,
+			);
+			name = "OSX SceneKit";
+			path = "../RattleGLS/OSX SceneKit";
+			sourceTree = "<group>";
+		};
+		506229411AC053F800CBC40A /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				506229421AC053F800CBC40A /* Info.plist */,
+				506229431AC053F800CBC40A /* RMSActionProcessor.swift */,
+				506229441AC053F800CBC40A /* RMSArt.swift */,
+				506229451AC053F800CBC40A /* RMSGeometry.swift */,
+				506229461AC053F800CBC40A /* RMSKeys.swift */,
+				506229471AC053F800CBC40A /* RMSMaths.swift */,
+				506229481AC053F800CBC40A /* RMSParticle.swift */,
+				506229491AC053F800CBC40A /* RMSPhysicsBody.swift */,
+				5062294A1AC053F800CBC40A /* RMSView.swift */,
+				5062294B1AC053F800CBC40A /* RMSWorld.swift */,
+				5062294C1AC053F800CBC40A /* RMX.swift */,
+				5062294D1AC053F800CBC40A /* RMXCamera.swift */,
+				5062294E1AC053F800CBC40A /* RMXController.swift */,
+				5062294F1AC053F800CBC40A /* RMXDebugger.swift */,
+				506229501AC053F800CBC40A /* RMXDesktopController.swift */,
+				506229511AC053F800CBC40A /* RMXDPad.swift */,
+				506229521AC053F800CBC40A /* RMXGLut.swift */,
+				506229531AC053F800CBC40A /* RMXInitialize.swift */,
+				506229541AC053F800CBC40A /* RMXMouse.swift */,
+				506229551AC053F800CBC40A /* RMXObject.swift */,
+				506229561AC053F800CBC40A /* RMXPhysics.swift */,
+				506229571AC053F800CBC40A /* RMXScene.swift */,
+				506229581AC053F800CBC40A /* RMXShape.swift */,
+				506229591AC053F800CBC40A /* RMXSpriteActions.swift */,
+				5062295A1AC053F800CBC40A /* RMXValue.swift */,
+				5062295B1AC053F800CBC40A /* RMXWorld.swift */,
+			);
+			name = Swift;
+			path = ../RattleGLS/Swift;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		506228E01AC0533F00CBC40A /* RattleGLES */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 506229041AC0533F00CBC40A /* Build configuration list for PBXNativeTarget "RattleGLES" */;
+			buildPhases = (
+				506228DD1AC0533F00CBC40A /* Sources */,
+				506228DE1AC0533F00CBC40A /* Frameworks */,
+				506228DF1AC0533F00CBC40A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RattleGLES;
+			productName = RattleGLES;
+			productReference = 506228E11AC0533F00CBC40A /* RattleGLES.app */;
+			productType = "com.apple.product-type.application";
+		};
+		506228F91AC0533F00CBC40A /* RattleGLESTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 506229071AC0533F00CBC40A /* Build configuration list for PBXNativeTarget "RattleGLESTests" */;
+			buildPhases = (
+				506228F61AC0533F00CBC40A /* Sources */,
+				506228F71AC0533F00CBC40A /* Frameworks */,
+				506228F81AC0533F00CBC40A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				506228FC1AC0533F00CBC40A /* PBXTargetDependency */,
+			);
+			name = RattleGLESTests;
+			productName = RattleGLESTests;
+			productReference = 506228FA1AC0533F00CBC40A /* RattleGLESTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		506228D91AC0533F00CBC40A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Rattle Media Ltd";
+				TargetAttributes = {
+					506228E01AC0533F00CBC40A = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					506228F91AC0533F00CBC40A = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = 506228E01AC0533F00CBC40A;
+					};
+				};
+			};
+			buildConfigurationList = 506228DC1AC0533F00CBC40A /* Build configuration list for PBXProject "RattleGLES" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 506228D81AC0533F00CBC40A;
+			productRefGroup = 506228E21AC0533F00CBC40A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				506228E01AC0533F00CBC40A /* RattleGLES */,
+				506228F91AC0533F00CBC40A /* RattleGLESTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		506228DF1AC0533F00CBC40A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5062295E1AC053F800CBC40A /* Main.storyboard in Resources */,
+				506229601AC053F800CBC40A /* Images.xcassets in Resources */,
+				506229611AC053F800CBC40A /* Info.plist in Resources */,
+				506228F51AC0533F00CBC40A /* LaunchScreen.xib in Resources */,
+				506229641AC053F800CBC40A /* Shader.fsh in Resources */,
+				506228F01AC0533F00CBC40A /* Main.storyboard in Resources */,
+				506229661AC053F800CBC40A /* texture_numbers.png in Resources */,
+				506228F21AC0533F00CBC40A /* Images.xcassets in Resources */,
+				506229761AC053F800CBC40A /* art.scnassets in Resources */,
+				506229651AC053F800CBC40A /* Shader.vsh in Resources */,
+				506228EB1AC0533F00CBC40A /* Shader.vsh in Resources */,
+				5062297A1AC053F800CBC40A /* Images.xcassets in Resources */,
+				5062295D1AC053F800CBC40A /* LaunchScreen.xib in Resources */,
+				506228E91AC0533F00CBC40A /* Shader.fsh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		506228F81AC0533F00CBC40A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		506228DD1AC0533F00CBC40A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				506229821AC053F800CBC40A /* RMSMaths.swift in Sources */,
+				506229621AC053F800CBC40A /* main.m in Sources */,
+				506229881AC053F800CBC40A /* RMXCamera.swift in Sources */,
+				506229681AC053F800CBC40A /* Geometry.m in Sources */,
+				5062296D1AC053F800CBC40A /* RMXShapes.m in Sources */,
+				5062296B1AC053F800CBC40A /* RMXMaths.m in Sources */,
+				506229811AC053F800CBC40A /* RMSKeys.swift in Sources */,
+				50780FE81AC05644009AAEAE /* RMSEquations.swift in Sources */,
+				506229891AC053F800CBC40A /* RMXController.swift in Sources */,
+				5062297F1AC053F800CBC40A /* RMSArt.swift in Sources */,
+				5062298C1AC053F800CBC40A /* RMXDPad.swift in Sources */,
+				506229861AC053F800CBC40A /* RMSWorld.swift in Sources */,
+				506229931AC053F800CBC40A /* RMXShape.swift in Sources */,
+				506229961AC053F800CBC40A /* RMXWorld.swift in Sources */,
+				506229841AC053F800CBC40A /* RMSPhysicsBody.swift in Sources */,
+				5062296A1AC053F800CBC40A /* RMXKeyboardProcessor.m in Sources */,
+				5062296C1AC053F800CBC40A /* RMXMouseProcessor.m in Sources */,
+				506229631AC053F800CBC40A /* RMXViewController.m in Sources */,
+				506229801AC053F800CBC40A /* RMSGeometry.swift in Sources */,
+				506229941AC053F800CBC40A /* RMXSpriteActions.swift in Sources */,
+				506229901AC053F800CBC40A /* RMXObject.swift in Sources */,
+				506229671AC053F800CBC40A /* cStuff.m in Sources */,
+				5062297E1AC053F800CBC40A /* RMSActionProcessor.swift in Sources */,
+				5062298F1AC053F800CBC40A /* RMXMouse.swift in Sources */,
+				5062298E1AC053F800CBC40A /* RMXInitialize.swift in Sources */,
+				506228ED1AC0533F00CBC40A /* GameViewController.swift in Sources */,
+				506228E71AC0533F00CBC40A /* AppDelegate.swift in Sources */,
+				506229951AC053F800CBC40A /* RMXValue.swift in Sources */,
+				506229831AC053F800CBC40A /* RMSParticle.swift in Sources */,
+				5062298A1AC053F800CBC40A /* RMXDebugger.swift in Sources */,
+				506229911AC053F800CBC40A /* RMXPhysics.swift in Sources */,
+				5062295C1AC053F800CBC40A /* AppDelegate.m in Sources */,
+				506229871AC053F800CBC40A /* RMX.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		506228F61AC0533F00CBC40A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				506229011AC0533F00CBC40A /* RattleGLESTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		506228FC1AC0533F00CBC40A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 506228E01AC0533F00CBC40A /* RattleGLES */;
+			targetProxy = 506228FB1AC0533F00CBC40A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		506228EE1AC0533F00CBC40A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				506228EF1AC0533F00CBC40A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		506228F31AC0533F00CBC40A /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				506228F41AC0533F00CBC40A /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		5062290F1AC053F800CBC40A /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				506229101AC053F800CBC40A /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		506229111AC053F800CBC40A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				506229121AC053F800CBC40A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		506229311AC053F800CBC40A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				506229321AC053F800CBC40A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5062293A1AC053F800CBC40A /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5062293B1AC053F800CBC40A /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		506229021AC0533F00CBC40A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		506229031AC0533F00CBC40A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		506229051AC0533F00CBC40A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = RattleGLES/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RattleGLES/RattleGLES-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		506229061AC0533F00CBC40A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = RattleGLES/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RattleGLES/RattleGLES-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		506229081AC0533F00CBC40A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = RattleGLESTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RattleGLES.app/RattleGLES";
+			};
+			name = Debug;
+		};
+		506229091AC0533F00CBC40A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = RattleGLESTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RattleGLES.app/RattleGLES";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		506228DC1AC0533F00CBC40A /* Build configuration list for PBXProject "RattleGLES" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				506229021AC0533F00CBC40A /* Debug */,
+				506229031AC0533F00CBC40A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		506229041AC0533F00CBC40A /* Build configuration list for PBXNativeTarget "RattleGLES" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				506229051AC0533F00CBC40A /* Debug */,
+				506229061AC0533F00CBC40A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		506229071AC0533F00CBC40A /* Build configuration list for PBXNativeTarget "RattleGLESTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				506229081AC0533F00CBC40A /* Debug */,
+				506229091AC0533F00CBC40A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 506228D91AC0533F00CBC40A /* Project object */;
+}
