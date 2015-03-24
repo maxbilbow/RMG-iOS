@@ -9,17 +9,19 @@
 import Foundation
 
 
-@objc public protocol RMXParticle {
+@objc public protocol RMOParticle {
 //    var mouse: RMXMouse? { get }
 //    var actions: RMXSpriteActions? { get }
 //    var camera: RMXCamera? { get set }
-    var body: RMSPhysicsBody { get }
-    func toggleGravity()
-    func plusAngle(point: [Float], speed: Float)
-    func animate()
+//    var body: RMSPhysicsBody { get }
+//    func toggleGravity()
+//    func plusAngle(point: [Float], speed: Float)
+//    func animate()
+//    var shape: RMOShape? { get }
+    var geometry: RMOGeometry? { get }
 }
 
-public class RMSParticle : RMXObject {
+public class RMSParticle : RMXObject, RMOParticle {
  
     public enum RMXParticleType { case OBSERVER, SHAPE, SIMPLE_PARTICLE, WORLD }
     var mouse: RMXMouse?
@@ -27,16 +29,17 @@ public class RMSParticle : RMXObject {
     var type: RMXParticleType = .SIMPLE_PARTICLE
     
     var camera: RMXCamera?
-    var physics: RMXPhysics? {
-        return self.world?.physics
+    
+    @objc public var geometry: RMOGeometry? {
+        return self.shape?.geometry
     }
-    //@objc lazy public var body: RMSPhysicsBody = RMSPhysicsBody(parent: self)
+    
     var shape: RMXShape?
-    var anchor = RMXVector3Zero()
+    var anchor = RMXVector3Zero
     
     //Set automated rotation (used mainly for the sun)
     ///@todo create a behavior protocal/class instead of fun pointers.
-    var rAxis = RMXVector3Zero()
+    var rAxis = RMXVector3Zero
     var rotation:Float = 0
     var rotationCenterDistance:Float = 0
     var isRotating = false
@@ -49,7 +52,7 @@ public class RMSParticle : RMXObject {
         self.body = RMSPhysicsBody(parent: self)
         //RMSParticle.COUNT++
         self.actions!.parent = self
-        self.mouse = RMXMouse(parent:self, world:self.world)
+        //self.mouse = RMXMouse(parent:self, world:self.world)
         
         self.camera = RMXCamera(world: world, pov: self)
         //Set up for basic particle
@@ -111,7 +114,7 @@ public class RMSParticle : RMXObject {
    
     
     var viewPoint: RMXVector3{
-        return RMXVector3Add(self.body.forwardVector,self.position)
+        return GLKVector3Add(self.body.forwardVector,self.position)
     }
     
     var ground: Float {
@@ -153,7 +156,7 @@ public class RMSParticle : RMXObject {
     
     
     func stop() {
-        self.body.velocity = RMXVector3Zero()
+        self.body.velocity = RMXVector3Zero
     }
     
     func plusAngle(point: [Float], speed: Float){

@@ -7,9 +7,49 @@
 //
 
 import Foundation
+import GLKit
 
 
-extension RMXMatrix4 {
+typealias RMXVector3 = GLKVector3
+typealias RMXMatrix3 = GLKMatrix3
+typealias RMXMatrix4 = GLKMatrix4
+var RMXVector3Zero: GLKVector3 {
+    return GLKVector3Make(0,0,0)
+}
+
+func RMXVector3SetX(inout v: GLKVector3, x: Float){
+    v = GLKVector3Make(x, v.y, v.z)
+}
+
+func RMXVector3SetY(inout v: GLKVector3, y: Float){
+    v = GLKVector3Make(v.x, y, v.z)
+}
+
+func RMXVector3SetZ(inout v: GLKVector3, z: Float){
+    v = GLKVector3Make(v.x, v.y, z)
+}
+
+func RMXVector3PlusX(inout v: GLKVector3, x: Float){
+    v = GLKVector3Make(v.x + x, v.y, v.z)
+}
+
+func RMXVector3PlusY(inout v: GLKVector3, y: Float){
+    v = GLKVector3Make(v.x, v.y + y, v.z)
+}
+
+func RMXVector3PlusZ(inout v: GLKVector3, z: Float){
+    v = GLKVector3Make(v.x, v.y, v.z + z)
+}
+
+func + (lhs: GLKVector3, rhs: GLKVector3)->GLKVector3{
+    return GLKVector3Add(lhs, rhs)
+}
+
+func += (inout lhs: GLKVector3, rhs: GLKVector3) {
+    lhs = GLKVector3Add(lhs, rhs)
+}
+
+extension GLKMatrix4 {
     /*
     var upVector: RMXVector3 {
         return SCNVector3Make(m12,m22,m32)
@@ -29,7 +69,7 @@ extension RMXMatrix4 {
     */
 }
 
-extension RMXVector3 {
+extension GLKVector3 {
     var isZero: Bool {
         return (x == 0) && (y == 0) && (z == 0)
     }

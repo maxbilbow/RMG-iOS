@@ -59,7 +59,7 @@ public class RMXObject {
     func debug() {}
     
     var position: RMXVector3 {
-        return self.body.position ?? RMXVector3Zero()
+        return self.body.position ?? RMXVector3Zero
     }
 }
 

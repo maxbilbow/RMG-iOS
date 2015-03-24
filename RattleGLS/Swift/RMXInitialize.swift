@@ -27,7 +27,7 @@ extension RMX {
                             let dist = sprite.body.distanceTo(world.observer)
                             let distTest = sprite.body.radius + world.observer.body.radius + world.observer.actions!.reach
                             if dist <= distTest / 2 {
-                                sprite.body.velocity = RMXVector3Add(sprite.body.velocity, world.observer.body.velocity)
+                                sprite.body.velocity = GLKVector3Add(sprite.body.velocity, world.observer.body.velocity)
                             } else if dist < distTest * 10 {
                                 sprite.actions?.prepareToJump()
                             }

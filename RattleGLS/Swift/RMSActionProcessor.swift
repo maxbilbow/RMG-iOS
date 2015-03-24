@@ -95,7 +95,7 @@ public class RMSActionProcessor {
         if action == "toggleGravity" && speed == 0{
             self.activeSprite.toggleGravity()
         }
-        if action == "universalGravity" && speed == 0 {
+        if action == "toggleAllGravity" && speed == 0 {
             self.world.toggleGravity()
         }
         

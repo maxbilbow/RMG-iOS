@@ -12,6 +12,7 @@ import Foundation
     //    var effect: GLKBaseEffect? { get set }
     //    var context: GLContext? { get set }
     var activeCamera: RMXCamera? { get }
+    var shapes: NSMutableArray { get  }
 //    var activeSprite: RMXParticle? { get }
 //    func animate()
 //    func message(function: String, args: [AnyObject]?)

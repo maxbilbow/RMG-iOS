@@ -27,13 +27,13 @@ public class RMXPhysics {
     }
 
     func gVector(hasGravity: Bool) -> RMXVector3 {
-        return RMXVector3MultiplyScalar(self.upVector, hasGravity ? Float(-gravity) : 0 )
+        return GLKVector3MultiplyScalar(self.upVector, hasGravity ? Float(-gravity) : 0 )
     }
     
     
     
     func gravityFor(sender: RMSParticle) -> RMXVector3{
-        return RMXVector3MultiplyScalar(self.upVector,-sender.body.weight)
+        return GLKVector3MultiplyScalar(self.upVector,-sender.body.weight)
     }
     
     
@@ -41,9 +41,9 @@ public class RMXPhysics {
     func dragFor(sender: RMSParticle) -> RMXVector3{
         let dragC: Float = sender.body.dragC
         let rho: Float = 0.005 * sender.world!.massDensityAt(sender)
-        let u: Float = RMXGetSpeed(sender.body.velocity)
+        let u: Float = GLKVector3Length(sender.body.velocity)
         let area: Float = sender.body.dragArea
-        var v: RMXVector3 = RMXVector3Zero()
+        var v: RMXVector3 = RMXVector3Zero
         RMXVector3SetX(&v, 0.5 * rho * u * u * dragC * area)
         return v
     }
@@ -55,6 +55,6 @@ public class RMXPhysics {
     
     func normalFor(sender: RMSParticle) -> RMXVector3 {
         let normal = sender.world!.normalForceAt(sender)
-        return RMXVector3MultiplyScalar(self.upVector,normal);
+        return GLKVector3MultiplyScalar(self.upVector,normal)
     }
 }

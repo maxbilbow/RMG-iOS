@@ -14,11 +14,16 @@ public class RMSWorld : RMSParticle, RMXWorld {
     private lazy var _action: RMSActionProcessor = RMSActionProcessor(world: self)
     private let GRAVITY: Float = 9.8
     var sprites: [RMSParticle]
-    lazy var observer: RMSParticle = RMSParticle(world: self, parent: self).setAsObserver()
-    override var physics: RMXPhysics? {
-        return self._worldPhysics
+    
+    @objc public var shapes: NSMutableArray {
+        let subset = self.sprites.filter { (sprite: RMSParticle) -> Bool in
+            return sprite.shape?.geometry != nil
+        }
+        let array: NSMutableArray = NSMutableArray (array: subset)
+        return array
     }
-    private lazy var _worldPhysics: RMXPhysics? = RMXPhysics(parent: self)
+    lazy var observer: RMSParticle = RMSParticle(world: self, parent: self).setAsObserver()
+    lazy var physics: RMXPhysics = RMXPhysics(parent: self)
     
     var activeSprite: RMSParticle? {
         return self.observer
@@ -27,7 +32,7 @@ public class RMSWorld : RMSParticle, RMXWorld {
         return observer.camera
     }
     
-   
+
     
     init(parent: RMXObject! = nil, name: String = "The World", capacity: Int = 15000) {
         self.sprites = Array<RMSParticle>()
@@ -35,7 +40,9 @@ public class RMSWorld : RMSParticle, RMXWorld {
         
         super.init(world: nil, parent: parent, name: name)
         self.body.radius = 1000
-
+        self.observer.addInitCall { () -> () in
+            self.observer.body.position = GLKVector3Make(20, 20, 20)
+        }
         
         self.camera = RMXCamera(world: self, pov: observer)
         
@@ -108,9 +115,6 @@ public class RMSWorld : RMSParticle, RMXWorld {
            
         }
         self.debug()
-        if self.physics == nil {
-            fatalError("World Physics is nil")
-        }
         
     }
     

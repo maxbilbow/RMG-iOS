@@ -33,13 +33,13 @@ public class RMXArt : RMXObject {
         sun.body.radius = 100
         sun.shape!.color = GLKVector4Make(0.5,0.5,0.5,0.5)
         sun.shape!.makeAsSun(rDist: world.body.radius * 2, isRotating: true)
-        sun.shape!.setRenderer(self.drawSphere)
+        sun.shape!.geometry = RMOGeometry.SPHERE(sun)
         world.insertSprite(sun)
         
         let axisColors = [colorBlue , colorRed , colorGreen]
         
         let ZX = RMSParticle(world: world)
-//        ZX.shape!.setRenderer(DrawPlane)
+//        ZX.shape!.geometry = RMOGeometry.PLANE(ZX)//TODO
         ZX.shape!.color = GLKVector4Make(0.8,1.2,0.8,0.5)
         ZX.isAnimated = false
         ZX.body.position = GLKVector3Make(ZX.body.position.x, 0, ZX.body.position.z)
@@ -51,10 +51,6 @@ public class RMXArt : RMXObject {
 
         return world
         
-    }
-    
-    class func drawSphere(radius: Float){
-//        RMXDrawSphere(radius)
     }
     
     class func drawAxis(world: RMSWorld) {//xCol y:(float*)yCol z:(float*)zCol{
@@ -91,7 +87,7 @@ public class RMXArt : RMXObject {
                     object.body.position = position
                     object.shape!.visible = true
 //                    object.shape?.setRenderer(DrawCubeWithTextureCoords)
-//                    object.shape!.node = Vertex()
+                    object.shape!.geometry = RMOGeometry.CUBE(object)
             
                     object.shape!.color = GLKVector4Make(color[0], color[1], color[2], color[3])
                     object.isAnimated = false
@@ -116,11 +112,11 @@ public class RMXArt : RMXObject {
             var X: Float = 0; var Y: Float = 0; var Z: Float = 0
             func thisRandom(inout x: Float, inout y: Float, inout z: Float) -> [Float] {
                 do {
-                    let points = RMX.doASum(Float(world.body.radius), i: Int(i), noOfShapes: Int(noOfShapes) )
+                    let points = RMX.doASum(Float(world.body.radius), count: i, noOfShapes: noOfShapes )
                     x = points.x
                     y = points.y
                     z = points.z
-                } while GLKVector3Distance(GLKVector3Make(x,y,z), RMXVector3Zero()) > world.body.radius
+                } while GLKVector3Distance(GLKVector3Make(x,y,z), RMXVector3Zero) > world.body.radius
                 return [ x, y, z ]
             }
             randPos = thisRandom(&X,&Y,&Z)
@@ -134,10 +130,9 @@ public class RMXArt : RMXObject {
 //            }
         
         if(random() % 50 == 1) {
-            object.shape!.setRenderer(self.drawSphere)
+//            object.shape!.geometry = RMOGeometry.SPHERE(object) ///TODO
         } else {
-//            object.shape!.setRenderer(DrawCubeWithTextureCoords)
-//            object.shape?.node = Vertex()
+            object.shape!.geometry = RMOGeometry.CUBE(object)
         }
         
         object.setHasGravity(false) //(rand()% 100) == 1

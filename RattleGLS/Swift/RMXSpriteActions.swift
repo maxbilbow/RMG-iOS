@@ -22,7 +22,7 @@ public class RMXSpriteActions {
     var parent: RMSParticle
     var world: RMSWorld
     var item: RMSParticle?
-    var itemPosition: RMXVector3 = RMXVector3Zero()
+    var itemPosition: RMXVector3 = RMXVector3Zero
 
     
     var sprite: RMSParticle {
@@ -44,7 +44,7 @@ public class RMXSpriteActions {
             self.item!.setHasGravity(_itemHadGravity)
             let fwd4 = self.body!.forwardVector
             let fwd3 = GLKVector3Make(fwd4.x, fwd4.y, fwd4.z)
-            self.item!.body.velocity = RMXVector3Add3(self.body!.velocity,RMXVector3MultiplyScalar(fwd3,strength),RMXVector3Zero())
+            self.item!.body.velocity = self.body!.velocity + GLKVector3MultiplyScalar(fwd3,strength)
             self.item = nil
         } else {
             return
@@ -55,7 +55,7 @@ public class RMXSpriteActions {
         if self.item != nil {
             let fwd4 = self.body!.forwardVector
             let fwd3 = GLKVector3Make(fwd4.x, fwd4.y, fwd4.z)
-            self.item?.body.position = RMXVector3Add(self.sprite.viewPoint, RMXVector3MultiplyScalar(fwd3, self.armLength + self.item!.body.radius + self.body!.radius))
+            self.item?.body.position = self.sprite.viewPoint + GLKVector3MultiplyScalar(fwd3, self.armLength + self.item!.body.radius + self.body!.radius)
         }
     }
     
@@ -101,8 +101,8 @@ public class RMXSpriteActions {
         }
     }
     
-    func push(vector: RMXVector3) {
-        self.body!.velocity = RMXVector3Add(self.body!.velocity, vector)
+    func applyForce(force: RMXVector3) {
+        self.body!.acceleration += force
     }
     
     
@@ -144,7 +144,7 @@ public class RMXSpriteActions {
         }
         else if (self.sprite.hasGravity && _prepairingToJump && !_goingUp) {
             let y = self.body!.weight * self.jumpStrength * self.body!.radius / self.squatLevel
-            self.body!.acceleration = RMXVector3Add(self.body!.acceleration, GLKVector3Make(0,y,0))
+            RMXVector3PlusY(&self.body!.acceleration, y)
             _goingUp = true;
             _prepairingToJump = false;
         }

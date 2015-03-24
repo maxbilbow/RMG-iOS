@@ -11,11 +11,33 @@ import Foundation
 //@objc public protocol RMXRenderable {
 //    var render: CFunctionPointer<(Float)->Void> { get set }
 //}
+@objc public protocol RMOShape {
+    var geometry: RMOGeometry! { get set }
+    var translationMatrix: GLKMatrix4 { get }
+    var scaleMatrix: GLKMatrix4 { get }
+    var rotationMatrix: GLKMatrix4 { get }
+}
 
-public class RMXShape {
+
+@objc public class RMXShape : RMOShape {
+    @objc public var scaleMatrix: GLKMatrix4 {
+        return GLKMatrix4MakeScale(self.radius,self.radius,self.radius)
+    }
+    @objc public var rotationMatrix: GLKMatrix4 {
+        return GLKMatrix4MakeRotation(self.rotation, self.parent.rAxis.x,self.parent.rAxis.y,self.parent.rAxis.z)
+    }
+    @objc public var geometry: RMOGeometry!
+    @objc public var translationMatrix: GLKMatrix4 {
+        let p = self.parent.position
+        return GLKMatrix4MakeTranslation(p.x, p.y, p.z)
+    }
     
-    var node: AnyObject?
-    
+    var rotation: Float {
+        return self.parent.rotation
+    }
+    var radius: Float {
+        return self.parent.body.radius
+    }
     var color: GLKVector4 = GLKVector4Make(0,0,0,0)
     var isLight: Bool = false
     var type, gl_light: Int32
@@ -51,7 +73,7 @@ public class RMXShape {
     
     func draw() {
         if !self.visible { return }
-        if self.node != nil {
+        if self.geometry != nil {
             let v = self.parent.body.position
             
             let r: CGFloat = CGFloat(self.parent.body.radius)

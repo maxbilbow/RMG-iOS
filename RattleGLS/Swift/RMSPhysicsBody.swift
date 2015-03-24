@@ -23,14 +23,16 @@
     var world: RMSWorld {
         return self.parent.world!
     }
-
+    var physics: RMXPhysics {
+        return self.world.physics
+    }
     var theta, phi, radius, mass, dragC: Float
     var dragArea: Float {
         return ( self.radius * self.radius * self.PI )
     }
     
     init(parent: RMSParticle, mass: Float = 1, radius: Float = 1, dragC: Float = 0.1,
-        accRate: Float = 0.4, rotSpeed:Float = 0.01){
+        accRate: Float = 0.4, rotSpeed:Float = 0.007){
         self.theta = 0
         self.phi = 0
         self.mass = mass
@@ -55,11 +57,26 @@
     }
     
     var weight: Float{
-        return self.mass * parent.physics!.gravity
+        return self.mass * self.physics.gravity
+    }
+    
+    var upVector: GLKVector3 {
+        return GLKMatrix3GetRow(self.orientation, 1)
+    }
+    
+    var leftVector: GLKVector3 {
+        return GLKMatrix3GetRow(self.orientation, 0)
+    }
+    
+    var forwardVector: GLKVector3 {
+        return GLKMatrix3GetRow(self.orientation, 2)
+    }
+    
+    func distanceTo(object:RMXObject) -> Float{
+        return GLKVector3Distance(self.position,object.position)
     }
     
     func accelerateForward(v: Float) {
-        
         RMXVector3SetZ(&self.acceleration, v * self.accelerationRate)
     }
     
@@ -84,22 +101,26 @@
         RMXVector3SetX(&self.acceleration,0)
     }
     
+    private let _phiLimit = Float(0.8)
     func plusAngle(x:Float, y:Float, z: Float = 0) {
         //body.position.z += theta; return;
+        
         let theta = x * self.rotationSpeed * PI_OVER_180
-        let phi = y * -self.rotationSpeed * PI_OVER_180
+        var phi = y * -self.rotationSpeed * PI_OVER_180
+        
+        var newPhi = self.phi + phi
         
         
-        //let lim = CGFloat(cos(0.0))
-        //        if self.body.phi + phi < lim && self.body.phi + phi > -lim {
-        //            self.body.phi += phi
-        //            self.body.angles.phi = -lim;
-        //        }
+        if newPhi > _phiLimit {
+            newPhi = _phiLimit
+            phi = 0
+        } else if newPhi < -_phiLimit{
+            newPhi = -_phiLimit
+            phi = 0
+        }
         
+        self.phi = newPhi
         self.theta += theta
-        
-        
-        
         
         self.orientation = GLKMatrix3Rotate(self.orientation, theta, 0, 1, 0);
         self.orientation = GLKMatrix3RotateWithVector3(self.orientation, phi, self.leftVector)
@@ -108,17 +129,13 @@
     }
     
     func animate()    {
-        //GLKVector3 upThrust = GLKVector3Make( 0,0,0 );
-        let g = self.hasGravity ? self.parent.physics!.gravityFor(self.parent) : RMXVector3Zero()
-        let n = (self.hasGravity) ? self.parent.physics!.normalFor(self.parent) : RMXVector3Zero()
-        let f = self.parent.physics!.frictionFor(self.parent)// : GLKVector3Make(1,1,1);
-        let d = self.parent.physics!.dragFor(self.parent)// : GLKVector3Make(1,1,1);
+
+        let g = self.hasGravity ? self.physics.gravityFor(self.parent) : RMXVector3Zero
+        let n = self.hasGravity ? self.physics.normalFor(self.parent) : RMXVector3Zero
+        let f = self.physics.frictionFor(self.parent)// : GLKVector3Make(1,1,1);
+        let d = self.physics.dragFor(self.parent)// : GLKVector3Make(1,1,1);
         
-        
-        //#if TARGET_OS_IPHONE
-        //    self.body.velocity = GLKVector3DivideScalar(self.body.velocity, 1 );
-        //#else
-        self.velocity = RMXVector3DivideScalar(self.velocity, Float(1 + self.world.µAt(self.parent) + d.x))
+        self.velocity = GLKVector3DivideScalar(self.velocity, Float(1 + self.world.µAt(self.parent) + d.x))
         
         
         let forces = GLKVector3Make(
@@ -131,11 +148,8 @@
         //    self.body.forces.y += g.y + n.y;
         //    self.body.forces.z += g.z + n.z;
         
-        
-        self.forces = GLKVector3Add(forces,RMXMatrix3MultiplyVector3(GLKMatrix3Transpose(self.orientation),self.acceleration));
+        self.forces = GLKVector3Add(forces,GLKMatrix3MultiplyVector3(GLKMatrix3Transpose(self.orientation),self.acceleration));
         self.velocity = GLKVector3Add(self.velocity,self.forces);//transpos or?
-        
-        
         
         self.world.collisionTest(self.parent)
         
@@ -146,24 +160,6 @@
     
 
 
-    var upVector: GLKVector3 {
-        return GLKMatrix3GetRow(self.orientation, 1)
-//        return GLKVector3Make(Float(self.orientation.m12),Float(self.orientation.m22),Float(self.orientation.m32))
-    }
-    
-    
-    var leftVector: GLKVector3 {
-        return GLKMatrix3GetRow(self.orientation, 0)
-        //return GLKVector3Make(Float(self.orientation.m11),Float(self.orientation.m21),Float(self.orientation.m31))
-    }
-    
-    var forwardVector: GLKVector3 {
-        return GLKMatrix3GetRow(self.orientation, 2)
-        //return GLKVector3Make(Float(self.orientation.m13),Float(self.orientation.m23),Float(self.orientation.m33))
-    }
-    
-    func distanceTo(object:RMXObject) -> Float{
-        return GLKVector3Distance(self.position,object.position)
-    }
+   
     
 }

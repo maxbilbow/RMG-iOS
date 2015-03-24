@@ -8,8 +8,19 @@
 
 import Foundation
 
-
-@objc public class RMXMouse : RMXObject{
+@objc protocol RMXMouse {
+    init(parent: AnyObject, world: RMXWorld?)
+    var x: Int32 {get}
+    var y: Int32 {get}
+    var hasFocus: Bool { get set }
+    func setMousePos(x: Int32, y:Int32)
+    func mouse2view(x:Int32, y:Int32)
+    func toggleFocus()
+    func centerView(center: CFunctionPointer<(Int32, Int32)->Void>)
+    func calibrateView(x: Int32, y:Int32)
+}
+/*
+@objc public class RMOMouse : RMXObject, RMXMouse{
     
     var hasFocus = false
     var dx: Int32 = 0
@@ -64,4 +75,4 @@ import Foundation
 //        RMXCGGetLastMouseDelta(&self.dx, &self.dy)
     }
     
-}
+} */

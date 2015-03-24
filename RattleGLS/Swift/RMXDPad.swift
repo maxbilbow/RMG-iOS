@@ -10,11 +10,7 @@ import Foundation
 import CoreMotion
 import UIKit
 
-func RMXLog(message: String,sender: String = __FUNCTION__) {
-    println("\(sender) \(message)")
-}
-
-@objc public class RMXDPad : CMMotionManager, RMXController {
+public class RMXDPad : CMMotionManager {
     var hRotation:Float = 0.0   //Horizontal angle
     var vRotation:Float = 0.0   //Vertical rotation angle of the camera
     var cameraMovementSpeed:Float = 0.02
@@ -29,7 +25,7 @@ func RMXLog(message: String,sender: String = __FUNCTION__) {
         return self.world.activeCamera!
     }
     
-    required public init(gvc: GameViewController, world: RMXWorld){
+    init(gvc: GameViewController, world: RMXWorld){
         
         self.gvc = gvc
         self.world = world as! RMSWorld
@@ -44,11 +40,11 @@ func RMXLog(message: String,sender: String = __FUNCTION__) {
         self.viewDidLoad()
     }
     
-    static func New(gvc: GameViewController) -> RMXController {
+    static func New(gvc: GameViewController) -> RMXDPad {
         return RMXDPad(gvc: gvc, world: RMXArt.initializeTestingEnvironment())
     }
     
-    static func NewWithWorld(world: RMXWorld, gvc: GameViewController) -> RMXController {
+    static func NewWithWorld(world: RMXWorld, gvc: GameViewController) -> RMXDPad {
         return RMXDPad(gvc: gvc, world: world)
     }
     
@@ -80,9 +76,14 @@ func RMXLog(message: String,sender: String = __FUNCTION__) {
     func log(message: String,sender: String = __FUNCTION__) {
         self.dataIn += "  \(sender): \(message)"
     }
-    
+    private let _testing = false
     func interpretAccelerometerData(){
         if !hasMotion { return }
+        else {
+            let g = self.deviceMotion.gravity
+            self.world.physics.upVector = GLKVector3Make(-Float(g.x), -Float(g.y), -Float(g.z))
+        }
+        if !_testing { return }
         self.i++
         if self.i == 1 { self.i=0 } else { return }
         if deviceMotion != nil {
@@ -163,6 +164,10 @@ func RMXLog(message: String,sender: String = __FUNCTION__) {
         tt.numberOfTapsRequired = 3
         gvc.view.addGestureRecognizer(tt)
         
+        let twoFingers: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleDoubleTouch:")
+        twoFingers.numberOfTouchesRequired = 2
+        gvc.view.addGestureRecognizer(twoFingers)
+        
     }
     var i: Int = 0
     func update() {
@@ -178,6 +183,11 @@ func RMXLog(message: String,sender: String = __FUNCTION__) {
     func handleDoubleTap(recognizer: UITapGestureRecognizer) {
         RMXLog("Double Tap")
         self.world.action(action: "toggleGravity")
+    }
+    
+    func handleDoubleTouch(recognizer: UITapGestureRecognizer) {
+        RMXLog("Double Touch")
+        self.world.action(action: "toggleAllGravity")
     }
     
     func handleTripleTap(recognizer: UITapGestureRecognizer) {
@@ -207,6 +217,7 @@ func RMXLog(message: String,sender: String = __FUNCTION__) {
     
     
     func animate(){
+        self.interpretAccelerometerData()
         self.world.animate()
     }
 }

@@ -13,7 +13,7 @@ import Foundation
     var world: RMXWorld?
     var pov: RMSParticle?
     var near, far, fieldOfView: Float
-    var facingVector: GLKVector3 = RMXVector3Zero()
+    var facingVector: GLKVector3 = RMXVector3Zero
     var effect: GLKBaseEffect! = nil
 
     var aspectRatio: Float  {
@@ -39,7 +39,7 @@ import Foundation
             center.x,   center.y,   center.z,
             up.x,       up.y,       up.z)
     }
-    init(world: RMSWorld?, pov: RMSParticle! = nil,viewSize: (Float,Float) = (1280, 750), farPane far: Float = 2000 ){
+    init(world: RMSWorld?, pov: RMSParticle! = nil, viewSize: (Float,Float) = (1280, 750), farPane far: Float = 2000 ){
         self.world = world ?? pov as! RMSWorld
         self.far = far
         self.near = 1
@@ -48,8 +48,6 @@ import Foundation
         self.viewHeight = viewSize.1
         self.viewWidth = viewSize.0
     }
-    
-    
     
     public var eye: GLKVector3 {
         return self.position
@@ -60,7 +58,7 @@ import Foundation
         return GLKVector3Add(self.body.forwardVector,self.position)
     }
     
-    private let simple = true
+    private let simple = false
     public var up: GLKVector3 {
         
         if simple {

@@ -9,7 +9,7 @@
 import Foundation
 
 extension RMX {
-    class func doASum(radius: Float, i: Int, noOfShapes: Int ) -> GLKVector4{
+    class func doASum(radius: Float, count i: Float, noOfShapes limit: Float ) -> GLKVector4{
         let radius = ceil(radius)
         return GLKVector4Make(randomFloat(radius*2)-radius,randomFloat(2*radius),randomFloat(radius*2)-radius, randomFloat(radius))
         
