@@ -36,6 +36,13 @@
 		506229941AC053F800CBC40A /* RMXSpriteActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229591AC053F800CBC40A /* RMXSpriteActions.swift */; };
 		506229951AC053F800CBC40A /* RMXValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5062295A1AC053F800CBC40A /* RMXValue.swift */; };
 		506229961AC053F800CBC40A /* RMXWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5062295B1AC053F800CBC40A /* RMXWorld.swift */; };
+		5069AF371AC1C98A00540001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069AF361AC1C98A00540001 /* AppDelegate.swift */; };
+		5069AF391AC1C98A00540001 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069AF381AC1C98A00540001 /* GameViewController.swift */; };
+		5069AF3B1AC1C98A00540001 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 5069AF3A1AC1C98A00540001 /* Shaders.metal */; };
+		5069AF3E1AC1C98A00540001 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5069AF3C1AC1C98A00540001 /* Main.storyboard */; };
+		5069AF401AC1C98A00540001 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5069AF3F1AC1C98A00540001 /* Images.xcassets */; };
+		5069AF431AC1C98A00540001 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5069AF411AC1C98A00540001 /* LaunchScreen.xib */; };
+		5069AF4F1AC1C98A00540001 /* Rattle_MetalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069AF4E1AC1C98A00540001 /* Rattle_MetalTests.swift */; };
 		50780FE81AC05644009AAEAE /* RMSEquations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50780FE71AC05644009AAEAE /* RMSEquations.swift */; };
 		50780FEA1AC05E2F009AAEAE /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50780FE91AC05E2F009AAEAE /* GLKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		50780FEC1AC05F40009AAEAE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506228EC1AC0533F00CBC40A /* GameViewController.swift */; };
@@ -51,6 +58,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 506228E01AC0533F00CBC40A;
 			remoteInfo = RattleGLES;
+		};
+		5069AF491AC1C98A00540001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 506228D91AC0533F00CBC40A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5069AF311AC1C98A00540001;
+			remoteInfo = "Rattle Metal";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -113,6 +127,17 @@
 		506229591AC053F800CBC40A /* RMXSpriteActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXSpriteActions.swift; sourceTree = "<group>"; };
 		5062295A1AC053F800CBC40A /* RMXValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXValue.swift; sourceTree = "<group>"; };
 		5062295B1AC053F800CBC40A /* RMXWorld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXWorld.swift; sourceTree = "<group>"; };
+		5069AF321AC1C98A00540001 /* Rattle Metal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rattle Metal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5069AF351AC1C98A00540001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5069AF361AC1C98A00540001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5069AF381AC1C98A00540001 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		5069AF3A1AC1C98A00540001 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		5069AF3D1AC1C98A00540001 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5069AF3F1AC1C98A00540001 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5069AF421AC1C98A00540001 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		5069AF481AC1C98A00540001 /* Rattle MetalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Rattle MetalTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5069AF4D1AC1C98A00540001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5069AF4E1AC1C98A00540001 /* Rattle_MetalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rattle_MetalTests.swift; sourceTree = "<group>"; };
 		50780FE71AC05644009AAEAE /* RMSEquations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RMSEquations.swift; path = ../../RattleGLES/RattleGLES/RMSEquations.swift; sourceTree = "<group>"; };
 		50780FE91AC05E2F009AAEAE /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		50F909FE1AC1A6340032DB9E /* Vertices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vertices.h; sourceTree = "<group>"; };
@@ -137,6 +162,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5069AF2F1AC1C98A00540001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5069AF451AC1C98A00540001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -152,6 +191,8 @@
 				506229411AC053F800CBC40A /* Swift */,
 				506228E31AC0533F00CBC40A /* RattleGLES */,
 				506228FD1AC0533F00CBC40A /* RattleGLESTests */,
+				5069AF331AC1C98A00540001 /* Rattle Metal */,
+				5069AF4B1AC1C98A00540001 /* Rattle MetalTests */,
 				506228E21AC0533F00CBC40A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -161,6 +202,8 @@
 			children = (
 				506228E11AC0533F00CBC40A /* RattleGLES.app */,
 				506228FA1AC0533F00CBC40A /* RattleGLESTests.xctest */,
+				5069AF321AC1C98A00540001 /* Rattle Metal.app */,
+				5069AF481AC1C98A00540001 /* Rattle MetalTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -294,6 +337,45 @@
 			path = ../RattleGLS/Swift;
 			sourceTree = "<group>";
 		};
+		5069AF331AC1C98A00540001 /* Rattle Metal */ = {
+			isa = PBXGroup;
+			children = (
+				5069AF361AC1C98A00540001 /* AppDelegate.swift */,
+				5069AF381AC1C98A00540001 /* GameViewController.swift */,
+				5069AF3A1AC1C98A00540001 /* Shaders.metal */,
+				5069AF3C1AC1C98A00540001 /* Main.storyboard */,
+				5069AF3F1AC1C98A00540001 /* Images.xcassets */,
+				5069AF411AC1C98A00540001 /* LaunchScreen.xib */,
+				5069AF341AC1C98A00540001 /* Supporting Files */,
+			);
+			path = "Rattle Metal";
+			sourceTree = "<group>";
+		};
+		5069AF341AC1C98A00540001 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5069AF351AC1C98A00540001 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5069AF4B1AC1C98A00540001 /* Rattle MetalTests */ = {
+			isa = PBXGroup;
+			children = (
+				5069AF4E1AC1C98A00540001 /* Rattle_MetalTests.swift */,
+				5069AF4C1AC1C98A00540001 /* Supporting Files */,
+			);
+			path = "Rattle MetalTests";
+			sourceTree = "<group>";
+		};
+		5069AF4C1AC1C98A00540001 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5069AF4D1AC1C98A00540001 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -332,6 +414,41 @@
 			productReference = 506228FA1AC0533F00CBC40A /* RattleGLESTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		5069AF311AC1C98A00540001 /* Rattle Metal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5069AF501AC1C98A00540001 /* Build configuration list for PBXNativeTarget "Rattle Metal" */;
+			buildPhases = (
+				5069AF2E1AC1C98A00540001 /* Sources */,
+				5069AF2F1AC1C98A00540001 /* Frameworks */,
+				5069AF301AC1C98A00540001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Rattle Metal";
+			productName = "Rattle Metal";
+			productReference = 5069AF321AC1C98A00540001 /* Rattle Metal.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5069AF471AC1C98A00540001 /* Rattle MetalTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5069AF531AC1C98A00540001 /* Build configuration list for PBXNativeTarget "Rattle MetalTests" */;
+			buildPhases = (
+				5069AF441AC1C98A00540001 /* Sources */,
+				5069AF451AC1C98A00540001 /* Frameworks */,
+				5069AF461AC1C98A00540001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5069AF4A1AC1C98A00540001 /* PBXTargetDependency */,
+			);
+			name = "Rattle MetalTests";
+			productName = "Rattle MetalTests";
+			productReference = 5069AF481AC1C98A00540001 /* Rattle MetalTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -354,6 +471,13 @@
 						CreatedOnToolsVersion = 6.3;
 						TestTargetID = 506228E01AC0533F00CBC40A;
 					};
+					5069AF311AC1C98A00540001 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					5069AF471AC1C98A00540001 = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = 5069AF311AC1C98A00540001;
+					};
 				};
 			};
 			buildConfigurationList = 506228DC1AC0533F00CBC40A /* Build configuration list for PBXProject "RattleGLES" */;
@@ -371,6 +495,8 @@
 			targets = (
 				506228E01AC0533F00CBC40A /* RattleGLES */,
 				506228F91AC0533F00CBC40A /* RattleGLESTests */,
+				5069AF311AC1C98A00540001 /* Rattle Metal */,
+				5069AF471AC1C98A00540001 /* Rattle MetalTests */,
 			);
 		};
 /* End PBXProject section */
@@ -390,6 +516,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		506228F81AC0533F00CBC40A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5069AF301AC1C98A00540001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5069AF3E1AC1C98A00540001 /* Main.storyboard in Resources */,
+				5069AF431AC1C98A00540001 /* LaunchScreen.xib in Resources */,
+				5069AF401AC1C98A00540001 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5069AF461AC1C98A00540001 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -440,6 +583,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5069AF2E1AC1C98A00540001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5069AF3B1AC1C98A00540001 /* Shaders.metal in Sources */,
+				5069AF391AC1C98A00540001 /* GameViewController.swift in Sources */,
+				5069AF371AC1C98A00540001 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5069AF441AC1C98A00540001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5069AF4F1AC1C98A00540001 /* Rattle_MetalTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -447,6 +608,11 @@
 			isa = PBXTargetDependency;
 			target = 506228E01AC0533F00CBC40A /* RattleGLES */;
 			targetProxy = 506228FB1AC0533F00CBC40A /* PBXContainerItemProxy */;
+		};
+		5069AF4A1AC1C98A00540001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5069AF311AC1C98A00540001 /* Rattle Metal */;
+			targetProxy = 5069AF491AC1C98A00540001 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -481,6 +647,22 @@
 				5062293B1AC053F800CBC40A /* Base */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		5069AF3C1AC1C98A00540001 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5069AF3D1AC1C98A00540001 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5069AF411AC1C98A00540001 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5069AF421AC1C98A00540001 /* Base */,
+			);
+			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -636,6 +818,64 @@
 			};
 			name = Release;
 		};
+		5069AF511AC1C98A00540001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Rattle Metal/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5069AF521AC1C98A00540001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Rattle Metal/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5069AF541AC1C98A00540001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Rattle MetalTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rattle Metal.app/Rattle Metal";
+			};
+			name = Debug;
+		};
+		5069AF551AC1C98A00540001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Rattle MetalTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rattle Metal.app/Rattle Metal";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -665,6 +905,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		5069AF501AC1C98A00540001 /* Build configuration list for PBXNativeTarget "Rattle Metal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5069AF511AC1C98A00540001 /* Debug */,
+				5069AF521AC1C98A00540001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5069AF531AC1C98A00540001 /* Build configuration list for PBXNativeTarget "Rattle MetalTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5069AF541AC1C98A00540001 /* Debug */,
+				5069AF551AC1C98A00540001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
