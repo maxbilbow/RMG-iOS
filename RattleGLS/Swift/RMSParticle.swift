@@ -235,4 +235,8 @@ extension RMSParticle {
     func setRotationSpeed(speed s: Float){
         self.body.rotationSpeed = s
     }
+    
+    var hasItem: Bool {
+        return self.actions?.item != nil
+    }
 }

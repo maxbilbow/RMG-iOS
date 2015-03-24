@@ -172,6 +172,10 @@ public class RMXDPad : CMMotionManager {
         twoFingers.numberOfTouchesRequired = 2
         gvc.view.addGestureRecognizer(twoFingers)
         
+        let twoFingerTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleDoubleTouchTap:")
+        twoFingerTap.numberOfTouchesRequired = 2
+        gvc.view.addGestureRecognizer(twoFingerTap)
+        
     }
     var i: Int = 0
     func update() {
@@ -191,14 +195,18 @@ public class RMXDPad : CMMotionManager {
     
     func handleDoubleTap(recognizer: UITapGestureRecognizer) {
         RMXLog("Double Tap")
-        self.world.action(action: "toggleGravity")
+        self.world.action(action: "throw", speed: 1)
     }
     
     func handleDoubleTouch(recognizer: UITapGestureRecognizer) {
         RMXLog("Double Touch")
+        self.world.action(action: "toggleGravity")
+    }
+
+    func handleDoubleTouchTap(recognizer: UITapGestureRecognizer) {
         self.world.action(action: "toggleAllGravity")
     }
-    
+
     func handleTripleTap(recognizer: UITapGestureRecognizer) {
         RMXLog("Triple Tap")
         self.world.reset()

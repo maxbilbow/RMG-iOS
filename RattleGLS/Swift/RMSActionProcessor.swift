@@ -101,6 +101,9 @@ public class RMSActionProcessor {
         if action == "grab" {
             self.activeSprite.actions?.grabItem()
         }
+        if action == "trow" {
+            self.activeSprite.actions?.throwItem(speed)
+        }
         
         
         
