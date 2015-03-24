@@ -101,7 +101,7 @@
         RMXVector3SetX(&self.acceleration,0)
     }
     
-    private let _phiLimit = Float(0.8)
+    private let _phiLimit = Float(2)
     func plusAngle(x:Float, y:Float, z: Float = 0) {
         //body.position.z += theta; return;
         

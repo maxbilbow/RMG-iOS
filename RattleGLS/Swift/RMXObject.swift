@@ -17,6 +17,10 @@ public class RMXObject {
     var body: RMSPhysicsBody! = nil
     var resets: [() -> () ]
     var behaviours: [() -> ()]
+    
+    var isAlwaysActive = true
+    var isActive = true
+    
     var name: String {
         return "\(_name): \(self.rmxID)"
     }
@@ -28,7 +32,20 @@ public class RMXObject {
         RMXObject.COUNT++
         self.resets = Array<() -> ()>()
         self.behaviours = Array<() -> ()>()
+        var timePassed = 1000
+        func restIf()->Bool{
+            if timePassed == 0 {
+                timePassed = 1000
+                return true
+            } else {
+                timePassed -= 1
+                return false
+            }
+        }
+        self.prepareToRest = restIf
         self.resets.append({ println("INIT: \(name), \(self.rmxID)")})
+        
+        
         
     }
     func getName() -> String {
@@ -61,5 +78,27 @@ public class RMXObject {
     var position: RMXVector3 {
         return self.body.position ?? RMXVector3Zero
     }
+    var isAlert = true
+    var wasJustWoken = false
+    var wantsToSleep = false
+    var shouldAnimate: Bool {
+        if self.isAlwaysActive {
+            return true
+        } else if self.wasJustWoken {
+            self.wasJustWoken == false
+            return true
+        } else if self.wantsToSleep {
+            return self.prepareToRest()
+        } else {
+            return true
+        }
+    }
+    
+    var prepareToRest: (() -> Bool)
+    
+    func setRestCondition(restIf: () -> Bool) {
+        self.prepareToRest = restIf
+    }
+    
 }
 

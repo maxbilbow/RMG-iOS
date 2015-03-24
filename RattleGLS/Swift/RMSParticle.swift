@@ -66,6 +66,10 @@ public class RMSParticle : RMXObject, RMOParticle {
             self.rotation = 0
             self.isRotating = false
             self.rotationCenterDistance = 0
+            func restIf() -> Bool {
+                return GLKVector3Length(self.body.velocity) < 0.01
+            }
+            self.prepareToRest = restIf
         })
         
         self.resets.last?()
@@ -95,7 +99,7 @@ public class RMSParticle : RMXObject, RMOParticle {
             self.body.radius = 10
             self.body.position = GLKVector3Make(0,self.body.radius,-20)
             self.setHasGravity(true)
-           
+            self.isAlwaysActive = true
         })
         _asObserver = true
         self.resets.last?()
@@ -122,7 +126,7 @@ public class RMSParticle : RMXObject, RMOParticle {
     }
     
     func animate() {
-        if self.isAnimated {
+        if self.isAnimated && self.shouldAnimate {
             self.actions?.jumpTest()
             self.body.animate()
             self.actions?.manipulate()

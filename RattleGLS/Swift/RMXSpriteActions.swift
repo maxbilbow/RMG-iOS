@@ -53,6 +53,7 @@ public class RMXSpriteActions {
     
     func manipulate() {
         if self.item != nil {
+            self.item?.wasJustWoken = true
             let fwd4 = self.body!.forwardVector
             let fwd3 = GLKVector3Make(fwd4.x, fwd4.y, fwd4.z)
             self.item?.body.position = self.sprite.viewPoint + GLKVector3MultiplyScalar(fwd3, self.armLength + self.item!.body.radius + self.body!.radius)
@@ -62,6 +63,7 @@ public class RMXSpriteActions {
     private func setItem(item: RMSParticle!){
         self.item = item
         if item != nil {
+            self.item?.wasJustWoken = true
             //self.sprite.itemPosition = item!.body.position
             _itemWasAnimated = item!.isAnimated
             _itemHadGravity = item!.hasGravity
@@ -87,6 +89,7 @@ public class RMXSpriteActions {
     func releaseItem() {
         if item != nil { RMXLog("DROPPED: \(item!.name)") }
         if self.item != nil {
+            self.item?.wasJustWoken = true
             self.item!.isAnimated = true //_itemWasAnimated
             self.item!.setHasGravity(_itemHadGravity)
             self.setItem(nil)

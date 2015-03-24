@@ -8,7 +8,14 @@
 
 class GameViewController : GLKViewController {
     
-    var modelMatrix, viewMatrix, projectionMatrix: GLKMatrix4!
+    var modelMatrix: GLKMatrix4!
+    var viewMatrix: GLKMatrix4 {
+        return self.camera.modelViewMatrix
+    }
+    
+    var projectionMatrix: GLKMatrix4 {
+        return self.camera.getProjectionMatrix(Float(self.view.bounds.size.width), height: Float(self.view.bounds.size.height))
+    }
     var textureInfo: GLKTextureInfo! = nil
     var rotation: Float = 0
     var vertexArray: UnsafeMutablePointer<GLuint> = UnsafeMutablePointer<GLuint>.alloc(sizeof(GLuint64))
@@ -18,10 +25,21 @@ class GameViewController : GLKViewController {
     var indexBuffer: UnsafeMutablePointer<GLuint> = UnsafeMutablePointer<GLuint>.alloc(sizeof(GLuint64))
     var initialized: Bool = false
     
-    lazy var dPad: RMXDPad = RMXDPad.New(self)
+    var lightPosition: GLKVector4 {
+        return world.sun != nil ? GLKVector4MakeWithVector3(world.sun!.position, 1.0) : GLKVector4Make(0, 0,-10,1.0)
+    }
     
-    var shapes: NSMutableArray {
-        return self.dPad.world.shapes
+    var lightColor: GLKVector4 {
+        return world.sun != nil ? world.sun!.shape!.color : GLKVector4Make(1, 1, 1, 1.0)
+    }
+    
+    lazy var dPad: RMXDPad = RMXDPad.New(self)
+    var world: RMSWorld {
+        return dPad.world
+    }
+    
+    var objects: Array<RMSParticle> {
+        return self.dPad.world.sprites
     }
     
     var camera: RMXCamera {
@@ -29,7 +47,7 @@ class GameViewController : GLKViewController {
     }
     
     override func viewDidLoad() {
-        self.viewMatrix = self.dPad.activeCamera.modelViewMatrix
+//        self.viewMatrix = self.dPad.activeCamera.modelViewMatrix
         self.context = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
         if (self.context == nil) {
             NSLog("Failed to create ES context")
@@ -39,7 +57,7 @@ class GameViewController : GLKViewController {
         view.drawableMultisample = GLKViewDrawableMultisample.Multisample4X
         view.drawableDepthFormat = GLKViewDrawableDepthFormat.Format24
         
-        self.projectionMatrix  = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), 4.0/3.0, 1, 51)
+//        self.projectionMatrix  = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), 4.0/3.0, 1, 51)
         
         self.initEffect()
         self.setupGL()
@@ -56,8 +74,12 @@ class GameViewController : GLKViewController {
     }
     func update(){
         self.dPad.animate()
-        self.projectionMatrix = self.camera.getProjectionMatrix(Float(self.view.bounds.size.width), height: Float(self.view.bounds.size.height))
-        self.viewMatrix = self.dPad.activeCamera.modelViewMatrix
+        self.effect.light0.enabled = GLboolean(1)
+        self.effect.light0.ambientColor = lightColor
+        self.effect.light0.diffuseColor = lightColor
+        self.effect.light0.position = lightPosition
+//        self.projectionMatrix = self.camera.getProjectionMatrix(Float(self.view.bounds.size.width), height: Float(self.view.bounds.size.height))
+//        self.viewMatrix = self.dPad.activeCamera.modelViewMatrix
         self.rotation += Float(self.timeSinceLastUpdate * 0.5)
         //super.update()
     }
@@ -85,9 +107,9 @@ class GameViewController : GLKViewController {
         glGenBuffers(1, self.vertexBuffer)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), self.vertexBuffer.memory);
         
-        for p in self.dPad.world.sprites {
-            if let shape = p.geometry {
-                let shape = p.geometry!
+        for o in self.objects {
+            if let shape = o.geometry {
+                let shape = o.geometry!
                 glBufferData(GLenum(GL_ARRAY_BUFFER), shape.sizeOfVertex, shape.vertices, GLenum(GL_STATIC_DRAW))
                 
                 // setup index buffer - which vertices form a triangle?
@@ -126,9 +148,9 @@ class GameViewController : GLKViewController {
     func configureDefaultLight() {
         //Lightning
         self.effect.light0.enabled = GLboolean(1)
-        self.effect.light0.ambientColor = GLKVector4Make(1, 1, 1, 1.0)
-        self.effect.light0.diffuseColor = GLKVector4Make(1, 1, 1, 1.0)
-        self.effect.light0.position = GLKVector4Make(0, 0,-10,1.0)
+        self.effect.light0.ambientColor = lightColor
+        self.effect.light0.diffuseColor = lightColor
+        self.effect.light0.position = lightPosition
     }
     
     func configureDefaultMaterial() {
@@ -165,16 +187,16 @@ class GameViewController : GLKViewController {
     }
 
     override func glkView(view: GLKView!, drawInRect rect: CGRect) {
+        autoreleasepool({
         glClearColor(1.0, 1.0, 1.0, 1.0);
         glClear(GLenum(GL_COLOR_BUFFER_BIT) | GLenum(GL_DEPTH_BUFFER_BIT));
         
-        for p in self.dPad.world.sprites {
-            
-            if let shape = p.geometry { if p.shape != nil {
-                let shape = p.geometry
-                let scaleMatrix = shape!.scaleMatrix
-                let translateMatrix = shape!.translationMatrix
-                let rotationMatrix = shape!.rotationMatrix
+        for o in self.objects {
+            if let shape = o.geometry {
+                let shape = o.geometry!
+                let scaleMatrix = shape.scaleMatrix
+                let translateMatrix = shape.translationMatrix
+                let rotationMatrix = shape.rotationMatrix
                 
                 
                 var matrixStack = GLKMatrixStackCreate(kCFAllocatorDefault).takeRetainedValue()
@@ -187,14 +209,13 @@ class GameViewController : GLKViewController {
                 self.modelMatrix = GLKMatrixStackGetMatrix4(matrixStack);
                 glBindVertexArrayOES(self.vertexArray.memory)
                 self.prepareEffectWithModelMatrix(self.modelMatrix, viewMatrix:self.viewMatrix, projectionMatrix: self.projectionMatrix)
-                glDrawElements(GLenum(GL_TRIANGLES), GLsizei(shape!.sizeOfIndices / shape!.sizeOfIZero), GLenum(GL_UNSIGNED_BYTE), UnsafePointer<Void>())//nil or 0?
+                glDrawElements(GLenum(GL_TRIANGLES), GLsizei(shape.sizeOfIndices / shape.sizeOfIZero), GLenum(GL_UNSIGNED_BYTE), UnsafePointer<Void>())//nil or 0?
                 
                 glBindVertexArrayOES(0)
                 
-                }}
-            
-            //            CFRelease(matrixStack as! GLKMatrixStackRef);
+            }
         }
+        })
     }
     
     func prepareEffectWithModelMatrix(modelMatrix: GLKMatrix4, viewMatrix:GLKMatrix4, projectionMatrix: GLKMatrix4) {
@@ -202,9 +223,18 @@ class GameViewController : GLKViewController {
         self.effect.transform.projectionMatrix = projectionMatrix;
         self.effect.prepareToDraw()
     }
-    
+    let _farMin: Float = 249
     override func didReceiveMemoryWarning() {
-        //TODO:
+        super.didReceiveMemoryWarning()
+//        NSLog("Received Memory Waning")
+        if self.camera.far > _farMin {
+            self.camera.far *= 0.9
+            if self.camera.far < _farMin {
+                self.camera.far = _farMin
+            }
+        }
+        
+        NSLog("\(self.camera.far)")
     }
     
     func tearDownGL() {

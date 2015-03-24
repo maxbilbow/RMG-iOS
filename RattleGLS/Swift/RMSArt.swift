@@ -30,12 +30,14 @@ public class RMXArt : RMXObject {
     
         let sun = RMSParticle(world: world)
         //[sun setRAxis:GLKVector3Make(0, 0, 1)];
-        sun.body.radius = 100
-        sun.shape!.color = GLKVector4Make(0.5,0.5,0.5,0.5)
+        sun.body.radius = 10
+        sun.shape!.color = GLKVector4Make(1, 1, 1, 1.0)
         sun.shape!.makeAsSun(rDist: world.body.radius * 2, isRotating: true)
+        sun.body.position = GLKVector3Make(0,0,10)
         sun.shape!.geometry = RMOGeometry.SPHERE(sun)
-        //world.insertSprite(sun)
-        
+        world.sun = sun
+        world.insertSprite(sun)
+
         let axisColors = [colorBlue , colorRed , colorGreen]
         
         let ZX = RMSParticle(world: world)
@@ -105,7 +107,7 @@ public class RMXArt : RMXObject {
     class func randomObjects(world: RMSWorld )    {
     //int max =100, min = -100;
     //BOOL gravity = true;
-        let noOfShapes: Float = 10
+        let noOfShapes: Float = 1000
         
         for(var i: Float = -noOfShapes / 2; i < noOfShapes / 2; ++i) {
             var randPos: [Float]

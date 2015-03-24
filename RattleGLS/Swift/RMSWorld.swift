@@ -12,8 +12,9 @@ import Foundation
 public class RMSWorld : RMSParticle, RMXWorld {
 
     private lazy var _action: RMSActionProcessor = RMSActionProcessor(world: self)
+    var sun: RMSParticle?
     private let GRAVITY: Float = 9.8
-    var sprites: [RMSParticle]
+    var sprites: Array<RMSParticle>
     
     @objc public var shapes: NSMutableArray {
         let subset = self.sprites.filter { (sprite: RMSParticle) -> Bool in
@@ -34,12 +35,12 @@ public class RMSWorld : RMSParticle, RMXWorld {
     
 
     
-    init(parent: RMXObject! = nil, name: String = "The World", capacity: Int = 15000) {
+    init(parent: RMXObject! = nil, name: String = "The World", capacity: Int = 5000) {
         self.sprites = Array<RMSParticle>()
         self.sprites.reserveCapacity(capacity)
         
         super.init(world: nil, parent: parent, name: name)
-        self.body.radius = 1000
+        self.body.radius = 500
         self.observer.addInitCall { () -> () in
             self.observer.body.position = GLKVector3Make(20, 20, 20)
         }
