@@ -19,7 +19,11 @@
 @property GLKTextureInfo* textureInfo;
 @property (readonly) NSMutableArray * shapes;
 @property float rotation;
-
+@property GLuint vertexArray;
+@property EAGLContext* context;
+@property GLKBaseEffect* effect;
+@property GLuint vertexBuffer;
+@property GLuint indexBuffer;
 
 - (void)update;
 - (RMOGeometry*)getGeometry:(id)shape;

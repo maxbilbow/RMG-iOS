@@ -32,4 +32,44 @@ class GameViewController : RMOViewController {
         self.rotation += Float(self.timeSinceLastUpdate * 0.5)
         super.update()
     }
+    
+    override func glkView(view: GLKView!, drawInRect rect: CGRect) {
+        glClearColor(1.0, 1.0, 1.0, 1.0);
+        glClear(GLenum(GL_COLOR_BUFFER_BIT) | GLenum(GL_DEPTH_BUFFER_BIT));
+        
+        for p in self.dPad.world.sprites {
+            
+            if let shape = p.geometry { if p.shape != nil {
+                let shape = p.geometry
+                let scaleMatrix = shape!.scaleMatrix
+                let translateMatrix = shape!.translationMatrix
+                let rotationMatrix = shape!.rotationMatrix
+                
+                
+                var matrixStack = GLKMatrixStackCreate(kCFAllocatorDefault).takeRetainedValue()
+                
+                GLKMatrixStackMultiplyMatrix4(matrixStack, translateMatrix)
+                GLKMatrixStackMultiplyMatrix4(matrixStack, rotationMatrix)
+                GLKMatrixStackMultiplyMatrix4(matrixStack, scaleMatrix)
+                
+                GLKMatrixStackPush(matrixStack)
+                self.modelMatrix = GLKMatrixStackGetMatrix4(matrixStack);
+                glBindVertexArrayOES(self.vertexArray);
+                self.prepareEffectWithModelMatrix(self.modelMatrix, viewMatrix:self.viewMatrix, projectionMatrix: self.projectionMatrix)
+                glDrawElements(GLenum(GL_TRIANGLES), GLsizei(shape!.sizeOfIndices / shape!.sizeOfIZero), GLenum(GL_UNSIGNED_BYTE), UnsafePointer<Void>())//nil or 0?
+                
+                glBindVertexArrayOES(0)
+
+            }}
+            
+//            CFRelease(matrixStack as! GLKMatrixStackRef);
+        }
+    }
+    
+    func prepareEffectWithModelMatrix(modelMatrix: GLKMatrix4, viewMatrix:GLKMatrix4, projectionMatrix: GLKMatrix4) {
+        self.effect.transform.modelviewMatrix = GLKMatrix4Multiply(viewMatrix, modelMatrix)
+        self.effect.transform.projectionMatrix = projectionMatrix;
+        self.effect.prepareToDraw()
+    }
+
 }

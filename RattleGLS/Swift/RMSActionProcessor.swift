@@ -98,6 +98,9 @@ public class RMSActionProcessor {
         if action == "toggleAllGravity" && speed == 0 {
             self.world.toggleGravity()
         }
+        if action == "grab" {
+            self.activeSprite.actions?.grabItem()
+        }
         
         
         

@@ -16,11 +16,8 @@
 
 @interface RMOViewController (){
 //    RMXDPad * _dPad;
-    EAGLContext* _context;
-    GLKBaseEffect* _effect;
-    GLuint _vertexBuffer;
-    GLuint _indexBuffer;
-    GLuint _vertexArray;
+    
+   
     
 //    GLKMatrix3 _normalMatrix;
     BOOL _initialized;
@@ -33,6 +30,8 @@
 
 @implementation RMOViewController
 
+
+@synthesize vertexArray = _vertexArray;
 - (RMOGeometry*)getGeometry:(id)shape { return nil; }
 //@synthesize dPad = _dPad;
 //- (RMXCamera*)camera {
@@ -71,13 +70,13 @@
 }
 
 
-#pragma mark - Setup The Shader
-
-- (void)prepareEffectWithModelMatrix:(GLKMatrix4)modelMatrix viewMatrix:(GLKMatrix4)viewMatrix projectionMatrix:(GLKMatrix4)projectionMatrix{
-    _effect.transform.modelviewMatrix = GLKMatrix4Multiply(viewMatrix, modelMatrix);
-    _effect.transform.projectionMatrix = projectionMatrix;
-    [_effect prepareToDraw];
-}
+//#pragma mark - Setup The Shader
+//
+//- (void)prepareEffectWithModelMatrix:(GLKMatrix4)modelMatrix viewMatrix:(GLKMatrix4)viewMatrix projectionMatrix:(GLKMatrix4)projectionMatrix{
+//    _effect.transform.modelviewMatrix = GLKMatrix4Multiply(viewMatrix, modelMatrix);
+//    _effect.transform.projectionMatrix = projectionMatrix;
+//    [_effect prepareToDraw];
+//}
 
 - (void)configureDefaultLight{
     //Lightning
@@ -205,7 +204,7 @@
 //    self.viewMatrix = _dPad.activeCamera.modelViewMatrix;
 //    self.rotation += self.timeSinceLastUpdate * 0.5f;
 }
-
+/*
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
     glClearColor(1.0, 1.0, 1.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -236,5 +235,6 @@
     }
     
 }
-
+*/
+//- (void)doMatrixThings(GLKMatrix4 t,GLKMatrix4 s,GLKMatrix4 r);
 @end

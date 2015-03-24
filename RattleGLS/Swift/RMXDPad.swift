@@ -152,6 +152,10 @@ public class RMXDPad : CMMotionManager {
         gvc.view.addSubview(rightView)
         
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleTap:")
+        tap.numberOfTapsRequired = 1
+        gvc.view.addGestureRecognizer(tap)
+        
         let dt: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleDoubleTap:")
         dt.numberOfTapsRequired = 2
         gvc.view.addGestureRecognizer(dt)
@@ -178,6 +182,11 @@ public class RMXDPad : CMMotionManager {
             self.log("x\(rightPanData.x.toData()), y\(rightPanData.y.toData())",sender: "RIGHT")
         }
         dataIn = ""
+    }
+    
+    func handleTap(recognizer: UITapGestureRecognizer) {
+        RMXLog("Tap")
+        self.world.action(action: "grab")
     }
     
     func handleDoubleTap(recognizer: UITapGestureRecognizer) {

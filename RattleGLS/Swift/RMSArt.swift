@@ -34,7 +34,7 @@ public class RMXArt : RMXObject {
         sun.shape!.color = GLKVector4Make(0.5,0.5,0.5,0.5)
         sun.shape!.makeAsSun(rDist: world.body.radius * 2, isRotating: true)
         sun.shape!.geometry = RMOGeometry.SPHERE(sun)
-        world.insertSprite(sun)
+        //world.insertSprite(sun)
         
         let axisColors = [colorBlue , colorRed , colorGreen]
         
@@ -43,7 +43,7 @@ public class RMXArt : RMXObject {
         ZX.shape!.color = GLKVector4Make(0.8,1.2,0.8,0.5)
         ZX.isAnimated = false
         ZX.body.position = GLKVector3Make(ZX.body.position.x, 0, ZX.body.position.z)
-        world.insertSprite(ZX)
+        //world.insertSprite(ZX)
         
         RMXArt.drawAxis(world)
         RMXArt.randomObjects(world)
@@ -56,9 +56,9 @@ public class RMXArt : RMXObject {
     class func drawAxis(world: RMSWorld) {//xCol y:(float*)yCol z:(float*)zCol{
     
     //BOOL gravity = false;
-        let shapeRadius: Float = 10
+        let shapeRadius: Float = 5
         let axisLenght = world.body.radius * 2
-        let shapesPerAxis: Float = axisLenght / (shapeRadius * 2)
+        let shapesPerAxis: Float = axisLenght / (shapeRadius * 5)
         let step: Float = axisLenght / shapesPerAxis
         
         func drawAxis(axis: String) {
@@ -105,7 +105,7 @@ public class RMXArt : RMXObject {
     class func randomObjects(world: RMSWorld )    {
     //int max =100, min = -100;
     //BOOL gravity = true;
-        let noOfShapes: Float = 2000
+        let noOfShapes: Float = 10
         
         for(var i: Float = -noOfShapes / 2; i < noOfShapes / 2; ++i) {
             var randPos: [Float]
