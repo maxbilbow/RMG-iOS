@@ -59,4 +59,14 @@
 //#import "run.h"
 //#import "SSGameSceneController.h"
 #import "Geometry.h"
-#import "RMOViewController.h"
+//#import "RMOViewController.h"
+
+GLsizei RMSizeOfVert();
+const GLvoid * RMOffsetVertCol();
+const GLvoid * RMOffsetVertTex();
+const GLvoid * RMOffsetVertNorm();
+const GLvoid * RMOffsetVertPos();
+NSString * RMOPathForResource(NSString* path, NSString* ofType);
+
+
+

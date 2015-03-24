@@ -174,6 +174,7 @@ public class RMXDPad : CMMotionManager {
         
         let twoFingerTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleDoubleTouchTap:")
         twoFingerTap.numberOfTouchesRequired = 2
+        twoFingerTap.numberOfTapsRequired = 1
         gvc.view.addGestureRecognizer(twoFingerTap)
         
     }

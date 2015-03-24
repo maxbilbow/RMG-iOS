@@ -14,7 +14,6 @@
 		506228F21AC0533F00CBC40A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 506228F11AC0533F00CBC40A /* Images.xcassets */; };
 		506228F51AC0533F00CBC40A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506228F31AC0533F00CBC40A /* LaunchScreen.xib */; };
 		506229011AC0533F00CBC40A /* RattleGLESTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229001AC0533F00CBC40A /* RattleGLESTests.swift */; };
-		506229631AC053F800CBC40A /* RMOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506229191AC053F800CBC40A /* RMOViewController.m */; };
 		506229661AC053F800CBC40A /* texture_numbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 5062291D1AC053F800CBC40A /* texture_numbers.png */; };
 		5062297E1AC053F800CBC40A /* RMSActionProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229431AC053F800CBC40A /* RMSActionProcessor.swift */; };
 		5062297F1AC053F800CBC40A /* RMSArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229441AC053F800CBC40A /* RMSArt.swift */; };
@@ -36,6 +35,7 @@
 		506229941AC053F800CBC40A /* RMXSpriteActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229591AC053F800CBC40A /* RMXSpriteActions.swift */; };
 		506229951AC053F800CBC40A /* RMXValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5062295A1AC053F800CBC40A /* RMXValue.swift */; };
 		506229961AC053F800CBC40A /* RMXWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5062295B1AC053F800CBC40A /* RMXWorld.swift */; };
+		5069AF571AC1EBCE00540001 /* CWrappers.m in Sources */ = {isa = PBXBuildFile; fileRef = 5069AF561AC1EBCE00540001 /* CWrappers.m */; };
 		50780FE81AC05644009AAEAE /* RMSEquations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50780FE71AC05644009AAEAE /* RMSEquations.swift */; };
 		50780FEA1AC05E2F009AAEAE /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50780FE91AC05E2F009AAEAE /* GLKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		50780FEC1AC05F40009AAEAE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506228EC1AC0533F00CBC40A /* GameViewController.swift */; };
@@ -68,8 +68,6 @@
 		506228FF1AC0533F00CBC40A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		506229001AC0533F00CBC40A /* RattleGLESTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattleGLESTests.swift; sourceTree = "<group>"; };
 		5062290A1AC0536F00CBC40A /* RattleGLES-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RattleGLES-Bridging-Header.h"; sourceTree = "<group>"; };
-		506229131AC053F800CBC40A /* RMOViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMOViewController.h; sourceTree = "<group>"; };
-		506229191AC053F800CBC40A /* RMOViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMOViewController.m; sourceTree = "<group>"; };
 		5062291D1AC053F800CBC40A /* texture_numbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture_numbers.png; sourceTree = "<group>"; };
 		506229211AC053F800CBC40A /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geometry.h; sourceTree = "<group>"; };
 		506229221AC053F800CBC40A /* Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Geometry.m; sourceTree = "<group>"; };
@@ -113,6 +111,7 @@
 		506229591AC053F800CBC40A /* RMXSpriteActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXSpriteActions.swift; sourceTree = "<group>"; };
 		5062295A1AC053F800CBC40A /* RMXValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXValue.swift; sourceTree = "<group>"; };
 		5062295B1AC053F800CBC40A /* RMXWorld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXWorld.swift; sourceTree = "<group>"; };
+		5069AF561AC1EBCE00540001 /* CWrappers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWrappers.m; sourceTree = "<group>"; };
 		50780FE71AC05644009AAEAE /* RMSEquations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RMSEquations.swift; path = ../../RattleGLES/RattleGLES/RMSEquations.swift; sourceTree = "<group>"; };
 		50780FE91AC05E2F009AAEAE /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		50F909FE1AC1A6340032DB9E /* Vertices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vertices.h; sourceTree = "<group>"; };
@@ -209,8 +208,6 @@
 		5062290C1AC053F800CBC40A /* iOSView */ = {
 			isa = PBXGroup;
 			children = (
-				506229131AC053F800CBC40A /* RMOViewController.h */,
-				506229191AC053F800CBC40A /* RMOViewController.m */,
 				5062291D1AC053F800CBC40A /* texture_numbers.png */,
 			);
 			name = iOSView;
@@ -221,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				506229211AC053F800CBC40A /* Geometry.h */,
+				5069AF561AC1EBCE00540001 /* CWrappers.m */,
 				506229221AC053F800CBC40A /* Geometry.m */,
 				50F909FE1AC1A6340032DB9E /* Vertices.h */,
 				50F909FF1AC1A9F10032DB9E /* Vetices.m */,
@@ -417,8 +415,8 @@
 				506229931AC053F800CBC40A /* RMXShape.swift in Sources */,
 				506229961AC053F800CBC40A /* RMXWorld.swift in Sources */,
 				506229841AC053F800CBC40A /* RMSPhysicsBody.swift in Sources */,
-				506229631AC053F800CBC40A /* RMOViewController.m in Sources */,
 				506229941AC053F800CBC40A /* RMXSpriteActions.swift in Sources */,
+				5069AF571AC1EBCE00540001 /* CWrappers.m in Sources */,
 				506229901AC053F800CBC40A /* RMXObject.swift in Sources */,
 				5062297E1AC053F800CBC40A /* RMSActionProcessor.swift in Sources */,
 				5062298F1AC053F800CBC40A /* RMXMouse.swift in Sources */,
