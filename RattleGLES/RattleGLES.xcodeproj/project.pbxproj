@@ -68,9 +68,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		504BE1541AC2A418002CC51C /* RMOGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMOGeometry.m; sourceTree = "<group>"; };
-		504BE1561AC2A422002CC51C /* RMOGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMOGeometry.h; sourceTree = "<group>"; };
 		504BE1571AC2ABEB002CC51C /* Vetices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vetices.m; sourceTree = "<group>"; };
+		504BE1591AC2E6B0002CC51C /* Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Draw.swift; sourceTree = "<group>"; };
 		5059046F1AC1EDD200919A03 /* Rattle Metal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rattle Metal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		505904721AC1EDD200919A03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		505904731AC1EDD200919A03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -255,10 +254,10 @@
 		506228E31AC0533F00CBC40A /* RattleGLES */ = {
 			isa = PBXGroup;
 			children = (
+				506228EC1AC0533F00CBC40A /* GameViewController.swift */,
 				506228E61AC0533F00CBC40A /* AppDelegate.swift */,
 				506228E81AC0533F00CBC40A /* Shader.fsh */,
 				506228EA1AC0533F00CBC40A /* Shader.vsh */,
-				506228EC1AC0533F00CBC40A /* GameViewController.swift */,
 				506228EE1AC0533F00CBC40A /* Main.storyboard */,
 				506228F11AC0533F00CBC40A /* Images.xcassets */,
 				506228F31AC0533F00CBC40A /* LaunchScreen.xib */,
@@ -307,9 +306,8 @@
 			children = (
 				5069AF561AC1EBCE00540001 /* CWrappers.m */,
 				50F909FE1AC1A6340032DB9E /* Vertices.h */,
-				504BE1541AC2A418002CC51C /* RMOGeometry.m */,
-				504BE1561AC2A422002CC51C /* RMOGeometry.h */,
 				504BE1571AC2ABEB002CC51C /* Vetices.m */,
+				504BE1591AC2E6B0002CC51C /* Draw.swift */,
 			);
 			name = "Objective-C";
 			path = "../RattleGLS/Objective-C";

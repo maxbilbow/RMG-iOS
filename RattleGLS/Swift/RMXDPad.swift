@@ -26,10 +26,10 @@ public class RMXDPad : CMMotionManager {
         return self.world.activeCamera!
     }
     
-    init(gvc: GameViewController, world: RMXWorld){
+    init(gvc: GameViewController, world: RMSWorld){
         
         self.gvc = gvc
-        self.world = world as! RMSWorld
+        self.world = world //as! RMSWorld
         super.init()
         
         if hasMotion {
@@ -45,7 +45,7 @@ public class RMXDPad : CMMotionManager {
         return RMXDPad(gvc: gvc, world: RMXArt.initializeTestingEnvironment())
     }
     
-    static func NewWithWorld(world: RMXWorld, gvc: GameViewController) -> RMXDPad {
+    static func NewWithWorld(world: RMSWorld, gvc: GameViewController) -> RMXDPad {
         return RMXDPad(gvc: gvc, world: world)
     }
     
@@ -139,70 +139,93 @@ public class RMXDPad : CMMotionManager {
     func viewDidLoad(){
         let w = gvc.view.bounds.size.width
         let h = gvc.view.bounds.size.height
-        
         let leftView: UIView = UIImageView(frame: CGRectMake(0, 0, w/2, h))
-        let lPan:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self,action: "handlePanLeftSide:")
-        leftView.addGestureRecognizer(lPan)
-        leftView.userInteractionEnabled = true
-        gvc.view.addSubview(leftView)
-        
         let rightView: UIView = UIImageView(frame: CGRectMake(w/2, 0, w/2, h))
-        let rPan:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self,action: "handlePanRightSide:")
-        rightView.addGestureRecognizer(rPan)
-        rightView.userInteractionEnabled = true
-        gvc.view.addSubview(rightView)
+        
+        func setLeftView() {
+            
+            let lPan:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self,action: "handlePanLeftSide:")
+            leftView.addGestureRecognizer(lPan)
+            
+            let tapLeft: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleTapLeft:")
+            leftView.addGestureRecognizer(tapLeft)
+            
+            
+            
+            leftView.userInteractionEnabled = true
+            
+            self.gvc.view.addSubview(leftView)
+        }
+        
+        func setRightView() {
+        
+            
+            let rPan:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self,action: "handlePanRightSide:")
+            rightView.addGestureRecognizer(rPan)
+            
+            let tapRight: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleTapRight:")
+            rightView.addGestureRecognizer(tapRight)
+            
+            
+            rightView.userInteractionEnabled = true
+            self.gvc.view.addSubview(rightView)
+        
+        }
         
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleTap:")
-        tap.numberOfTapsRequired = 1
-        gvc.view.addGestureRecognizer(tap)
         
-        let dt: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleDoubleTap:")
-        dt.numberOfTapsRequired = 2
-        gvc.view.addGestureRecognizer(dt)
+        func setForBothViews(){
+            
+            let twoFingerTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleDoubleTouchTap:")
+            twoFingerTap.numberOfTouchesRequired = 2
+            twoFingerTap.numberOfTapsRequired = 1
+            self.gvc.view.addGestureRecognizer(twoFingerTap)
+            
+            let lp: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self,  action: "longPressGestureRecognizer:")
+            //        lp.minimumPressDuration =
+            self.gvc.view.addGestureRecognizer(lp)
+            
+        }
         
-        let lp: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self,  action: "longPressGestureRecognizer:")
-//        lp.minimumPressDuration = 
-        gvc.view.addGestureRecognizer(lp)
+        setLeftView(); setRightView(); setForBothViews()
+       
+        func misc() {
         
-        let tt: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleTripleTap:")
-        tt.numberOfTapsRequired = 3
-        gvc.view.addGestureRecognizer(tt)
-        
-        let twoFingers: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleDoubleTouch:")
-        twoFingers.numberOfTouchesRequired = 2
-        gvc.view.addGestureRecognizer(twoFingers)
-        
-        let twoFingerTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleDoubleTouchTap:")
-        twoFingerTap.numberOfTouchesRequired = 2
-        twoFingerTap.numberOfTapsRequired = 1
-        gvc.view.addGestureRecognizer(twoFingerTap)
-        
-        let swipeUp: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self,  action: "handleSwipeUp:")
-        swipeUp.numberOfTouchesRequired = 1
-        swipeUp.direction = UISwipeGestureRecognizerDirection.Up
-        //gvc.view.addGestureRecognizer(swipeUp)
-        
-        let swipeDown: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self,  action: "handleSwipeDown:")
-        swipeDown.numberOfTouchesRequired = 1
-        swipeDown.direction = UISwipeGestureRecognizerDirection.Down
-        //gvc.view.addGestureRecognizer(swipeDown)
-        
-        let swipeLeft: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self,  action: "handleSwipeLeft:")
-        swipeLeft.numberOfTouchesRequired = 1
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
-       // gvc.view.addGestureRecognizer(swipeLeft)
-        
-        let swipeRight: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self,  action: "handleSwipeRight:")
-        swipeRight.numberOfTouchesRequired = 1
-        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
-       // gvc.view.addGestureRecognizer(swipeRight)
-        
-        let swipeDownTwo: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self,  action: "handleSwipeDownTwo:")
-        swipeDownTwo.numberOfTouchesRequired = 2
-        swipeDownTwo.direction = UISwipeGestureRecognizerDirection.Down
-        gvc.view.addGestureRecognizer(swipeDownTwo)
-        
+            let tt: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleTripleTap:")
+            tt.numberOfTapsRequired = 3
+            rightView.addGestureRecognizer(tt)
+
+            let twoFingers: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleDoubleTouch:")
+            twoFingers.numberOfTouchesRequired = 2
+            self.gvc.view.addGestureRecognizer(twoFingers)
+            
+            
+            
+            let swipeUp: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self,  action: "handleSwipeUp:")
+            swipeUp.numberOfTouchesRequired = 1
+            swipeUp.direction = UISwipeGestureRecognizerDirection.Up
+            self.gvc.view.addGestureRecognizer(swipeUp)
+            
+            let swipeDown: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self,  action: "handleSwipeDown:")
+            swipeDown.numberOfTouchesRequired = 1
+            swipeDown.direction = UISwipeGestureRecognizerDirection.Down
+            self.gvc.view.addGestureRecognizer(swipeDown)
+            
+            let swipeLeft: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self,  action: "handleSwipeLeft:")
+            swipeLeft.numberOfTouchesRequired = 1
+            swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+            self.gvc.view.addGestureRecognizer(swipeLeft)
+            
+            let swipeRight: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self,  action: "handleSwipeRight:")
+            swipeRight.numberOfTouchesRequired = 1
+            swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+            self.gvc.view.addGestureRecognizer(swipeRight)
+            
+            let swipeDownTwo: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self,  action: "handleSwipeDownTwo:")
+            swipeDownTwo.numberOfTouchesRequired = 2
+            swipeDownTwo.direction = UISwipeGestureRecognizerDirection.Down
+            self.gvc.view.addGestureRecognizer(swipeDownTwo)
+        }
         
 
     }
@@ -217,14 +240,14 @@ public class RMXDPad : CMMotionManager {
         dataIn = ""
     }
     
-    func handleTap(recognizer: UITapGestureRecognizer) {
-        RMXLog("Tap")
+    func handleTapLeft(recognizer: UITapGestureRecognizer) {
+        RMXLog("Left Tap")
         self.world.action(action: "grab")
     }
     
-    func handleDoubleTap(recognizer: UITapGestureRecognizer) {
-        RMXLog("Double Tap")
-        self.world.action(action: "throw", speed: 1)
+    func handleTapRight(recognizer: UITapGestureRecognizer) {
+        RMXLog("Right Tap")
+        self.world.action(action: "throw", speed: 10)
     }
     
     func handleDoubleTouch(recognizer: UITapGestureRecognizer) {
@@ -249,12 +272,15 @@ public class RMXDPad : CMMotionManager {
     
     //The event Le method
     func handlePanLeftSide(recognizer: UIPanGestureRecognizer) {
-        let point = recognizer.velocityInView(gvc.view);
-        let speed:Float = -0.01
-        self.world.action(action: "forward", speed: Float(point.y) * speed)
-        self.world.action(action: "left", speed: Float(point.x) * speed)
+        let point = recognizer.velocityInView(gvc.view); let speed:Float = -0.005
+
+        if recognizer.state == UIGestureRecognizerState.Ended {
+            self.world.action(action: "stop")
+        } else {
+            self.world.action(action: "move", speed: speed, point: [Float(point.x),0, Float(point.y)])
+        }
         
-        //self.world.action(action: "move", speed: speed, point: [Float(point.x),0, Float(point.y)])
+        
     }
     
     
@@ -265,8 +291,12 @@ public class RMXDPad : CMMotionManager {
         self.world.action(action: "look", speed: speed, point: [Float(point.x), Float(point.y)])
     }
     
-    func handleSwipeDownTwo(recognizer: UISwipeGestureRecognizer) {
-        self.world.action(action: "jump", speed: 1)
+    func handlePanDownTwo(recognizer: UIPanGestureRecognizer) {
+        if recognizer.state == UIGestureRecognizerState.Ended {
+            self.world.action(action: "jump")
+        } else {
+            self.world.action(action: "jump", speed: 1)
+        }
     }
     
 

@@ -8,7 +8,7 @@
 
 class GameViewController : GLKViewController {
     
-    var shapes: [RMSGeometry] = [ RMSGeometry.CUBE()]
+    var shapes: [RMSGeometry] = [ RMSGeometry(type: .CUBE), RMSGeometry(type: .PLANE) ]
     var modelMatrix: GLKMatrix4!
     var viewMatrix: GLKMatrix4 {
         return self.camera.modelViewMatrix
@@ -40,7 +40,7 @@ class GameViewController : GLKViewController {
     }
     
     var objects: Array<RMSParticle> {
-        return self.dPad.world.sprites
+        return self.dPad.world.drawables
     }
     
     var camera: RMXCamera {
@@ -49,7 +49,7 @@ class GameViewController : GLKViewController {
     
     override func viewDidLoad() {
         //        self.viewMatrix = self.dPad.activeCamera.modelViewMatrix
-        self.context = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
+        self.context = EAGLContext(API: EAGLRenderingAPI.OpenGLES3)
         if (self.context == nil) {
             NSLog("Failed to create ES context")
         }
@@ -99,23 +99,24 @@ class GameViewController : GLKViewController {
         
         // Create Vertex Array Buffer For Vertex Array Objects
         glGenVertexArraysOES(1, self.vertexArray)
-        glBindVertexArrayOES(self.vertexArray.memory);
-        
-        
-        // All of the following configuration for per vertex data is stored into the VAO
-        
-        // setup vertex buffer - what are my vertices?
-        glGenBuffers(1, self.vertexBuffer)
-        glBindBuffer(GLenum(GL_ARRAY_BUFFER), self.vertexBuffer.memory);
-        
+        glBindVertexArrayOES(self.vertexArray.memory)
         for shape in self.shapes {
-            let shape = RMSGeometry.CUBE()//self.world.sun!)// o.geometry!
-            glBufferData(GLenum(GL_ARRAY_BUFFER), shape.sizeOfVertex, shape.vertices, GLenum(GL_STATIC_DRAW))
+            let shape = shape.type.rawValue
+        
+            // All of the following configuration for per vertex data is stored into the VAO
+            
+            // setup vertex buffer - what are my vertices?
+            glGenBuffers(1, self.vertexBuffer)
+            glBindBuffer(GLenum(GL_ARRAY_BUFFER), self.vertexBuffer.memory);
+        
+        
+//            let shape = RMSGeometry.CUBE()//self.world.sun!)// o.geometry!
+            glBufferData(GLenum(GL_ARRAY_BUFFER), RMSizeOfVertex(shape), RMVerticesPtr(shape), GLenum(GL_STATIC_DRAW))
             
             // setup index buffer - which vertices form a triangle?
             glGenBuffers(1, self.indexBuffer);
             glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), self.indexBuffer.memory)
-            glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER), GLintptr(shape.sizeOfIndices), shape.indices, GLenum(GL_STATIC_DRAW))
+            glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER), GLintptr(RMSizeOfIndices(shape)), RMIndicesPtr(shape), GLenum(GL_STATIC_DRAW))
             
             //Setup Vertex Atrributs
             glEnableVertexAttribArray(GLuint(GLKVertexAttrib.Position.rawValue))
@@ -191,7 +192,7 @@ class GameViewController : GLKViewController {
             glClear(GLenum(GL_COLOR_BUFFER_BIT) | GLenum(GL_DEPTH_BUFFER_BIT));
             
             for o in self.objects {
-                if o.geometry != nil {
+                if o.geometry != .NULL {
                     let sprite = o.shape!
                     let scaleMatrix = sprite.scaleMatrix
                     let translateMatrix = sprite.translationMatrix

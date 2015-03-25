@@ -12,24 +12,23 @@ import GLKit
 @objc public protocol RMXWorld  {
     
     var activeCamera: RMXCamera? { get }
-    var shapes: NSMutableArray { get  }
+    var shapes: Array<RMSParticle> { get  }
     
 }
 
-public class RMSWorld : RMSParticle, RMXWorld {
+public class RMSWorld : RMSParticle {
 
     private lazy var _action: RMSActionProcessor = RMSActionProcessor(world: self)
     var sun: RMSParticle?
     private let GRAVITY: Float = 9.8
     var sprites: Array<RMSParticle>
     
-    @objc public var shapes: NSMutableArray {
-        let subset = self.sprites.filter { (sprite: RMSParticle) -> Bool in
-            return sprite.shape?.geometry != nil
+    var drawables: Array<RMSParticle>{
+        return self.sprites.filter { (sprite: RMSParticle) -> Bool in
+            return sprite.shape?.type != .NULL && sprite.shape!.visible
         }
-        let array: NSMutableArray = NSMutableArray (array: subset)
-        return array
     }
+    
     lazy var observer: RMSParticle = RMSParticle(world: self, parent: self).setAsObserver()
     lazy var physics: RMXPhysics = RMXPhysics(parent: self)
     

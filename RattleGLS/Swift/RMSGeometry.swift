@@ -43,8 +43,12 @@ extension RMOGeometry {
     
 }
 */
- class RMSGeometry  {
+
+enum ShapeType: Int32 { case NULL = 0, CUBE = 1 , PLANE = 2, SPHERE = 3 }
+
+public class RMSGeometry  {
     
+    var type: ShapeType
 //    var verts: RMVertexWrapper! = nil
     var vertices: UnsafePointer<Void>!=nil
     var indices: UnsafePointer<Void>!=nil
@@ -58,8 +62,15 @@ extension RMOGeometry {
     private var parent: RMXShape! = nil
 
     
-    init(parent: RMSParticle! = nil){
+    init(type: ShapeType = .NULL, parent: RMSParticle! = nil){
         self.parent = parent != nil ? parent.shape : nil
+        self.type = type
+        self.sizeOfVertex = RMSizeOfVertex(type.rawValue)
+        self.sizeOfIndices = RMSizeOfIndices(type.rawValue)
+        self.sizeOfIZero = RMSizeOfIZero(type.rawValue)
+        //        geometry.verts = RMVertexWrapper.CUBE()
+        self.vertices = RMVerticesPtr(type.rawValue)
+        self.indices = RMIndicesPtr(type.rawValue)
     }
     
     var translationMatrix: RMXMatrix4 {
@@ -75,24 +86,19 @@ extension RMOGeometry {
     }
 
     
-    class func CUBE(parent: RMSParticle! = nil) -> RMSGeometry! {
-        let geometry = RMSGeometry(parent: parent)
-//        geometry.parent = parent.shape
-        geometry.sizeOfVertex = RMSizeOfVertexCube()
-        geometry.sizeOfIndices = RMSizeOfIndicesCube()
-        geometry.sizeOfIZero = RMSizeOfIZeroCube()
+    class func CUBE(type: ShapeType = .CUBE, parent: RMSParticle! = nil) -> RMSGeometry! {
+        let geometry = RMSGeometry(type: type, parent: parent)
+        geometry.type = type
+        geometry.sizeOfVertex = RMSizeOfVertex(type.rawValue)
+        geometry.sizeOfIndices = RMSizeOfIndices(type.rawValue)
+        geometry.sizeOfIZero = RMSizeOfIZero(type.rawValue)
 //        geometry.verts = RMVertexWrapper.CUBE()
-        geometry.vertices = RMVerticesCubePtr()
-        geometry.indices = RMIndicesCubePtr()
+        geometry.vertices = RMVerticesPtr(type.rawValue)
+        geometry.indices = RMIndicesPtr(type.rawValue)
         return geometry
     }
     
-    class func PLANE(parent: RMSParticle!) -> RMSGeometry! {
-        
-        return self.CUBE(parent: parent)
-    }
-    
-    class func SPHERE(parent: RMSParticle!) -> RMSGeometry! {
+    class func SPHERE(parent: RMSParticle! = nil) -> RMSGeometry! {
         
         return self.CUBE(parent: parent)
     }

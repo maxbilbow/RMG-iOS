@@ -34,18 +34,20 @@ public class RMXArt : RMXObject {
         sun.shape!.color = GLKVector4Make(1, 1, 1, 1.0)
         sun.shape!.makeAsSun(rDist: world.body.radius * 2, isRotating: true)
         sun.body.position = GLKVector3Make(0,0,10)
-        sun.shape!.geometry = RMSGeometry.CUBE(parent: sun)
+        sun.shape!.type = .CUBE
         world.sun = sun
         world.insertSprite(sun)
 
         let axisColors = [colorBlue , colorRed , colorGreen]
         
         let ZX = RMSParticle(world: world)
-//        ZX.shape!.geometry = RMOGeometry.PLANE(ZX)//TODO
+        ZX.body.radius = world.body.radius
+        ZX.shape?.type = .PLANE
+        ZX.body.orientation = GLKMatrix3Rotate(ZX.body.orientation, GLKMathDegreesToRadians(90) , 1, 0, 1)
         ZX.shape!.color = GLKVector4Make(0.8,1.2,0.8,0.5)
         ZX.isAnimated = false
-        ZX.body.position = GLKVector3Make(ZX.body.position.x, 0, ZX.body.position.z)
-        //world.insertSprite(ZX)
+        ZX.body.position = GLKVector3Make(ZX.body.position.x, -world.body.radius, ZX.body.position.z)
+        world.insertSprite(ZX)
         
         RMXArt.drawAxis(world)
         RMXArt.randomObjects(world)
@@ -88,8 +90,7 @@ public class RMXArt : RMXObject {
                     object.body.radius = shapeRadius
                     object.body.position = position
                     object.shape!.visible = true
-//                    object.shape?.setRenderer(DrawCubeWithTextureCoords)
-                    object.shape!.geometry = RMSGeometry.CUBE(parent: object)
+                    object.shape!.type = .CUBE
             
                     object.shape!.color = GLKVector4Make(color[0], color[1], color[2], color[3])
                     object.isAnimated = false
@@ -134,7 +135,7 @@ public class RMXArt : RMXObject {
         if(random() % 50 == 1) {
 //            object.shape!.geometry = RMOGeometry.SPHERE(object) ///TODO
         } else {
-            object.shape!.geometry = RMSGeometry.CUBE(parent: object)
+            object.shape!.type = .CUBE
         }
         
         object.setHasGravity(false) //(rand()% 100) == 1

@@ -20,9 +20,9 @@ import GLKit
 }
 
 
-@objc public class RMXShape : RMOShape{
-    
-    var type: String = "cube"
+public class RMXShape {
+//    enum Type: Int { case NULL = 0, CUBE = 1 , PLANE = 2, SPHERE = 3}
+    var type: ShapeType = .NULL
     
     public var scaleMatrix: GLKMatrix4 {
         return GLKMatrix4MakeScale(self.radius,self.radius,self.radius)
@@ -30,7 +30,7 @@ import GLKit
     public var rotationMatrix: GLKMatrix4 {
         return GLKMatrix4MakeRotation(self.rotation, self.parent.rAxis.x,self.parent.rAxis.y,self.parent.rAxis.z)
     }
-    var geometry: RMSGeometry!
+//    var geometry: RMSGeometry!
     public var translationMatrix: GLKMatrix4 {
         let p = self.parent.position
         return GLKMatrix4MakeTranslation(p.x, p.y, p.z)
@@ -47,17 +47,17 @@ import GLKit
     var gl_light_type, gl_light: Int32
     public var render: ((Float) -> Void)?//UnsafeMutablePointer<(Float) -> Void> = UnsafeMutablePointer<(Float) -> Void>()//.alloc(sizeof(<(Float) -> Void>))
     var parent: RMSParticle!
-    var world: RMXWorld?
+    var world: RMSWorld?
     var visible: Bool = true;
     //var shine: CFunctionPointer<(Int32, Int32, [Float])->Void>
     var brigtness: Float = 1
     
-    init(parent: RMSParticle?, world: RMSWorld?, shape: String = "cube")    {
+    init(parent: RMSParticle?, world: RMSWorld?, type: ShapeType = .NULL )    {
         self.parent = parent!
         self.world = world
         self.gl_light_type = GL_POSITION
         self.gl_light = GL_LIGHT0
-        self.type = "cube"
+        self.type = type
     }
     
    
@@ -78,7 +78,7 @@ import GLKit
     
     func draw() {
         if !self.visible { return }
-        if self.geometry != nil {
+        if self.type != .NULL {
             let v = self.parent.body.position
             
             let r: CGFloat = CGFloat(self.parent.body.radius)

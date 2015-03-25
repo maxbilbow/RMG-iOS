@@ -3,66 +3,7 @@
 //
 
 
-//@import Foundation;
-//@import GLUT;
-//@import GLKit;
-//@import OpenGL;
 
-
-//
-//#ifdef _WIN32
-//#	include <windows.h>
-//#else
-//#	include <sys/time.h>
-//#endif
-//
-//Swift
-//@class world;
-//
-//#define RMX_DEPRECATED(from, to, msg) __OSX_AVAILABLE_BUT_DEPRECATED_MSG(__MAC_##from, __MAC_##to, __IPHONE_NA, __IPHONE_NA, "" #msg "")
-//
-//#import <GLKit/GLKMatrix4.h>
-//#import <GLKit/GLKit.h>
-
-//#import "RattleGL3-0-Swift.h"
-
-
-//#import "RMXMaths.h"
-//#import "RMXEquations.h"
-//#import "RMXShapes.h"
-//#import "RMXObject.h"
-//#import "RMXProtocols.h"
-//#import "Geometry.h"
-
-
-//#import "RMXDebugger.h"
-//#import "RMXMouse.h"
-
-//#import "RMXPhysics.h"
-//#import "RMXParticle.h"
-//#import "RMXObserver.h"
-
-//#import "RMXDrawable.h"
-//#import "RMXShapeObject.h"
-//#import "RMXLightSource.h"
-//#import "RMXWorld.h"
-//#import "RMXArt.h"
-
-//desktop below
-
-//#import "RMXMenu.h"
-//#import "RMXWindow.h"
-
-//#import "cStuff.h"
-//#import "RMXDisplayProcessor.h"
-//#import "RMXKeyboardProcessor.h"
-//#import "run.h"
-//#import "SSGameSceneController.h"
-
-//#import "Geometry.h"
-//#import "RMOViewController.h"
-//#import "CWrappers.h"
-#import "RMOGeometry.h"
 #import "Vertices.h"
 GLsizei RMSizeOfVert();
 const GLvoid * RMOffsetVertCol();
@@ -71,13 +12,28 @@ const GLvoid * RMOffsetVertNorm();
 const GLvoid * RMOffsetVertPos();
 NSString * RMOPathForResource(NSString* path, NSString* ofType);
 
- long RMSizeOfVertexCube();
- long RMSizeOfIndicesCube();
- int RMSizeOfIZeroCube();
+// long RMSizeOfVertexCube();
+// long RMSizeOfIndicesCube();
+// int RMSizeOfIZeroCube();
+// const void * RMVerticesCubePtr();
+// const void * RMIndicesCubePtr();
+//
+//
+//long RMSizeOfVertexPlane();
+//long RMSizeOfIndicesPlane();
+//int RMSizeOfIZeroPlane();
+//const void * RMVerticesPlanePtr();
+//const void * RMIndicesPlanePtr();
+//
+//
 
- const void * RMVerticesCubePtr();
- const void * RMIndicesCubePtr();
 
+const int RMX_NULL, RMX_CUBE, RMX_PLANE,  RMX_SPHERE;
 
+long RMSizeOfVertex(GLsizei type);
+long RMSizeOfIndices(int type);
+int RMSizeOfIZero(int type);
 
+const void * RMVerticesPtr(int type);
+const void * RMIndicesPtr(int type);
 

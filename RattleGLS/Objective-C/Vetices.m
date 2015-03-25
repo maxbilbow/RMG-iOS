@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
-#import "RMOGeometry.h"
+
 #import "Vertices.h"
 /**
  Vertex for cube

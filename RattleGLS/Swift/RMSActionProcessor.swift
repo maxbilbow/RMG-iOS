@@ -27,9 +27,18 @@ public class RMSActionProcessor {
         if action == nil { return }
         
         if action == "move" && point.count == 3 {
-            self.activeSprite.body.setVelocity(point, speed: speed)
+//            self.activeSprite.body.setVelocity(point, speed: speed)
 //            self.activeSprite.body.accelerateLeft(point[0] * speed)
+            self.activeSprite.body.accelerateForward(point[2] * speed)
+            self.activeSprite.body.accelerateLeft(point[0] * speed)
+            self.activeSprite.body.accelerateUp(point[2] * speed)
         }
+        if action == "stop" {
+            self.activeSprite.body.forwardStop()
+            self.activeSprite.body.leftStop()
+            self.activeSprite.body.upStop()
+        }
+        
         if action == "look" && point.count == 2 {
             self.activeSprite.plusAngle(point[0]*speed, y: point[1]*speed)
         }
@@ -101,8 +110,17 @@ public class RMSActionProcessor {
         if action == "grab" {
             self.activeSprite.actions?.grabItem()
         }
-        if action == "trow" {
-            self.activeSprite.actions?.throwItem(speed)
+        if action == "throw" {
+            
+            if self.activeSprite.hasItem {
+                RMXLog("Throw: \(self.activeSprite.actions?.item?.name) with speed: \(speed)")
+                self.activeSprite.actions?.throwItem(speed)
+            } else {
+                 self.activeSprite.actions?.grabItem()
+                 RMXLog("Grab: \(self.activeSprite.actions?.item?.name) with speed: \(speed)")
+            }
+            
+            
         }
         
         

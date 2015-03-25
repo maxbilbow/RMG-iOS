@@ -11,7 +11,7 @@ import GLKit
 
 @objc public class RMXCamera {
     
-    var world: RMXWorld?
+    var world: RMSWorld?
     var pov: RMSParticle?
     var near, far, fieldOfView: Float
     var facingVector: GLKVector3 = RMXVector3Zero

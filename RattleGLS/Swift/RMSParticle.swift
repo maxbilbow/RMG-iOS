@@ -30,8 +30,8 @@ public class RMSParticle : RMXObject {
     
     var camera: RMXCamera?
     
-    var geometry: RMSGeometry? {
-        return self.shape?.geometry
+    var geometry: ShapeType {
+        return self.shape != nil ? self.shape!.type : .NULL
     }
     
     var shape: RMXShape?
