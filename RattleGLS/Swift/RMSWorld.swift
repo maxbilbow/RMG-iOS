@@ -7,7 +7,14 @@
 //
 
 import Foundation
+import GLKit
 
+@objc public protocol RMXWorld  {
+    
+    var activeCamera: RMXCamera? { get }
+    var shapes: NSMutableArray { get  }
+    
+}
 
 public class RMSWorld : RMSParticle, RMXWorld {
 
@@ -35,12 +42,12 @@ public class RMSWorld : RMSParticle, RMXWorld {
     
 
     
-    init(parent: RMXObject! = nil, name: String = "The World", capacity: Int = 5000) {
+    init(parent: RMXObject! = nil, name: String = "The World", capacity: Int = 15000) {
         self.sprites = Array<RMSParticle>()
         self.sprites.reserveCapacity(capacity)
         
         super.init(world: nil, parent: parent, name: name)
-        self.body.radius = 500
+        self.body.radius = 1000
         self.observer.addInitCall { () -> () in
             self.observer.body.position = GLKVector3Make(20, 20, 20)
         }

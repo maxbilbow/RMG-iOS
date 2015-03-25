@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import GLKit
 
 @objc public protocol RMOParticle {
 //    var mouse: RMXMouse? { get }
@@ -18,10 +18,10 @@ import Foundation
 //    func plusAngle(point: [Float], speed: Float)
 //    func animate()
 //    var shape: RMOShape? { get }
-    var geometry: RMOGeometry? { get }
+//    var geometry: RMOGeometry? { get }
 }
 
-public class RMSParticle : RMXObject, RMOParticle {
+public class RMSParticle : RMXObject {
  
     public enum RMXParticleType { case OBSERVER, SHAPE, SIMPLE_PARTICLE, WORLD }
     var mouse: RMXMouse?
@@ -30,7 +30,7 @@ public class RMSParticle : RMXObject, RMOParticle {
     
     var camera: RMXCamera?
     
-    @objc public var geometry: RMOGeometry? {
+    var geometry: RMSGeometry? {
         return self.shape?.geometry
     }
     
@@ -143,20 +143,6 @@ public class RMSParticle : RMXObject, RMOParticle {
         }
         self.shape?.draw()
     }
-    
-        
-    
-    
-    //float total, previousUV, previousLV = 0;
-    
-    
-       
-    
-    private func applyLimits()
-    {
-    }
-    
-    
     
     
     func stop() {

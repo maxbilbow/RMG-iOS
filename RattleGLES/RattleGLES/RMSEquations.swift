@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GLKit
 
 extension RMX {
     class func doASum(radius: Float, count i: Float, noOfShapes limit: Float ) -> GLKVector4{

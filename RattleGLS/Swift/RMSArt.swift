@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import GLKit
 
 public class RMXArt : RMXObject {
     static let colorBronzeDiff: [Float]  = [ 0.8, 0.6, 0.0, 1.0 ]
@@ -34,7 +34,7 @@ public class RMXArt : RMXObject {
         sun.shape!.color = GLKVector4Make(1, 1, 1, 1.0)
         sun.shape!.makeAsSun(rDist: world.body.radius * 2, isRotating: true)
         sun.body.position = GLKVector3Make(0,0,10)
-        sun.shape!.geometry = RMOGeometry.SPHERE(sun)
+        sun.shape!.geometry = RMSGeometry.CUBE(parent: sun)
         world.sun = sun
         world.insertSprite(sun)
 
@@ -60,7 +60,7 @@ public class RMXArt : RMXObject {
     //BOOL gravity = false;
         let shapeRadius: Float = 5
         let axisLenght = world.body.radius * 2
-        let shapesPerAxis: Float = axisLenght / (shapeRadius * 5)
+        let shapesPerAxis: Float = axisLenght / (shapeRadius * 3)
         let step: Float = axisLenght / shapesPerAxis
         
         func drawAxis(axis: String) {
@@ -89,7 +89,7 @@ public class RMXArt : RMXObject {
                     object.body.position = position
                     object.shape!.visible = true
 //                    object.shape?.setRenderer(DrawCubeWithTextureCoords)
-                    object.shape!.geometry = RMOGeometry.CUBE(object)
+                    object.shape!.geometry = RMSGeometry.CUBE(parent: object)
             
                     object.shape!.color = GLKVector4Make(color[0], color[1], color[2], color[3])
                     object.isAnimated = false
@@ -107,7 +107,7 @@ public class RMXArt : RMXObject {
     class func randomObjects(world: RMSWorld )    {
     //int max =100, min = -100;
     //BOOL gravity = true;
-        let noOfShapes: Float = 1000
+        let noOfShapes: Float = 2000
         
         for(var i: Float = -noOfShapes / 2; i < noOfShapes / 2; ++i) {
             var randPos: [Float]
@@ -134,7 +134,7 @@ public class RMXArt : RMXObject {
         if(random() % 50 == 1) {
 //            object.shape!.geometry = RMOGeometry.SPHERE(object) ///TODO
         } else {
-            object.shape!.geometry = RMOGeometry.CUBE(object)
+            object.shape!.geometry = RMSGeometry.CUBE(parent: object)
         }
         
         object.setHasGravity(false) //(rand()% 100) == 1

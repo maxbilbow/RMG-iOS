@@ -9,6 +9,7 @@
 import Foundation
 import CoreMotion
 import UIKit
+import GLKit
 
 public class RMXDPad : CMMotionManager {
     var hRotation:Float = 0.0   //Horizontal angle
@@ -177,6 +178,33 @@ public class RMXDPad : CMMotionManager {
         twoFingerTap.numberOfTapsRequired = 1
         gvc.view.addGestureRecognizer(twoFingerTap)
         
+        let swipeUp: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self,  action: "handleSwipeUp:")
+        swipeUp.numberOfTouchesRequired = 1
+        swipeUp.direction = UISwipeGestureRecognizerDirection.Up
+        //gvc.view.addGestureRecognizer(swipeUp)
+        
+        let swipeDown: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self,  action: "handleSwipeDown:")
+        swipeDown.numberOfTouchesRequired = 1
+        swipeDown.direction = UISwipeGestureRecognizerDirection.Down
+        //gvc.view.addGestureRecognizer(swipeDown)
+        
+        let swipeLeft: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self,  action: "handleSwipeLeft:")
+        swipeLeft.numberOfTouchesRequired = 1
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+       // gvc.view.addGestureRecognizer(swipeLeft)
+        
+        let swipeRight: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self,  action: "handleSwipeRight:")
+        swipeRight.numberOfTouchesRequired = 1
+        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+       // gvc.view.addGestureRecognizer(swipeRight)
+        
+        let swipeDownTwo: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self,  action: "handleSwipeDownTwo:")
+        swipeDownTwo.numberOfTouchesRequired = 2
+        swipeDownTwo.direction = UISwipeGestureRecognizerDirection.Down
+        gvc.view.addGestureRecognizer(swipeDownTwo)
+        
+        
+
     }
     var i: Int = 0
     func update() {
@@ -201,11 +229,12 @@ public class RMXDPad : CMMotionManager {
     
     func handleDoubleTouch(recognizer: UITapGestureRecognizer) {
         RMXLog("Double Touch")
-        self.world.action(action: "toggleGravity")
+//        self.world.action(action: "toggleAllGravity")
     }
 
     func handleDoubleTouchTap(recognizer: UITapGestureRecognizer) {
-        self.world.action(action: "toggleAllGravity")
+        self.world.action(action: "toggleGravity")
+        
     }
 
     func handleTripleTap(recognizer: UITapGestureRecognizer) {
@@ -214,15 +243,18 @@ public class RMXDPad : CMMotionManager {
     }
     
     func longPressGestureRecognizer(recognizer: UILongPressGestureRecognizer){
-        self.world.action(action: "jump", speed: 1)
+        self.world.action(action: "toggleAllGravity")
     }
     
     
     //The event Le method
     func handlePanLeftSide(recognizer: UIPanGestureRecognizer) {
         let point = recognizer.velocityInView(gvc.view);
-        let speed:Float = -0.001
-        self.world.action(action: "move", speed: speed, point: [Float(point.x), Float(point.y)])
+        let speed:Float = -0.01
+        self.world.action(action: "forward", speed: Float(point.y) * speed)
+        self.world.action(action: "left", speed: Float(point.x) * speed)
+        
+        //self.world.action(action: "move", speed: speed, point: [Float(point.x),0, Float(point.y)])
     }
     
     
@@ -233,6 +265,23 @@ public class RMXDPad : CMMotionManager {
         self.world.action(action: "look", speed: speed, point: [Float(point.x), Float(point.y)])
     }
     
+    func handleSwipeDownTwo(recognizer: UISwipeGestureRecognizer) {
+        self.world.action(action: "jump", speed: 1)
+    }
+    
+
+    func handleSwipeUp(recognizer: UISwipeGestureRecognizer) {
+        self.world.action(action: "forward", speed: 1)
+    }
+    func handleSwipeDown(recognizer: UISwipeGestureRecognizer) {
+        self.world.action(action: "back", speed: 1)
+    }
+    func handleSwipeLeft(recognizer: UISwipeGestureRecognizer) {
+        self.world.action(action: "left", speed: 1)
+    }
+    func handleSwipeRight(recognizer: UISwipeGestureRecognizer) {
+        self.world.action(action: "right", speed: 1)
+    }
     
     func animate(){
         self.interpretAccelerometerData()

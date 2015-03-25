@@ -8,6 +8,7 @@
 
 class GameViewController : GLKViewController {
     
+    var shapes: [RMSGeometry] = [ RMSGeometry.CUBE()]
     var modelMatrix: GLKMatrix4!
     var viewMatrix: GLKMatrix4 {
         return self.camera.modelViewMatrix
@@ -47,7 +48,7 @@ class GameViewController : GLKViewController {
     }
     
     override func viewDidLoad() {
-//        self.viewMatrix = self.dPad.activeCamera.modelViewMatrix
+        //        self.viewMatrix = self.dPad.activeCamera.modelViewMatrix
         self.context = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
         if (self.context == nil) {
             NSLog("Failed to create ES context")
@@ -57,11 +58,11 @@ class GameViewController : GLKViewController {
         view.drawableMultisample = GLKViewDrawableMultisample.Multisample4X
         view.drawableDepthFormat = GLKViewDrawableDepthFormat.Format24
         
-//        self.projectionMatrix  = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), 4.0/3.0, 1, 51)
+        //        self.projectionMatrix  = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), 4.0/3.0, 1, 51)
         
         self.initEffect()
         self.setupGL()
-
+        
         super.viewDidLoad()
         
     }
@@ -70,7 +71,7 @@ class GameViewController : GLKViewController {
         self.effect = GLKBaseEffect()
         self.configureDefaultLight()
         self.initialized = true
-    
+        
     }
     func update(){
         self.dPad.animate()
@@ -78,8 +79,8 @@ class GameViewController : GLKViewController {
         self.effect.light0.ambientColor = lightColor
         self.effect.light0.diffuseColor = lightColor
         self.effect.light0.position = lightPosition
-//        self.projectionMatrix = self.camera.getProjectionMatrix(Float(self.view.bounds.size.width), height: Float(self.view.bounds.size.height))
-//        self.viewMatrix = self.dPad.activeCamera.modelViewMatrix
+        //        self.projectionMatrix = self.camera.getProjectionMatrix(Float(self.view.bounds.size.width), height: Float(self.view.bounds.size.height))
+        //        self.viewMatrix = self.dPad.activeCamera.modelViewMatrix
         self.rotation += Float(self.timeSinceLastUpdate * 0.5)
         //super.update()
     }
@@ -107,40 +108,38 @@ class GameViewController : GLKViewController {
         glGenBuffers(1, self.vertexBuffer)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), self.vertexBuffer.memory);
         
-        for o in self.objects {
-            if let shape = o.geometry {
-                let shape = o.geometry!
-                glBufferData(GLenum(GL_ARRAY_BUFFER), shape.sizeOfVertex, shape.vertices, GLenum(GL_STATIC_DRAW))
-                
-                // setup index buffer - which vertices form a triangle?
-                glGenBuffers(1, self.indexBuffer);
-                glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), self.indexBuffer.memory)
-                glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER), GLintptr(shape.sizeOfIndices), shape.indices, GLenum(GL_STATIC_DRAW))
-                
-                //Setup Vertex Atrributs
-                glEnableVertexAttribArray(GLuint(GLKVertexAttrib.Position.rawValue))
-                //SYNTAX -,number of elements per vertex, datatype, FALSE, size of element, offset in datastructure
-                glVertexAttribPointer(GLuint(GLKVertexAttrib.Position.rawValue), GLint(3), GLenum(GL_FLOAT), GLboolean(GL_FALSE), RMSizeOfVert(), RMOffsetVertPos())
-                
-                glEnableVertexAttribArray(GLuint(GLKVertexAttrib.Color.rawValue))
-                glVertexAttribPointer(GLuint(GLKVertexAttrib.Color.rawValue), 4, GLenum(GL_FLOAT), GLboolean(GL_FALSE), RMSizeOfVert(), RMOffsetVertCol() )
-                
-                //Textures
-                glEnableVertexAttribArray(GLuint(GLKVertexAttrib.TexCoord0.rawValue))
-                glVertexAttribPointer(GLuint(GLKVertexAttrib.TexCoord0.rawValue), 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), RMSizeOfVert(), RMOffsetVertTex())
-                
-                //Normals
-                glEnableVertexAttribArray(GLuint(GLKVertexAttrib.Normal.rawValue))
-                glVertexAttribPointer(GLuint(GLKVertexAttrib.Normal.rawValue), 3, GLenum(GL_FLOAT), GLboolean(GL_FALSE), RMSizeOfVert(), RMOffsetVertNorm());
-                
-                
-                glActiveTexture(GLenum(GL_TEXTURE0))
-                self.configureDefaultTexture()
-                
-                
-                // were done so unbind the VAO
-                glBindVertexArrayOES(0);
-            }
+        for shape in self.shapes {
+            let shape = RMSGeometry.CUBE()//self.world.sun!)// o.geometry!
+            glBufferData(GLenum(GL_ARRAY_BUFFER), shape.sizeOfVertex, shape.vertices, GLenum(GL_STATIC_DRAW))
+            
+            // setup index buffer - which vertices form a triangle?
+            glGenBuffers(1, self.indexBuffer);
+            glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), self.indexBuffer.memory)
+            glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER), GLintptr(shape.sizeOfIndices), shape.indices, GLenum(GL_STATIC_DRAW))
+            
+            //Setup Vertex Atrributs
+            glEnableVertexAttribArray(GLuint(GLKVertexAttrib.Position.rawValue))
+            //SYNTAX -,number of elements per vertex, datatype, FALSE, size of element, offset in datastructure
+            glVertexAttribPointer(GLuint(GLKVertexAttrib.Position.rawValue), GLint(3), GLenum(GL_FLOAT), GLboolean(GL_FALSE), RMSizeOfVert(), RMOffsetVertPos())
+            
+            glEnableVertexAttribArray(GLuint(GLKVertexAttrib.Color.rawValue))
+            glVertexAttribPointer(GLuint(GLKVertexAttrib.Color.rawValue), 4, GLenum(GL_FLOAT), GLboolean(GL_FALSE), RMSizeOfVert(), RMOffsetVertCol() )
+            
+            //Textures
+            glEnableVertexAttribArray(GLuint(GLKVertexAttrib.TexCoord0.rawValue))
+            glVertexAttribPointer(GLuint(GLKVertexAttrib.TexCoord0.rawValue), 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), RMSizeOfVert(), RMOffsetVertTex())
+            
+            //Normals
+            glEnableVertexAttribArray(GLuint(GLKVertexAttrib.Normal.rawValue))
+            glVertexAttribPointer(GLuint(GLKVertexAttrib.Normal.rawValue), 3, GLenum(GL_FLOAT), GLboolean(GL_FALSE), RMSizeOfVert(), RMOffsetVertNorm());
+            
+            
+            glActiveTexture(GLenum(GL_TEXTURE0))
+            self.configureDefaultTexture()
+            
+            
+            // were done so unbind the VAO
+            glBindVertexArrayOES(0);
         }
     }
     
@@ -183,38 +182,39 @@ class GameViewController : GLKViewController {
         tex.name = self.textureInfo.name
         
         self.effect.texture2d0.name = tex.name;
-    
+        
     }
-
+    
     override func glkView(view: GLKView!, drawInRect rect: CGRect) {
         autoreleasepool({
-        glClearColor(1.0, 1.0, 1.0, 1.0);
-        glClear(GLenum(GL_COLOR_BUFFER_BIT) | GLenum(GL_DEPTH_BUFFER_BIT));
-        
-        for o in self.objects {
-            if let shape = o.geometry {
-                let shape = o.geometry!
-                let scaleMatrix = shape.scaleMatrix
-                let translateMatrix = shape.translationMatrix
-                let rotationMatrix = shape.rotationMatrix
-                
-                
-                var matrixStack = GLKMatrixStackCreate(kCFAllocatorDefault).takeRetainedValue()
-                
-                GLKMatrixStackMultiplyMatrix4(matrixStack, translateMatrix)
-                GLKMatrixStackMultiplyMatrix4(matrixStack, rotationMatrix)
-                GLKMatrixStackMultiplyMatrix4(matrixStack, scaleMatrix)
-                
-                GLKMatrixStackPush(matrixStack)
-                self.modelMatrix = GLKMatrixStackGetMatrix4(matrixStack);
-                glBindVertexArrayOES(self.vertexArray.memory)
-                self.prepareEffectWithModelMatrix(self.modelMatrix, viewMatrix:self.viewMatrix, projectionMatrix: self.projectionMatrix)
-                glDrawElements(GLenum(GL_TRIANGLES), GLsizei(shape.sizeOfIndices / shape.sizeOfIZero), GLenum(GL_UNSIGNED_BYTE), UnsafePointer<Void>())//nil or 0?
-                
-                glBindVertexArrayOES(0)
-                
+            glClearColor(1.0, 1.0, 1.0, 1.0);
+            glClear(GLenum(GL_COLOR_BUFFER_BIT) | GLenum(GL_DEPTH_BUFFER_BIT));
+            
+            for o in self.objects {
+                if o.geometry != nil {
+                    let sprite = o.shape!
+                    let scaleMatrix = sprite.scaleMatrix
+                    let translateMatrix = sprite.translationMatrix
+                    let rotationMatrix = sprite.rotationMatrix
+                    
+                    
+                    var matrixStack = GLKMatrixStackCreate(kCFAllocatorDefault).takeRetainedValue()
+                    
+                    GLKMatrixStackMultiplyMatrix4(matrixStack, translateMatrix)
+                    GLKMatrixStackMultiplyMatrix4(matrixStack, rotationMatrix)
+                    GLKMatrixStackMultiplyMatrix4(matrixStack, scaleMatrix)
+                    
+                    GLKMatrixStackPush(matrixStack)
+                    self.modelMatrix = GLKMatrixStackGetMatrix4(matrixStack);
+                    glBindVertexArrayOES(self.vertexArray.memory)
+                    self.prepareEffectWithModelMatrix(self.modelMatrix, viewMatrix:self.viewMatrix, projectionMatrix: self.projectionMatrix)
+                    let shape = RMSGeometry.CUBE()
+                    glDrawElements(GLenum(GL_TRIANGLES), GLsizei(shape.sizeOfIndices) / GLsizei(shape.sizeOfIZero), GLenum(GL_UNSIGNED_BYTE), UnsafePointer<Void>())//nil or 0?
+                    
+                    glBindVertexArrayOES(0)
+                    
+                }
             }
-        }
         })
     }
     
@@ -226,7 +226,7 @@ class GameViewController : GLKViewController {
     let _farMin: Float = 249
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-//        NSLog("Received Memory Waning")
+        //        NSLog("Received Memory Waning")
         if self.camera.far > _farMin {
             self.camera.far *= 0.9
             if self.camera.far < _farMin {

@@ -26,9 +26,9 @@ public class RMSActionProcessor {
         //if (keys.keyStates[keys.forward])  [observer accelerateForward:speed];
         if action == nil { return }
         
-        if action == "move" && point.count == 2 {
-            self.activeSprite.body.accelerateForward(point[1] * speed)
-            self.activeSprite.body.accelerateLeft(point[0] * speed)
+        if action == "move" && point.count == 3 {
+            self.activeSprite.body.setVelocity(point, speed: speed)
+//            self.activeSprite.body.accelerateLeft(point[0] * speed)
         }
         if action == "look" && point.count == 2 {
             self.activeSprite.plusAngle(point[0]*speed, y: point[1]*speed)

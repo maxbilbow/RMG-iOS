@@ -7,27 +7,31 @@
 //
 
 import Foundation
+import GLKit
 
 //@objc public protocol RMXRenderable {
 //    var render: CFunctionPointer<(Float)->Void> { get set }
 //}
 @objc public protocol RMOShape {
-    var geometry: RMOGeometry! { get set }
+//    var geometry: RMOGeometry! { get set }
     var translationMatrix: GLKMatrix4 { get }
     var scaleMatrix: GLKMatrix4 { get }
     var rotationMatrix: GLKMatrix4 { get }
 }
 
 
-@objc public class RMXShape : RMOShape {
-    @objc public var scaleMatrix: GLKMatrix4 {
+@objc public class RMXShape : RMOShape{
+    
+    var type: String = "cube"
+    
+    public var scaleMatrix: GLKMatrix4 {
         return GLKMatrix4MakeScale(self.radius,self.radius,self.radius)
     }
-    @objc public var rotationMatrix: GLKMatrix4 {
+    public var rotationMatrix: GLKMatrix4 {
         return GLKMatrix4MakeRotation(self.rotation, self.parent.rAxis.x,self.parent.rAxis.y,self.parent.rAxis.z)
     }
-    @objc public var geometry: RMOGeometry!
-    @objc public var translationMatrix: GLKMatrix4 {
+    var geometry: RMSGeometry!
+    public var translationMatrix: GLKMatrix4 {
         let p = self.parent.position
         return GLKMatrix4MakeTranslation(p.x, p.y, p.z)
     }
@@ -40,7 +44,7 @@ import Foundation
     }
     var color: GLKVector4 = GLKVector4Make(0,0,0,0)
     var isLight: Bool = false
-    var type, gl_light: Int32
+    var gl_light_type, gl_light: Int32
     public var render: ((Float) -> Void)?//UnsafeMutablePointer<(Float) -> Void> = UnsafeMutablePointer<(Float) -> Void>()//.alloc(sizeof(<(Float) -> Void>))
     var parent: RMSParticle!
     var world: RMXWorld?
@@ -48,11 +52,12 @@ import Foundation
     //var shine: CFunctionPointer<(Int32, Int32, [Float])->Void>
     var brigtness: Float = 1
     
-    init(parent: RMSParticle?, world: RMSWorld?)    {
+    init(parent: RMSParticle?, world: RMSWorld?, shape: String = "cube")    {
         self.parent = parent!
         self.world = world
-        self.type = GL_POSITION
+        self.gl_light_type = GL_POSITION
         self.gl_light = GL_LIGHT0
+        self.type = "cube"
     }
     
    

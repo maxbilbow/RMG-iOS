@@ -90,7 +90,7 @@ public class RMXObject {
         } else if self.wantsToSleep {
             return self.prepareToRest()
         } else {
-            return true
+            return false
         }
     }
     

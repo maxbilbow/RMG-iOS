@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import GLKit
 
 public class RMXSpriteActions {
     var armLength:Float = 0
@@ -23,7 +23,6 @@ public class RMXSpriteActions {
     var world: RMSWorld
     var item: RMSParticle?
     var itemPosition: RMXVector3 = RMXVector3Zero
-
     
     var sprite: RMSParticle {
         return self.parent// as! RMSParticle
@@ -37,6 +36,7 @@ public class RMXSpriteActions {
         self.parent = parent
         self.world = parent.world ?? parent as! RMSWorld
     }
+    
     func throwItem(strength: Float)
     {
         if self.item != nil {
@@ -74,8 +74,6 @@ public class RMXSpriteActions {
         }
     }
     
-    
-    
     public func grabItem() {
         if self.item != nil {
             self.releaseItem()
@@ -96,8 +94,6 @@ public class RMXSpriteActions {
         }
     }
     
-  
-    
     func extendArmLength(i: Float)    {
         if self.armLength + i > 1 {
             self.armLength += i
@@ -107,7 +103,6 @@ public class RMXSpriteActions {
     func applyForce(force: RMXVector3) {
         self.body!.acceleration += force
     }
-    
     
     func jumpTest() {
         if (_prepairingToJump || _goingUp || self.squatLevel != 0){// || self.squatLevel > 0){
@@ -129,8 +124,6 @@ public class RMXSpriteActions {
             }
         }
     }
-    
-   
     
     func prepareToJump() {
         if !_goingUp || _ignoreNextJump {

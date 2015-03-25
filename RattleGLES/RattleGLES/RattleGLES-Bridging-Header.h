@@ -58,15 +58,26 @@
 //#import "RMXKeyboardProcessor.h"
 //#import "run.h"
 //#import "SSGameSceneController.h"
-#import "Geometry.h"
-//#import "RMOViewController.h"
 
+//#import "Geometry.h"
+//#import "RMOViewController.h"
+//#import "CWrappers.h"
+#import "RMOGeometry.h"
+#import "Vertices.h"
 GLsizei RMSizeOfVert();
 const GLvoid * RMOffsetVertCol();
 const GLvoid * RMOffsetVertTex();
 const GLvoid * RMOffsetVertNorm();
 const GLvoid * RMOffsetVertPos();
 NSString * RMOPathForResource(NSString* path, NSString* ofType);
+
+ long RMSizeOfVertexCube();
+ long RMSizeOfIndicesCube();
+ int RMSizeOfIZeroCube();
+
+ const void * RMVerticesCubePtr();
+ const void * RMIndicesCubePtr();
+
 
 
 

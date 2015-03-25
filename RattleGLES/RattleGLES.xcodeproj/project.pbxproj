@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		504BE1581AC2ABEB002CC51C /* Vetices.m in Sources */ = {isa = PBXBuildFile; fileRef = 504BE1571AC2ABEB002CC51C /* Vetices.m */; };
 		505904741AC1EDD200919A03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505904731AC1EDD200919A03 /* AppDelegate.swift */; };
 		505904761AC1EDD200919A03 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505904751AC1EDD200919A03 /* GameViewController.swift */; };
 		505904781AC1EDD200919A03 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 505904771AC1EDD200919A03 /* Shaders.metal */; };
@@ -41,13 +42,11 @@
 		506229931AC053F800CBC40A /* RMXShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229581AC053F800CBC40A /* RMXShape.swift */; };
 		506229941AC053F800CBC40A /* RMXSpriteActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229591AC053F800CBC40A /* RMXSpriteActions.swift */; };
 		506229951AC053F800CBC40A /* RMXValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5062295A1AC053F800CBC40A /* RMXValue.swift */; };
-		506229961AC053F800CBC40A /* RMXWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5062295B1AC053F800CBC40A /* RMXWorld.swift */; };
 		5069AF571AC1EBCE00540001 /* CWrappers.m in Sources */ = {isa = PBXBuildFile; fileRef = 5069AF561AC1EBCE00540001 /* CWrappers.m */; };
 		50780FE81AC05644009AAEAE /* RMSEquations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50780FE71AC05644009AAEAE /* RMSEquations.swift */; };
 		50780FEA1AC05E2F009AAEAE /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50780FE91AC05E2F009AAEAE /* GLKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		50780FEC1AC05F40009AAEAE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506228EC1AC0533F00CBC40A /* GameViewController.swift */; };
 		50F909FC1AC131B00032DB9E /* RMSGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506229451AC053F800CBC40A /* RMSGeometry.swift */; };
-		50F909FD1AC138D50032DB9E /* Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 506229221AC053F800CBC40A /* Geometry.m */; };
 		50F90A021AC1B8170032DB9E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F90A011AC1B8170032DB9E /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +68,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		504BE1541AC2A418002CC51C /* RMOGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMOGeometry.m; sourceTree = "<group>"; };
+		504BE1561AC2A422002CC51C /* RMOGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMOGeometry.h; sourceTree = "<group>"; };
+		504BE1571AC2ABEB002CC51C /* Vetices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vetices.m; sourceTree = "<group>"; };
 		5059046F1AC1EDD200919A03 /* Rattle Metal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rattle Metal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		505904721AC1EDD200919A03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		505904731AC1EDD200919A03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,8 +96,6 @@
 		506229001AC0533F00CBC40A /* RattleGLESTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattleGLESTests.swift; sourceTree = "<group>"; };
 		5062290A1AC0536F00CBC40A /* RattleGLES-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RattleGLES-Bridging-Header.h"; sourceTree = "<group>"; };
 		5062291D1AC053F800CBC40A /* texture_numbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture_numbers.png; sourceTree = "<group>"; };
-		506229211AC053F800CBC40A /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geometry.h; sourceTree = "<group>"; };
-		506229221AC053F800CBC40A /* Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Geometry.m; sourceTree = "<group>"; };
 		506229301AC053F800CBC40A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		506229321AC053F800CBC40A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		506229331AC053F800CBC40A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -135,12 +135,10 @@
 		506229581AC053F800CBC40A /* RMXShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXShape.swift; sourceTree = "<group>"; };
 		506229591AC053F800CBC40A /* RMXSpriteActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXSpriteActions.swift; sourceTree = "<group>"; };
 		5062295A1AC053F800CBC40A /* RMXValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXValue.swift; sourceTree = "<group>"; };
-		5062295B1AC053F800CBC40A /* RMXWorld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMXWorld.swift; sourceTree = "<group>"; };
 		5069AF561AC1EBCE00540001 /* CWrappers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWrappers.m; sourceTree = "<group>"; };
 		50780FE71AC05644009AAEAE /* RMSEquations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RMSEquations.swift; path = ../../RattleGLES/RattleGLES/RMSEquations.swift; sourceTree = "<group>"; };
 		50780FE91AC05E2F009AAEAE /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		50F909FE1AC1A6340032DB9E /* Vertices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vertices.h; sourceTree = "<group>"; };
-		50F909FF1AC1A9F10032DB9E /* Vetices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vetices.m; sourceTree = "<group>"; };
 		50F90A011AC1B8170032DB9E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -307,11 +305,11 @@
 		5062291E1AC053F800CBC40A /* Objective-C */ = {
 			isa = PBXGroup;
 			children = (
-				506229211AC053F800CBC40A /* Geometry.h */,
 				5069AF561AC1EBCE00540001 /* CWrappers.m */,
-				506229221AC053F800CBC40A /* Geometry.m */,
 				50F909FE1AC1A6340032DB9E /* Vertices.h */,
-				50F909FF1AC1A9F10032DB9E /* Vetices.m */,
+				504BE1541AC2A418002CC51C /* RMOGeometry.m */,
+				504BE1561AC2A422002CC51C /* RMOGeometry.h */,
+				504BE1571AC2ABEB002CC51C /* Vetices.m */,
 			);
 			name = "Objective-C";
 			path = "../RattleGLS/Objective-C";
@@ -375,7 +373,6 @@
 				506229581AC053F800CBC40A /* RMXShape.swift */,
 				506229591AC053F800CBC40A /* RMXSpriteActions.swift */,
 				5062295A1AC053F800CBC40A /* RMXValue.swift */,
-				5062295B1AC053F800CBC40A /* RMXWorld.swift */,
 				50780FE71AC05644009AAEAE /* RMSEquations.swift */,
 			);
 			name = Swift;
@@ -579,10 +576,9 @@
 				5062297F1AC053F800CBC40A /* RMSArt.swift in Sources */,
 				5062298C1AC053F800CBC40A /* RMXDPad.swift in Sources */,
 				506229861AC053F800CBC40A /* RMSWorld.swift in Sources */,
-				50F909FD1AC138D50032DB9E /* Geometry.m in Sources */,
 				50F909FC1AC131B00032DB9E /* RMSGeometry.swift in Sources */,
 				506229931AC053F800CBC40A /* RMXShape.swift in Sources */,
-				506229961AC053F800CBC40A /* RMXWorld.swift in Sources */,
+				504BE1581AC2ABEB002CC51C /* Vetices.m in Sources */,
 				506229841AC053F800CBC40A /* RMSPhysicsBody.swift in Sources */,
 				506229941AC053F800CBC40A /* RMXSpriteActions.swift in Sources */,
 				5069AF571AC1EBCE00540001 /* CWrappers.m in Sources */,
@@ -892,6 +888,7 @@
 				5059048F1AC1EDD200919A03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		505904901AC1EDD200919A03 /* Build configuration list for PBXNativeTarget "Rattle MetalTests" */ = {
 			isa = XCConfigurationList;
@@ -900,6 +897,7 @@
 				505904921AC1EDD200919A03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		506228DC1AC0533F00CBC40A /* Build configuration list for PBXProject "RattleGLES" */ = {
 			isa = XCConfigurationList;

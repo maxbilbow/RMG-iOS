@@ -7,13 +7,17 @@
 //
 
 
+import GLKit
 
 @objc public class RMSPhysicsBody {
     
     private let PI: Float = 3.14159265358979323846
-    var position, velocity, acceleration, forces: RMXVector3
-    var orientation: RMXMatrix3
-    var vMatrix: RMXMatrix4
+    var position, velocity, acceleration, forces: GLKVector3
+    var orientation: GLKMatrix3//, groundOrientation: GLKMatrix3
+    private var _orientation: GLKMatrix3 {
+        return self.orientation// false ? self.groundOrientation : self.orientation
+    }
+    var vMatrix: GLKMatrix4
     var parent: RMSParticle
     var accelerationRate:Float = 0
     var rotationSpeed:Float = 0
@@ -43,6 +47,7 @@
         self.acceleration = GLKVector3Make(0,0,0)
         self.forces = GLKVector3Make(0,0,0)
         self.orientation = GLKMatrix3Identity
+//        self.groundOrientation = GLKMatrix3Identity
         self.vMatrix = GLKMatrix4MakeScale(0,0,0)
         self.accelerationRate = accRate
         self.rotationSpeed = rotSpeed
@@ -61,7 +66,7 @@
     }
     
     var upVector: GLKVector3 {
-        return GLKMatrix3GetRow(self.orientation, 1)
+        return GLKMatrix3GetRow(self._orientation, 1)
     }
     
     var leftVector: GLKVector3 {
@@ -69,7 +74,7 @@
     }
     
     var forwardVector: GLKVector3 {
-        return GLKMatrix3GetRow(self.orientation, 2)
+        return GLKMatrix3GetRow(self._orientation, 2)
     }
     
     func distanceTo(object:RMXObject) -> Float{
@@ -122,12 +127,17 @@
         self.phi = newPhi
         self.theta += theta
         
+//        self.groundOrientation = GLKMatrix3Rotate(self.orientation, theta, 0, 1, 0);
         self.orientation = GLKMatrix3Rotate(self.orientation, theta, 0, 1, 0);
         self.orientation = GLKMatrix3RotateWithVector3(self.orientation, phi, self.leftVector)
         RMXLog("\n   Left: \(self.leftVector.print)\n     Up: \(self.upVector.print)\n    FWD: \(self.forwardVector.print)")
         
     }
     
+    func setVelocity(v: [Float], speed: Float = 1){
+        let matrix = GLKMatrix3Transpose(self._orientation)
+        self.velocity += GLKMatrix3MultiplyVector3(matrix, GLKVector3Make(v[0] * speed,v[1] * speed,v[2] * speed))
+    }
     func animate()    {
 
         let g = self.hasGravity ? self.physics.gravityFor(self.parent) : RMXVector3Zero
@@ -148,7 +158,7 @@
         //    self.body.forces.y += g.y + n.y;
         //    self.body.forces.z += g.z + n.z;
         
-        self.forces = GLKVector3Add(forces,GLKMatrix3MultiplyVector3(GLKMatrix3Transpose(self.orientation),self.acceleration));
+        self.forces = GLKVector3Add(forces,GLKMatrix3MultiplyVector3(GLKMatrix3Transpose(self._orientation),self.acceleration));
         self.velocity = GLKVector3Add(self.velocity,self.forces);//transpos or?
         
         self.world.collisionTest(self.parent)
