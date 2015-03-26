@@ -8,8 +8,8 @@
 
 import Foundation
 
-@objc protocol RMXMouse {
-    init(parent: AnyObject, world: RMXWorld?)
+protocol RMXMouse {
+    init(parent: AnyObject, world: RMSWorld?)
     var x: Int32 {get}
     var y: Int32 {get}
     var hasFocus: Bool { get set }

@@ -10,7 +10,7 @@ import Foundation
 import GLKit
 
 extension RMX {
-    class func buildScene() -> RMSWorld{
+    static func buildScene() -> RMSWorld{
         let world: RMSWorld = RMXArt.initializeTestingEnvironment()
         RMXLog("BUILDING")
         autoreleasepool {
@@ -21,6 +21,7 @@ extension RMX {
                     
                     //ship.runAction(SCNAction.repeatActionForever(SCNAction.rotateByX(0, y: 2, z: 0, duration: 1000)))
                     if sprite.isAnimated {
+                        sprite.isAlwaysActive = true
                         //                        sprite.shape!.node = self.rootNode.childNodeWithName("ship1", recursively: true)!
                         //                        sprite.body.position = RMXVector3Zero()
                         //                        sprite.shape?.draw()

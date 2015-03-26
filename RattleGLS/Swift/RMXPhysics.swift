@@ -8,33 +8,42 @@
 import Foundation
 import GLKit
 
-public class RMXPhysics {
-    var gravity: Float = 0.098
-    public var parent: RMSParticle
+class RMXPhysics {
+    ///metres per second per second
+    var worldGravity: Float {
+        return 9.8 * self.world.gravityScaler
+    }
+    
+    var world: RMSWorld
     //public var world: RMXWorld
-    var upVector: RMXVector3
+    var directionOfGravity: RMXVector3
     
-    init(parent: RMSParticle!) {
-        if parent != nil {
-            self.parent = parent
-            self.upVector = GLKVector3Make(0,1,0)
-        } else {
-            fatalError(__FUNCTION__)
-        }
+    init(world: RMSWorld) {
+        //if parent != nil {
+            self.world = world
+            self.directionOfGravity = GLKVector3Make(0,-1,0)
+//        } else {
+//            fatalError(__FUNCTION__)
+//        }
+    }
+   
+    var gravity: GLKVector3 {
+        return self.directionOfGravity * self.worldGravity
     }
     
-    class func New(parent: RMSParticle) -> RMXPhysics {
-        return RMXPhysics(parent: parent)
-    }
-
-    func gVector(hasGravity: Bool) -> RMXVector3 {
-        return GLKVector3MultiplyScalar(self.upVector, hasGravity ? Float(-gravity) : 0 )
-    }
+//    func gVector(hasGravity: Bool) -> RMXVector3 {
+//        return GLKVector3MultiplyScalar(self.getGravityFor, hasGravity ? Float(-gravity) : 0 )
+//    }
     
     
+    
+    func normalFor(sender: RMSParticle) -> RMXVector3 {
+        let g = sender.body.position.y > 0 ? 0 : self.gravity.y
+        return GLKVector3MultiplyScalar(GLKVector3Make(0, 0, 0),-sender.body.mass)
+    }
     
     func gravityFor(sender: RMSParticle) -> RMXVector3{
-        return GLKVector3MultiplyScalar(self.upVector,-sender.body.weight)
+        return GLKVector3MultiplyScalar(self.gravity,sender.body.mass)
     }
     
     
@@ -54,8 +63,5 @@ public class RMXPhysics {
         return GLKVector3Make(µ, µ, µ);//TODO
     }
     
-    func normalFor(sender: RMSParticle) -> RMXVector3 {
-        let normal = sender.world!.normalForceAt(sender)
-        return GLKVector3MultiplyScalar(self.upVector,normal)
-    }
+   
 }

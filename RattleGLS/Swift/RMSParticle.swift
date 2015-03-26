@@ -21,9 +21,11 @@ import GLKit
 //    var geometry: RMOGeometry? { get }
 }
 
-public class RMSParticle : RMXObject {
+
+enum RMXParticleType { case OBSERVER, SHAPE, SIMPLE_PARTICLE, WORLD }
+class RMSParticle : RMXObject {
  
-    public enum RMXParticleType { case OBSERVER, SHAPE, SIMPLE_PARTICLE, WORLD }
+    
     var mouse: RMXMouse?
     var actions: RMXSpriteActions?
     var type: RMXParticleType = .SIMPLE_PARTICLE
@@ -106,7 +108,7 @@ public class RMSParticle : RMXObject {
         return self
     }
     
-    public class func New(world: RMSWorld! = nil, parent: RMXObject! = nil) -> RMSParticle {
+    class func New(world: RMSWorld! = nil, parent: RMXObject! = nil) -> RMSParticle {
         return RMSParticle(world: world, parent: parent)
         
     }

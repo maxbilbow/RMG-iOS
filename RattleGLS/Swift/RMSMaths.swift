@@ -49,6 +49,11 @@ func += (inout lhs: GLKVector3, rhs: GLKVector3) {
     lhs = GLKVector3Add(lhs, rhs)
 }
 
+func * (lhs: GLKVector3, rhs: Float) -> GLKVector3 {
+    return GLKVector3MultiplyScalar(lhs, rhs)
+}
+
+
 extension GLKMatrix4 {
     /*
     var upVector: RMXVector3 {

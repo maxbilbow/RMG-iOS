@@ -40,7 +40,7 @@ import GLKit
             center.x,   center.y,   center.z,
             up.x,       up.y,       up.z)
     }
-    init(world: RMSWorld?, pov: RMSParticle! = nil, viewSize: (Float,Float) = (1280, 750), farPane far: Float = 2000 ){
+    init(world: RMSWorld?, pov: RMSParticle! = nil, viewSize: (Float,Float) = (1280, 750), farPane far: Float = 10000 ){
         self.world = world ?? pov as! RMSWorld
         self.far = far
         self.near = 1

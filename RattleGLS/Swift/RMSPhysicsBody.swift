@@ -23,6 +23,7 @@ import GLKit
     var rotationSpeed:Float = 0
     var hasFriction = true
     var hasGravity = false
+    var coushin: Float = 2
     
     var world: RMSWorld {
         return self.parent.world!
@@ -36,7 +37,7 @@ import GLKit
     }
     
     init(parent: RMSParticle, mass: Float = 1, radius: Float = 1, dragC: Float = 0.1,
-        accRate: Float = 0.4, rotSpeed:Float = 0.007){
+        accRate: Float = 0.8, rotSpeed:Float = 0.01){
         self.theta = 0
         self.phi = 0
         self.mass = mass
@@ -62,7 +63,7 @@ import GLKit
     }
     
     var weight: Float{
-        return self.mass * self.physics.gravity
+        return self.mass * self.physics.worldGravity
     }
     
     var upVector: GLKVector3 {
@@ -140,13 +141,12 @@ import GLKit
     }
     func animate()    {
 
-        let g = self.hasGravity ? self.physics.gravityFor(self.parent) : RMXVector3Zero
+        let g = self.hasGravity ? self.world.gravityAt(self.parent) : RMXVector3Zero
         let n = self.hasGravity ? self.physics.normalFor(self.parent) : RMXVector3Zero
         let f = self.physics.frictionFor(self.parent)// : GLKVector3Make(1,1,1);
         let d = self.physics.dragFor(self.parent)// : GLKVector3Make(1,1,1);
         
         self.velocity = GLKVector3DivideScalar(self.velocity, Float(1 + self.world.µAt(self.parent) + d.x))
-        
         
         let forces = GLKVector3Make(
             (g.x + /* d.x + f.x +*/ n.x),
@@ -162,9 +162,11 @@ import GLKit
         self.velocity = GLKVector3Add(self.velocity,self.forces);//transpos or?
         
         self.world.collisionTest(self.parent)
+
         
         //self.applyLimits()
         self.position = GLKVector3Add(self.position,self.velocity);
+        
         
     }
     

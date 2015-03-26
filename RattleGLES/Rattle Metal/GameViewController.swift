@@ -48,6 +48,8 @@ class GameViewController: UIViewController {
     let device = { MTLCreateSystemDefaultDevice() }()
     let metalLayer = { CAMetalLayer() }()
     
+    
+    
     var commandQueue: MTLCommandQueue! = nil
     var timer: CADisplayLink! = nil
     var pipelineState: MTLRenderPipelineState! = nil

@@ -10,7 +10,7 @@ import Foundation
 
 protocol RMXController {
     
-    var world: RMXWorld { get }
+    var world: RMSWorld { get }
 //    static func New(gvc: GameViewController) -> RMXController
 //    static func NewWithWorld(world: RMXWorld, gvc: GameViewController) -> RMXController
     var activeCamera: RMXCamera { get }

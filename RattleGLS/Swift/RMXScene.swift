@@ -20,7 +20,7 @@ import Foundation
 //@NSApplicationMain
 public class RMXGLContext : NSOpenGLContext {
     
-    var world: RMXWorld?
+    var world: RMSWorld?
     var activeCamera: RMXCamera? {
         return world?.activeCamera
     }
@@ -39,7 +39,7 @@ public class RMXGLContext : NSOpenGLContext {
         // Insert code here to tear down your application
     }
     
-    public func buildScene() -> RMXWorld{
+    public func buildScene() -> RMSWorld{
         let world: RMXWorld = RMXArt.initializeTestingEnvironment()
         RMXLog("BUILDING")
         autoreleasepool {

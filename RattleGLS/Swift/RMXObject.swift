@@ -20,7 +20,7 @@ public class RMXObject {
     
     var isAlwaysActive = true
     var isActive = true
-    
+    var variables: [ String: Variable] = [ "isBouncing" : Variable(i: 1) ]
     var name: String {
         return "\(_name): \(self.rmxID)"
     }
@@ -100,5 +100,30 @@ public class RMXObject {
         self.prepareToRest = restIf
     }
     
-}
 
+    ///Useful for global counters across many files
+
+    func getBool(forKey key: String) -> Variable {
+        if let b = self.variables[key] {
+            return b
+        } else {
+            let v = Variable(bool: false)
+            self.variables.updateValue(v, forKey: key)
+            return v
+        }
+    }
+    
+    class Variable {
+        var i: Float = 0
+        var isActive: Bool = false
+        let bools: [String:Bool] = [ "isTrue" : false ]
+        init(i: Float = 0){
+            self.i = i
+        }
+        
+        init(bool: Bool){
+            self.isActive = bool
+        }
+    }
+
+}

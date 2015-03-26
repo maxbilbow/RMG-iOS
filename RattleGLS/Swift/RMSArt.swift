@@ -108,7 +108,7 @@ public class RMXArt : RMXObject {
     class func randomObjects(world: RMSWorld )    {
     //int max =100, min = -100;
     //BOOL gravity = true;
-        let noOfShapes: Float = 2000
+        let noOfShapes: Float = 4000
         
         for(var i: Float = -noOfShapes / 2; i < noOfShapes / 2; ++i) {
             var randPos: [Float]
@@ -119,7 +119,7 @@ public class RMXArt : RMXObject {
                     x = points.x
                     y = points.y
                     z = points.z
-                } while GLKVector3Distance(GLKVector3Make(x,y,z), RMXVector3Zero) > world.body.radius
+                } while GLKVector3Distance(GLKVector3Make(x,y,z), RMXVector3Zero) > world.body.radius && y > 0
                 return [ x, y, z ]
             }
             randPos = thisRandom(&X,&Y,&Z)

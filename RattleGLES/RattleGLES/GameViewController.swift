@@ -34,21 +34,21 @@ class GameViewController : GLKViewController {
         return world.sun != nil ? world.sun!.shape!.color : GLKVector4Make(1, 1, 1, 1.0)
     }
     
-    lazy var dPad: RMXDPad = RMXDPad.New(self)
+    lazy var interface: RMXDPad = RMXDPad(gvc: self, world: RMX.buildScene())
     var world: RMSWorld {
-        return dPad.world
+        return interface.world
     }
     
     var objects: Array<RMSParticle> {
-        return self.dPad.world.drawables
+        return self.interface.world.drawables
     }
     
     var camera: RMXCamera {
-        return self.dPad.activeCamera
+        return self.interface.activeCamera
     }
     
     override func viewDidLoad() {
-        //        self.viewMatrix = self.dPad.activeCamera.modelViewMatrix
+        //        self.viewMatrix = self.interface.activeCamera.modelViewMatrix
         self.context = EAGLContext(API: EAGLRenderingAPI.OpenGLES3)
         if (self.context == nil) {
             NSLog("Failed to create ES context")
@@ -74,13 +74,13 @@ class GameViewController : GLKViewController {
         
     }
     func update(){
-        self.dPad.animate()
+        self.interface.animate()
         self.effect.light0.enabled = GLboolean(1)
         self.effect.light0.ambientColor = lightColor
         self.effect.light0.diffuseColor = lightColor
         self.effect.light0.position = lightPosition
         //        self.projectionMatrix = self.camera.getProjectionMatrix(Float(self.view.bounds.size.width), height: Float(self.view.bounds.size.height))
-        //        self.viewMatrix = self.dPad.activeCamera.modelViewMatrix
+        //        self.viewMatrix = self.interface.activeCamera.modelViewMatrix
         self.rotation += Float(self.timeSinceLastUpdate * 0.5)
         //super.update()
     }

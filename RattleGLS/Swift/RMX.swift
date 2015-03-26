@@ -8,10 +8,15 @@
 
 import Foundation
 
-@objc public class RMX {
+struct RMX {
     static let isDebugging: Bool = false
     static let isFullscreen: Bool = false
     static let usingDepreciated: Bool = false
     static let usingSceneKit: Bool = false
 }
 
+
+extension RMX {
+//    typealias Controller = (name: String, isActive: Bool, process: ()->()? )
+//    typealias VoidFunction = ()->()
+}
