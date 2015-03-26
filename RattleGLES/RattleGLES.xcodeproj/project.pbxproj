@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		504BE1581AC2ABEB002CC51C /* Vertices.m in Sources */ = {isa = PBXBuildFile; fileRef = 504BE1571AC2ABEB002CC51C /* Vertices.m */; };
 		505904741AC1EDD200919A03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505904731AC1EDD200919A03 /* AppDelegate.swift */; };
 		505904761AC1EDD200919A03 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505904751AC1EDD200919A03 /* GameViewController.swift */; };
 		505904781AC1EDD200919A03 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 505904771AC1EDD200919A03 /* Shaders.metal */; };
@@ -71,7 +70,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		504BE1571AC2ABEB002CC51C /* Vertices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vertices.m; sourceTree = "<group>"; };
 		504BE1591AC2E6B0002CC51C /* Draw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Draw.swift; sourceTree = "<group>"; };
 		5059046F1AC1EDD200919A03 /* Rattle Metal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rattle Metal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		505904721AC1EDD200919A03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -314,7 +312,6 @@
 			children = (
 				5069AF561AC1EBCE00540001 /* CWrappers.m */,
 				50F909FE1AC1A6340032DB9E /* Vertices.h */,
-				504BE1571AC2ABEB002CC51C /* Vertices.m */,
 				504BE1591AC2E6B0002CC51C /* Draw.swift */,
 			);
 			name = "Objective-C";
@@ -372,7 +369,6 @@
 				5062294E1AC053F800CBC40A /* RMXController.swift */,
 				5062294F1AC053F800CBC40A /* RMXDebugger.swift */,
 				506229501AC053F800CBC40A /* RMXDesktopController.swift */,
-				506229511AC053F800CBC40A /* RMXDPad.swift */,
 				506229521AC053F800CBC40A /* RMXGLut.swift */,
 				506229531AC053F800CBC40A /* RMXInitialize.swift */,
 				506229541AC053F800CBC40A /* RMXMouse.swift */,
@@ -391,6 +387,7 @@
 		50AEE2851AC32A8F008296E6 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				506229511AC053F800CBC40A /* RMXDPad.swift */,
 				50787F471AC323790018A460 /* iOSControllers.swift */,
 			);
 			name = iOS;
@@ -600,7 +597,6 @@
 				50F909FC1AC131B00032DB9E /* RMSGeometry.swift in Sources */,
 				50787F431AC30D260018A460 /* RMXClock.swift in Sources */,
 				506229931AC053F800CBC40A /* RMXShape.swift in Sources */,
-				504BE1581AC2ABEB002CC51C /* Vertices.m in Sources */,
 				506229841AC053F800CBC40A /* RMSPhysicsBody.swift in Sources */,
 				506229941AC053F800CBC40A /* RMXSpriteActions.swift in Sources */,
 				5069AF571AC1EBCE00540001 /* CWrappers.m in Sources */,

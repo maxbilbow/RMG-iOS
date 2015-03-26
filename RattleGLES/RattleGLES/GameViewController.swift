@@ -74,7 +74,7 @@ class GameViewController : GLKViewController {
         
     }
     func update(){
-        self.interface.animate()
+        self.interface.update()
         self.effect.light0.enabled = GLboolean(1)
         self.effect.light0.ambientColor = lightColor
         self.effect.light0.diffuseColor = lightColor

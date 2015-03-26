@@ -37,7 +37,7 @@ import GLKit
     }
     
     init(parent: RMSParticle, mass: Float = 1, radius: Float = 1, dragC: Float = 0.1,
-        accRate: Float = 0.8, rotSpeed:Float = 0.01){
+        accRate: Float = 0.5, rotSpeed:Float = 0.01){
         self.theta = 0
         self.phi = 0
         self.mass = mass
@@ -105,6 +105,12 @@ import GLKit
     
     func leftStop() {
         RMXVector3SetX(&self.acceleration,0)
+    }
+    
+    func stop(){
+        self.forwardStop()
+        self.leftStop()
+        self.upStop()
     }
     
     private let _phiLimit = Float(2)

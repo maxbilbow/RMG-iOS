@@ -7,36 +7,57 @@
 //
 
 import Foundation
-
+import UIKit
 
 extension RMXDPad {
+    
+    private func _handleRelease(state: UIGestureRecognizerState) {
+        if state == UIGestureRecognizerState.Ended {
+            self.world.action(action: "stop")
+            self.log()
+        }
+    }
     func handleTapLeft(recognizer: UITapGestureRecognizer) {
-        RMXLog("Left Tap")
+        self.log("Left Tap")
         self.world.action(action: "grab")
+        _handleRelease(recognizer.state)
     }
     
     func handleTapRight(recognizer: UITapGestureRecognizer) {
-        RMXLog("Right Tap")
+         self.log("Right Tap")
         self.world.action(action: "throw", speed: 10)
+        _handleRelease(recognizer.state)
+    }
+    
+    func noTouches(recognizer: UIGestureRecognizer) {
+        if recognizer.state == UIGestureRecognizerState.Ended {
+            self.world.action(action: "stop")
+            self.log("noTouches?")
+        }
+        _handleRelease(recognizer.state)
     }
     
     func handleDoubleTouch(recognizer: UITapGestureRecognizer) {
-        RMXLog("Double Touch")
-        //        self.world.action(action: "toggleAllGravity")
+         self.log("Double Touch")
+        _handleRelease(recognizer.state)
     }
     
     func handleDoubleTouchTap(recognizer: UITapGestureRecognizer) {
+        self.log()
         self.world.action(action: "toggleGravity")
-        
+        _handleRelease(recognizer.state)
     }
     
     func handleTripleTap(recognizer: UITapGestureRecognizer) {
-        RMXLog("Triple Tap")
+        self.log("Triple Tap")
         self.world.reset()
+        _handleRelease(recognizer.state)
     }
     
     func longPressGestureRecognizer(recognizer: UILongPressGestureRecognizer){
+        self.log()
         self.world.action(action: "toggleAllGravity")
+        _handleRelease(recognizer.state)
     }
     
     
@@ -46,10 +67,13 @@ extension RMXDPad {
             let point = recognizer.velocityInView(gvc.view); let speed:Float = -0.005
             if recognizer.state == UIGestureRecognizerState.Ended {
                 self.world.action(action: "stop")
+                self.log("stop")
             } else {
                 self.world.action(action: "move", speed: speed, point: [Float(point.x),0, Float(point.y)])
+                self.log("start")
             }
         }
+        _handleRelease(recognizer.state)
         
     }
     
@@ -62,33 +86,50 @@ extension RMXDPad {
         } else if recognizer.numberOfTouches() == 2 {
             if recognizer.state == UIGestureRecognizerState.Ended {
                 self.world.action(action: "jump")
+                self.log("Jump")
             } else {
+                self.log("Prepare to jump")
                 self.world.action(action: "jump", speed: 1)
             }
         }
+        _handleRelease(recognizer.state)
     }
     
     func handlePanDownTwo(recognizer: UIPanGestureRecognizer) {
-        
+        _handleRelease(recognizer.state)
     }
     
     
     func handleSwipeUp(recognizer: UISwipeGestureRecognizer) {
+        self.log()
         self.world.action(action: "forward", speed: 1)
+        _handleRelease(recognizer.state)
     }
     func handleSwipeDown(recognizer: UISwipeGestureRecognizer) {
+        self.log()
         self.world.action(action: "back", speed: 1)
+        _handleRelease(recognizer.state)
     }
     func handleSwipeLeft(recognizer: UISwipeGestureRecognizer) {
+        self.log()
         self.world.action(action: "left", speed: 1)
+        _handleRelease(recognizer.state)
     }
     func handleSwipeRight(recognizer: UISwipeGestureRecognizer) {
+        self.log()
         self.world.action(action: "right", speed: 1)
+        _handleRelease(recognizer.state)
+    }
+    func handlePinch(recognizer: UIPinchGestureRecognizer) {
+        let x: Float = Float(recognizer.scale)
+        self.log()
+        self.world.action(action: "enlargeItem", speed: x)
+        _handleRelease(recognizer.state)
     }
     
     
     func accelerometer() {
-        if !true { return }
+        if true { return }
         else {
             let g = self.motionManager.deviceMotion.gravity
             self.world.physics.directionOfGravity = GLKVector3Make(Float(g.x), Float(g.y), Float(g.z))

@@ -11,8 +11,41 @@
 #endif
 
 
+#import "GLKit/GLKit.h"
 
 
+typedef struct {
+    float Position[3];
+    float Color[4];
+    float TexCoord[2];
+    float Normal[3];
+    
+}Vertex;
+
+typedef struct{
+    int x;
+    int y;
+    int z;
+} Position;
+
+/**
+ Vertex for Sphere
+ */
+
+static Vertex VerticesSphere[] = {
+    // Front
+    {{1, -1, 1},    {1, 0, 0, 1}, {0, 1},               {0, 0, 1}},
+    {{1, 1, 1},     {0, 1, 0, 1}, {0, 2.0/3.0},         {0, 0, 1}},
+    {{-1, 1, 1},    {0, 0, 1, 1}, {1.0/3.0, 2.0/3.0},   {0, 0, 1}},
+    {{-1, -1, 1},   {0, 0, 0, 1}, {1.0/3.0, 1},         {0, 0, 1}},
+    // Back
+};
+
+static GLubyte IndicesTrianglesSphere[] = {
+    // Front
+    0, 1, 2,
+    2, 3, 0,
+};
 /**
  Vertex for cube
  */

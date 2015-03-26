@@ -34,9 +34,7 @@ public class RMSActionProcessor {
             self.activeSprite.body.accelerateUp(point[2] * speed)
         }
         if action == "stop" {
-            self.activeSprite.body.forwardStop()
-            self.activeSprite.body.leftStop()
-            self.activeSprite.body.upStop()
+            self.activeSprite.body.stop()
         }
         
         if action == "look" && point.count == 2 {
@@ -121,6 +119,14 @@ public class RMSActionProcessor {
             }
             
             
+        }
+        if action == "enlargeItem" && self.activeSprite.hasItem {
+            let size = (self.activeSprite.actions?.item?.body.radius)! * speed
+            if size > 0.5 {
+                self.activeSprite.actions?.item?.body.radius = size
+                self.activeSprite.actions?.item?.body.mass *= size
+            }
+
         }
         
         

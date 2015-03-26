@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Rattle Metal.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>RattleGLES.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>5059046E1AC1EDD200919A03</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>505904841AC1EDD200919A03</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>506228E01AC0533F00CBC40A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>506228F91AC0533F00CBC40A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5069AF311AC1C98A00540001</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5069AF471AC1C98A00540001</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

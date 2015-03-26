@@ -13,21 +13,6 @@ import GLKit
 
 class RMXDPad : RMXInterface {
     
-    var dataIn: String = "No Data"
-    
-//    static func New(gvc: GameViewController) -> RMXDPad {
-//        return RMXDPad(gvc: gvc, world: RMXArt.initializeTestingEnvironment())
-//    }
-    
-    static func NewWithWorld(world: RMSWorld, gvc: GameViewController) -> RMXDPad {
-        return RMXDPad(gvc: gvc, world: world)
-    }
-    
-   
-    func log(message: String,sender: String = __FUNCTION__) {
-        self.dataIn += "  \(sender): \(message)"
-    }
-   
     private let _testing = false
     private let _hasMotion = false
     
@@ -46,10 +31,14 @@ class RMXDPad : RMXInterface {
         
 
     }
+    override func update() {
+        super.update()
+    }
+    
     
     override func setUpGestureRecognisers(){
-        let w = gvc.view.bounds.size.width
-        let h = gvc.view.bounds.size.height
+        let w = self.gvc.view.bounds.size.width
+        let h = self.gvc.view.bounds.size.height
         let leftView: UIView = UIImageView(frame: CGRectMake(0, 0, w/2, h))
         let rightView: UIView = UIImageView(frame: CGRectMake(w/2, 0, w/2, h))
         
@@ -87,10 +76,14 @@ class RMXDPad : RMXInterface {
         
         func setForBothViews(){
             
+            let tap: UIGestureRecognizer = UIGestureRecognizer(target: self,  action: "noTouches:")
+            self.view.addGestureRecognizer(tap)
+            
 //            let twoPan:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self,action: "handlePanDownTwo:")
 //            rightView.addGestureRecognizer(twoPan)
 //            rightView.addGestureRecognizer(twoPan)
             
+            self.gvc.view.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: "handlePinch:"))
             
             let twoFingerTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleDoubleTouchTap:")
             twoFingerTap.numberOfTouchesRequired = 2

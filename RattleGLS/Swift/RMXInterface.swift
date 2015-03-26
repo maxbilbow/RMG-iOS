@@ -11,9 +11,13 @@ import Foundation
 
 
 class RMXInterface : NSObject {
+    private let _isDebugging = false
     var debugData: String = "No Data"
     var gvc: GameViewController
     var world: RMSWorld
+    var view: UIView {
+        return self.gvc.view
+    }
     var controllers: [ String : ( isActive: Bool, process: ()->() ) ]
     
     var activeCamera: RMXCamera {
@@ -23,9 +27,9 @@ class RMXInterface : NSObject {
     init(gvc: GameViewController, world: RMSWorld){
         self.gvc = gvc
         self.world = world
-        self.controllers = [ "keyboard" : ( isActive: RMX.isDebugging,
+        self.controllers = [ "debug" : ( isActive: _isDebugging,
             process: {
-                RMXLog("motion not used in iOS")
+              
         } ) ]
         super.init()
         self.world.clock = RMXClock(world: world, interface: self)
@@ -33,6 +37,7 @@ class RMXInterface : NSObject {
     }
     
     func viewDidLoad(){
+        self.controllers["debug"] = ( isActive: _isDebugging, process: self.debug )
         self.setUpGestureRecognisers()
     }
 
@@ -60,9 +65,15 @@ class RMXInterface : NSObject {
         }
     }
 
+    func log(_ message: String = "", sender: String = __FUNCTION__, line: Int = __LINE__) {
+        if _isDebugging {
+            self.debugData += "  \(sender) on line \(line): \(message)"
+        }
+    }
+    
     func debug() {
         if debugData != ""{
-            RMXLog("\(debugData)")
+            println("\(debugData)")
 //            self.log("\n x\(leftPanData.x.toData()), y\(leftPanData.y)",sender: "LEFT")
 //            self.log("x\(rightPanData.x.toData()), y\(rightPanData.y.toData())",sender: "RIGHT")
         }
@@ -70,13 +81,15 @@ class RMXInterface : NSObject {
     }
     
         
-    func animate(){
+    func update(){
+        ///Includes debug()
         self.processControllers()
         self.world.animate()
-        if RMX.isDebugging {
-            self.debug()
-        }
     }
+    
+    ///Stop all inputs (i.e. no gestures received)
+    ///@virtual
+    func handleRelease(arg: AnyObject, args: AnyObject ...) { }
 
 
 }
