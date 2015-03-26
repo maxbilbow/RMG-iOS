@@ -9,7 +9,7 @@
 import Foundation
 
 
-public class RMSActionProcessor {
+class RMSActionProcessor {
     //let keys: RMXController = RMXController()
     var activeSprite: RMSParticle {
         return self.world.observer

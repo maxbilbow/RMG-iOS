@@ -9,7 +9,7 @@
 
 import GLKit
 
-@objc public class RMSPhysicsBody {
+class RMSPhysicsBody {
     
     private let PI: Float = 3.14159265358979323846
     var position, velocity, acceleration, forces: GLKVector3

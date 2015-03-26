@@ -9,7 +9,7 @@
 import Foundation
 import GLKit
 
-public class RMXArt : RMXObject {
+class RMXArt : RMXObject {
     static let colorBronzeDiff: [Float]  = [ 0.8, 0.6, 0.0, 1.0 ]
     static let colorBronzeSpec: [Float]  = [ 1.0, 1.0, 0.4, 1.0 ]
     static let colorBlue: [Float]        = [ 0.0, 0.0, 0.1, 1.0 ]

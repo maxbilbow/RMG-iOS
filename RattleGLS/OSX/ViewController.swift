@@ -34,43 +34,14 @@ public class ViewController: NSViewController {
 //        self.glView.camera = self.camera
 //        self.glView.setupGL()
         self.view = RMSView(frame: NSRect(), pixelFormat: NSOpenGLPixelFormat())
+        
         return
     }
     
     
     private func initGame() -> RMXWorld? {
-        let scene = RMXArt.initializeTestingEnvironment()
-        autoreleasepool {
-            
-            for sprite in scene.sprites {
-                if sprite.rmxID != scene.observer?.rmxID {
-                    
-                    if sprite.isAnimated {
-                        sprite.addBehaviour({
-                            let dist = sprite.body.distanceTo(scene.observer!)
-                            let distTest = sprite.body.radius + (scene.observer?.body.radius)! + (scene.observer?.actions?.reach)!
-                            if dist <= distTest {
-                                sprite.body.velocity = RMXVector3Add(sprite.body.velocity, (scene.observer?.body.velocity)!)
-                            } else if dist < distTest * 10 {
-                                sprite.actions?.prepareToJump()
-                            }
-                        })
-                        
-                        sprite.addBehaviour({
-                            if !sprite.hasGravity && scene.observer?.actions!.item != nil {
-                                if sprite.body.distanceTo((scene.observer?.actions?.item)!) < 50 {
-                                    sprite.hasGravity = true
-                                }
-                            }
-                        })
-                        
-                        
-                    }
-                }
-            }
-           
-        }
-        return scene
+        return RMX.buildScene()
+        
     }
 }
 

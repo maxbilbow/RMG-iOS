@@ -12,7 +12,7 @@ import Foundation
 
 
 
-public class RMXDesktopController : RMXController {
+class RMXDesktopController : RMXController {
     var hRotation:Float = 0.0   //Horizontal angle
     var vRotation:Float = 0.0   //Vertical rotation angle of the camera
     var cameraMovementSpeed:Float = 0.02

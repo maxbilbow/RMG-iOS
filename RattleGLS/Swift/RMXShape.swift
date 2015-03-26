@@ -13,7 +13,7 @@ import OpenGL
 import GLUT
     #endif
 
-public class RMXShape {
+class RMXShape {
 //    enum Type: Int { case NULL = 0, CUBE = 1 , PLANE = 2, SPHERE = 3}
     var type: ShapeType = .NULL
     

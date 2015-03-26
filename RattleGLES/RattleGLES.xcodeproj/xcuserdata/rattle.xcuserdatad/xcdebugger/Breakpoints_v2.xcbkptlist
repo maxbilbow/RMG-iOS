@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../RattleGLS/Swift/RMXInitialize.swift"
-            timestampString = "449084954.470003"
+            timestampString = "449086853.357965"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "SetUpGLProxy()"
             landmarkType = "5">
          </BreakpointContent>

@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>RUN.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>Rattle Metal.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -38,6 +43,11 @@
 			<true/>
 		</dict>
 		<key>506228F91AC0533F00CBC40A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6CF0CDDA1AC487FF0088D2ED</key>
 		<dict>
 			<key>primary</key>
 			<true/>

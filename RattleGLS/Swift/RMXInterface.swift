@@ -13,7 +13,7 @@ import Foundation
     import GLKit
 #endif
 
-public class RMXInterface : NSObject {
+class RMXInterface : NSObject {
     private let _isDebugging = false
     var debugData: String = "No Data"
     var gvc: GameViewController

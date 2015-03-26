@@ -9,17 +9,6 @@
 import Foundation
 import GLKit
 
-@objc public protocol RMOParticle {
-//    var mouse: RMXMouse? { get }
-//    var actions: RMXSpriteActions? { get }
-//    var camera: RMXCamera? { get set }
-//    var body: RMSPhysicsBody { get }
-//    func toggleGravity()
-//    func plusAngle(point: [Float], speed: Float)
-//    func animate()
-//    var shape: RMOShape? { get }
-//    var geometry: RMOGeometry? { get }
-}
 
 
 enum RMXParticleType { case OBSERVER, SHAPE, SIMPLE_PARTICLE, WORLD }

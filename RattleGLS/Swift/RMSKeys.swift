@@ -9,7 +9,7 @@
 import Foundation
 
 
-public class RMSKeys : RMXInterface, RMXControllerProtocol {
+class RMSKeys : RMXInterface, RMXControllerProtocol {
  
     var keys: [ RMKey ]?
 //    var specialKeys: [ RMKey ] = [ RMKey ]()
@@ -83,9 +83,6 @@ public class RMSKeys : RMXInterface, RMXControllerProtocol {
 
 
  class RMKey {
-    
-    
-
 //    private var _key: String?
     var pressed: Bool = false
     var action: String

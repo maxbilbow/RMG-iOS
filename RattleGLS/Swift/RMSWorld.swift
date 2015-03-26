@@ -9,14 +9,6 @@
 import Foundation
 import GLKit
 
-//@objc public protocol RMXWorld  {
-//    
-//    var activeCamera: RMXCamera? { get }
-//    var shapes: Array<RMSParticle> { get  }
-//    
-//}
-
-
 class RMSWorld : RMSParticle {
     
     let gravityScaler: Float = 0.05

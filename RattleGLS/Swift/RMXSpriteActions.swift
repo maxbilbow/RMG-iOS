@@ -9,7 +9,7 @@
 import Foundation
 import GLKit
 
-public class RMXSpriteActions {
+class RMXSpriteActions {
     var armLength:Float = 0
     var reach:Float = 0
     var jumpStrength: Float = 1
