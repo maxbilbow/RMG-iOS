@@ -11,10 +11,10 @@
 #endif
 
 
-#import "GLKit/GLKit.h"
+//#import "GLKit/GLKit.h"
 
 
-typedef struct {
+typedef struct RMOVertex {
     float Position[3];
     float Color[4];
     float TexCoord[2];
@@ -41,7 +41,7 @@ static Vertex VerticesSphere[] = {
     // Back
 };
 
-static GLubyte IndicesTrianglesSphere[] = {
+static unsigned char IndicesTrianglesSphere[] = {
     // Front
     0, 1, 2,
     2, 3, 0,
@@ -82,7 +82,7 @@ static Vertex VerticesCube[] = {
     {{-1, -1, -1},  {0, 0, 0, 1}, {1, 2.0/3.0},         {0, -1, 0}}
 };
 
-static GLubyte IndicesTrianglesCube[] = {
+static unsigned char IndicesTrianglesCube[] = {
     // Front
     0, 1, 2,
     2, 3, 0,
@@ -119,7 +119,7 @@ static Vertex VerticesPlane[] = {
     {{-1, 0, 1},    {0, 0, 0, 1}, {2.0/3.0, 2.0/3.0},   {0, -1, 0}},
 };
 
-static GLubyte IndicesTrianglesPlane[] = {
+static unsigned char IndicesTrianglesPlane[] = {
     // Top
     0, 1, 2,
     2, 3, 0,

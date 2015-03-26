@@ -8,10 +8,8 @@
 
 import Foundation
 
-protocol RMXController {
-    
+protocol RMXControllerProtocol {
     var world: RMSWorld { get }
-//    static func New(gvc: GameViewController) -> RMXController
-//    static func NewWithWorld(world: RMXWorld, gvc: GameViewController) -> RMXController
+    var activeSprite: RMSParticle { get }
     var activeCamera: RMXCamera { get }
 }

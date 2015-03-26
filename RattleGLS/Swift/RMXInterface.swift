@@ -7,16 +7,22 @@
 //
 
 import Foundation
+#if OPENGL_ES
+    import UIKit
+    #elseif OPENGL_OSX
+    import GLKit
+#endif
 
-
-
-class RMXInterface : NSObject {
+public class RMXInterface : NSObject {
     private let _isDebugging = false
     var debugData: String = "No Data"
     var gvc: GameViewController
     var world: RMSWorld
-    var view: UIView {
-        return self.gvc.view
+    var activeSprite: RMSParticle {
+        return self.world.activeSprite!
+    }
+    var view: NSObject {
+        return self.gvc.view as! RMXView
     }
     var controllers: [ String : ( isActive: Bool, process: ()->() ) ]
     

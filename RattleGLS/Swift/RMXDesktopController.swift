@@ -17,7 +17,7 @@ public class RMXDesktopController : RMXController {
     var vRotation:Float = 0.0   //Vertical rotation angle of the camera
     var cameraMovementSpeed:Float = 0.02
     var dataIn: String = "No Data"
-    var gameView: GameViewController
+    var gameView: RMXViewController
     var scene: RMXWorld? {
         return gameView.world
     }

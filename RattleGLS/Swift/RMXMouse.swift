@@ -19,9 +19,9 @@ protocol RMXMouse {
     func centerView(center: CFunctionPointer<(Int32, Int32)->Void>)
     func calibrateView(x: Int32, y:Int32)
 }
-/*
+
 @objc public class RMOMouse : RMXObject, RMXMouse{
-    
+    #if OPENGL_OSX
     var hasFocus = false
     var dx: Int32 = 0
     var dy: Int32 = 0
@@ -59,7 +59,7 @@ protocol RMXMouse {
     
         var DeltaX: Int32 = 0; var DeltaY: Int32 = 0
     
-    //RMXCGGetLastMouseDelta(&DeltaX, &DeltaY)
+    RMXCGGetLastMouseDelta(&DeltaX, &DeltaY)
     
 
         var dir:Int32 = self.hasFocus ? 1 : -1
@@ -74,5 +74,6 @@ protocol RMXMouse {
     func calibrateView(x: Int32, y:Int32)    {
 //        RMXCGGetLastMouseDelta(&self.dx, &self.dy)
     }
-    
-} */
+    #endif
+}
+

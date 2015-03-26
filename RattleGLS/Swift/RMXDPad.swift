@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import GLKit
+
+#if OPENGL_ES
 import CoreMotion
 import UIKit
-import GLKit
+    
 
 class RMXDPad : RMXInterface {
     
@@ -35,7 +38,9 @@ class RMXDPad : RMXInterface {
         super.update()
     }
     
-    
+    override var view: RMXView {
+        return super.view as! RMXView
+    }
     override func setUpGestureRecognisers(){
         let w = self.gvc.view.bounds.size.width
         let h = self.gvc.view.bounds.size.height
@@ -140,5 +145,7 @@ class RMXDPad : RMXInterface {
     var i = 0
     
 }
-
+    #elseif OPENGL_OSX
+    //    import OpenGL
+#endif
 

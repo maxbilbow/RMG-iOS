@@ -8,15 +8,26 @@
 
 import Foundation
 
-struct RMX {
+
+public struct RMX {
     static let isDebugging: Bool = false
     static let isFullscreen: Bool = false
-    static let usingDepreciated: Bool = false
+    static let usingDepreciated: Bool = true
     static let usingSceneKit: Bool = false
 }
+import GLKit
 
-
-extension RMX {
-//    typealias Controller = (name: String, isActive: Bool, process: ()->()? )
-//    typealias VoidFunction = ()->()
-}
+#if OPENGL_ES
+    import UIKit
+    typealias RMXView = GLKView
+    typealias RMXContext = EAGLContext
+    typealias RMXController = RMXDPad
+    #elseif OPENGL_OSX
+    import Cocoa
+    import OpenGL
+    import GLUT
+    typealias RMXController = RMSKeys
+    typealias GLKViewController = NSViewController
+    typealias RMXView = NSOpenGLView
+    typealias RMXContext = UnsafeMutablePointer<_CGLContextObject>
+#endif

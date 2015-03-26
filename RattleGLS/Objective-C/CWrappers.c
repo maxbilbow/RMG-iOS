@@ -6,45 +6,38 @@
 //  Copyright (c) 2015 Rattle Media Ltd. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <GLKit/GLKit.h>
 
 #import "Vertices.h"
 
-const GLvoid * RMOffsetVertCol() {
-    return (const GLvoid * ) offsetof(Vertex, Color);
+const void * RMOffsetVertCol() {
+    return (const void * ) __builtin_offsetof(Vertex, Color);
 }
 
-const GLvoid * RMOffsetVertTex(){
-    return (const GLvoid *) offsetof(Vertex, TexCoord);
+const void * RMOffsetVertTex(){
+    return (const void *) __builtin_offsetof(Vertex, TexCoord);
 }
 
-const GLvoid * RMOffsetVertNorm(){
-    return (const GLvoid *) offsetof(Vertex, Normal);
+const void * RMOffsetVertNorm(){
+    return (const void *) __builtin_offsetof(Vertex, Normal);
 }
 
-const GLvoid * RMOffsetVertPos() {
-    return (const GLvoid *) offsetof(Vertex, Position);
+const void * RMOffsetVertPos() {
+    return (const void *) __builtin_offsetof(Vertex, Position);
 }
-GLsizei RMSizeOfVert(){
+int RMSizeOfVert(){
     return sizeof(Vertex);
 }
 
-NSString * RMOPathForResource(NSString* path, NSString* ofType) {
-    return [[NSBundle mainBundle] pathForResource:@"texture_numbers" ofType:@"png"];
-}
 
-
-
-GLsizeiptr RMSizeOfVertexCube(){
+long RMSizeOfVertexCube(){
     return sizeof(VerticesCube);
 }
 
-GLintptr RMSizeOfIndicesCube(){
+long RMSizeOfIndicesCube(){
     return sizeof(IndicesTrianglesCube);
 }
 
-GLsizei RMSizeOfIZeroCube(){
+int RMSizeOfIZeroCube(){
     return sizeof(IndicesTrianglesCube[0]);
 }
 
@@ -81,7 +74,7 @@ long RMSizeOfIndices(int type){
         default:
             return sizeof(IndicesTrianglesCube);
     }
-
+    
     
     
 }
@@ -107,7 +100,7 @@ const void * RMVerticesPtr(int type){
         default:
             return VerticesCube;
     }
-
+    
     
 }
 
@@ -123,4 +116,3 @@ const void * RMIndicesPtr(int type){
     }
     
 }
-

@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>RattleOSX.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -33,6 +38,16 @@
 			<true/>
 		</dict>
 		<key>506228F91AC0533F00CBC40A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6CF5B0E51AC40D17004D5477</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6CF5B0F61AC40D17004D5477</key>
 		<dict>
 			<key>primary</key>
 			<true/>

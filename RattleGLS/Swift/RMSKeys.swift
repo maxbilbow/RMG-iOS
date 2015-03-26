@@ -9,11 +9,12 @@
 import Foundation
 
 
-public class RMSKeys {
-    
+public class RMSKeys : RMXInterface, RMXControllerProtocol {
+ 
     var keys: [ RMKey ]?
 //    var specialKeys: [ RMKey ] = [ RMKey ]()
-    init(){
+    override init(gvc: GameViewController, world: RMSWorld){
+        super.init(gvc: gvc, world: world)
         //self.set(action: "forward", key: "w")
         self.keys = [
             RMKey(action: "forward", key: "w"),

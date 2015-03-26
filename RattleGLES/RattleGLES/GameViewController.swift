@@ -5,6 +5,14 @@
 //  Created by Max Bilbow on 23/03/2015.
 //  Copyright (c) 2015 Rattle Media Ltd. All rights reserved.
 //
+import Foundation
+import GLKit
+#if OPENGL_ES
+import UIKit
+    #elseif OPENGL_OSX
+   import OpenGL
+    import GLUT
+    #endif
 
 class GameViewController : GLKViewController {
     
@@ -19,8 +27,8 @@ class GameViewController : GLKViewController {
     }
     var textureInfo: GLKTextureInfo! = nil
     var rotation: Float = 0
-    var vertexArray: UnsafeMutablePointer<GLuint> = UnsafeMutablePointer<GLuint>.alloc(sizeof(GLuint64))
-    var context: EAGLContext! = nil
+    var vertexArray: UnsafeMutablePointer<GLuint> = UnsafeMutablePointer<GLuint>.alloc(sizeof(GLuint))
+    var context: RMXContext?
     var effect: GLKBaseEffect! = nil
     var vertexBuffer: UnsafeMutablePointer<GLuint> = UnsafeMutablePointer<GLuint>.alloc(sizeof(GLuint64))
     var indexBuffer: UnsafeMutablePointer<GLuint> = UnsafeMutablePointer<GLuint>.alloc(sizeof(GLuint64))
@@ -34,7 +42,7 @@ class GameViewController : GLKViewController {
         return world.sun != nil ? world.sun!.shape!.color : GLKVector4Make(1, 1, 1, 1.0)
     }
     
-    lazy var interface: RMXDPad = RMXDPad(gvc: self, world: RMX.buildScene())
+    lazy var interface: RMXController = RMXController(gvc: self, world: RMX.buildScene())
     var world: RMSWorld {
         return interface.world
     }
@@ -49,16 +57,30 @@ class GameViewController : GLKViewController {
     
     override func viewDidLoad() {
         //        self.viewMatrix = self.interface.activeCamera.modelViewMatrix
+        #if OPENGL_ES
         self.context = EAGLContext(API: EAGLRenderingAPI.OpenGLES3)
+        #elseif OPENGL_OSX
+           self.context = CGLGetCurrentContext()
+        #endif
+        
+        #if OPENGL_ES
+ 
+            #elseif OPENGL_OSX
+            
+        #endif
         if (self.context == nil) {
             NSLog("Failed to create ES context")
         }
-        let view = self.view as! GLKView
+        
+        #if OPENGL_ES
+            let view = self.view as! RMXView
         view.context = self.context
         view.drawableMultisample = GLKViewDrawableMultisample.Multisample4X
         view.drawableDepthFormat = GLKViewDrawableDepthFormat.Format24
-        
-        //        self.projectionMatrix  = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), 4.0/3.0, 1, 51)
+            #elseif OPENGL_OSX
+            //TODO
+            #endif
+
         
         self.initEffect()
         self.setupGL()
@@ -81,36 +103,49 @@ class GameViewController : GLKViewController {
         self.effect.light0.position = lightPosition
         //        self.projectionMatrix = self.camera.getProjectionMatrix(Float(self.view.bounds.size.width), height: Float(self.view.bounds.size.height))
         //        self.viewMatrix = self.interface.activeCamera.modelViewMatrix
-        self.rotation += Float(self.timeSinceLastUpdate * 0.5)
+        self.rotation += Float(self.world.clock!.timeSinceLastUpdate * 0.5)
         //super.update()
     }
     
     
     func setupGL() {
-        EAGLContext.setCurrentContext(self.context)
         
+        #if OPENGL_ES
+            EAGLContext.setCurrentContext(self.context)
+            #elseif OPENGL_OSX
+            //TODO
+           // CGLGetCurrentContext(self.context)
+        #endif
+        #if OPENGL_ES
         glEnable(GLenum(GL_DEPTH_TEST))
         glDepthFunc(GLenum(GL_LEQUAL))
         
         // Enable Transparency
         glEnable (GLenum(GL_BLEND))
         glBlendFunc (GLenum(GL_SRC_ALPHA), GLenum(GL_ONE_MINUS_SRC_ALPHA))
-        
-        
+            
+        #endif
         // Create Vertex Array Buffer For Vertex Array Objects
-        glGenVertexArraysOES(1, self.vertexArray)
-        glBindVertexArrayOES(self.vertexArray.memory)
+        #if OPENGL_ES
+            glGenVertexArraysOES(1, self.vertexArray)
+            glBindVertexArrayOES(self.vertexArray.memory)
+            #elseif OPENGL_OSX
+            glGenVertexArrays(1, self.vertexArray)
+            glBindVertexArray(self.vertexArray.memory)
+        #endif
+
+        
         for shape in self.shapes {
             let shape = shape.type.rawValue
-        
+            
             // All of the following configuration for per vertex data is stored into the VAO
             
             // setup vertex buffer - what are my vertices?
             glGenBuffers(1, self.vertexBuffer)
             glBindBuffer(GLenum(GL_ARRAY_BUFFER), self.vertexBuffer.memory);
-        
-        
-//            let shape = RMSGeometry.CUBE()//self.world.sun!)// o.geometry!
+            
+            
+            //            let shape = RMSGeometry.CUBE()//self.world.sun!)// o.geometry!
             glBufferData(GLenum(GL_ARRAY_BUFFER), RMSizeOfVertex(shape), RMVerticesPtr(shape), GLenum(GL_STATIC_DRAW))
             
             // setup index buffer - which vertices form a triangle?
@@ -140,7 +175,12 @@ class GameViewController : GLKViewController {
             
             
             // were done so unbind the VAO
-            glBindVertexArrayOES(0);
+            #if OPENGL_ES
+                glBindVertexArrayOES(0);
+                #elseif OPENGL_OSX
+                glBindVertexArray(0);
+            #endif
+            
         }
     }
     
@@ -165,7 +205,7 @@ class GameViewController : GLKViewController {
     func configureDefaultTexture() {
         self.effect.texture2d0.enabled = GLboolean(1)
         
-        let path = RMOPathForResource("texture_numbers", "png")
+        var path = NSBundle.mainBundle().URLForResource("texture_numbers", withExtension:"png")?.path
         
         var error: NSErrorPointer = NSErrorPointer()
         let options: [NSObject : AnyObject] = NSDictionary(object: NSNumber(bool:true),forKey:GLKTextureLoaderOriginBottomLeft) as [NSObject : AnyObject]
@@ -186,7 +226,17 @@ class GameViewController : GLKViewController {
         
     }
     
-    override func glkView(view: GLKView!, drawInRect rect: CGRect) {
+    #if OPENGL_ES
+    override func glkView(view: RMXView!, drawInRect: CGRect){
+        self.updateView(view, drawInRect: drawInRect)
+    }
+    #elseif OPENGL_OSX
+    override func drawLayer(layer: CALayer!, inContext ctx: CGContext!) {
+        super.drawLayer(layer,inContext: ctx)
+        self.updateView(self.view as! NSOpenGLView,drawInRect: CGContextGetPathBoundingBox(ctx))
+    }
+    #endif
+    func updateView(view: RMXView!, drawInRect rect: CGRect) {
         autoreleasepool({
             glClearColor(1.0, 1.0, 1.0, 1.0);
             glClear(GLenum(GL_COLOR_BUFFER_BIT) | GLenum(GL_DEPTH_BUFFER_BIT));
@@ -207,12 +257,19 @@ class GameViewController : GLKViewController {
                     
                     GLKMatrixStackPush(matrixStack)
                     self.modelMatrix = GLKMatrixStackGetMatrix4(matrixStack);
+                    #if OPENGL_ES
                     glBindVertexArrayOES(self.vertexArray.memory)
+                        #elseif OPENGL_OSX
+                    glBindVertexArray(self.vertexArray.memory)
+                        #endif
                     self.prepareEffectWithModelMatrix(self.modelMatrix, viewMatrix:self.viewMatrix, projectionMatrix: self.projectionMatrix)
                     let shape = RMSGeometry.CUBE()
                     glDrawElements(GLenum(GL_TRIANGLES), GLsizei(shape.sizeOfIndices) / GLsizei(shape.sizeOfIZero), GLenum(GL_UNSIGNED_BYTE), UnsafePointer<Void>())//nil or 0?
-                    
-                    glBindVertexArrayOES(0)
+                    #if OPENGL_ES
+                        glBindVertexArrayOES(0)
+                    #elseif OPENGL_OSX
+                        glBindVertexArray(0)
+                    #endif
                     
                 }
             }
@@ -225,6 +282,8 @@ class GameViewController : GLKViewController {
         self.effect.prepareToDraw()
     }
     let _farMin: Float = 249
+    
+    #if iOS
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         //        NSLog("Received Memory Waning")
@@ -237,12 +296,21 @@ class GameViewController : GLKViewController {
         
         NSLog("\(self.camera.far)")
     }
+    #endif
     
     func tearDownGL() {
+        #if OPENGL_ES
         EAGLContext.setCurrentContext(self.context)
+            #elseif OPENGL_OSX
+       // CGContextRef.setCurrentContext(self.context)
+            #endif
         glDeleteBuffers(1, self.vertexBuffer)
         glDeleteBuffers(1, self.indexBuffer)
+        #if OPENGL_ES
         glDeleteVertexArraysOES(1, self.vertexArray)
+            #elseif OPENGL_OSX
+            glDeleteVertexArrays(1, self.vertexArray)
+            #endif
         self.effect = nil
     }
     

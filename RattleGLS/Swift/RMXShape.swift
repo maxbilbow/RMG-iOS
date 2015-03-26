@@ -8,17 +8,10 @@
 
 import Foundation
 import GLKit
-
-//@objc public protocol RMXRenderable {
-//    var render: CFunctionPointer<(Float)->Void> { get set }
-//}
-@objc public protocol RMOShape {
-//    var geometry: RMOGeometry! { get set }
-    var translationMatrix: GLKMatrix4 { get }
-    var scaleMatrix: GLKMatrix4 { get }
-    var rotationMatrix: GLKMatrix4 { get }
-}
-
+#if OPENGL_OSX
+import OpenGL
+import GLUT
+    #endif
 
 public class RMXShape {
 //    enum Type: Int { case NULL = 0, CUBE = 1 , PLANE = 2, SPHERE = 3}

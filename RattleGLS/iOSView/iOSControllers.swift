@@ -7,10 +7,14 @@
 //
 
 import Foundation
-import UIKit
+import GLKit
 
-extension RMXDPad {
-    
+#if OPENGL_ES
+import UIKit
+#endif
+
+extension RMXController {
+#if OPENGL_ES
     private func _handleRelease(state: UIGestureRecognizerState) {
         if state == UIGestureRecognizerState.Ended {
             self.world.action(action: "stop")
@@ -187,5 +191,5 @@ extension RMXDPad {
         // println()
     }
     
-    
+    #endif
 }

@@ -51,5 +51,12 @@ extension RMX {
         //self.world = world
         return world
     }
+    
+    static func SetUpGLProxy() -> RMSWorld {
+        let world = self.buildScene()
+        RMXGLProxy.actions = RMSActionProcessor(world: world)
+        RMXGLProxy.world = world
+        return world
+    }
 
 }

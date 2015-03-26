@@ -9,20 +9,21 @@
 import Foundation
 
 
-
+import GLKit
 
 @objc public class RMXGLProxy {
     //let world: RMXWorld? = RMXArt.initializeTestingEnvironment()
     static var callbacks: [()->Void] = Array<()->Void>()
-    static var world: RMXWorld?
+    static var world: RMSWorld?
     static var effect: GLKBaseEffect? = GLKBaseEffect()
+    static var actions: RMSActionProcessor?
     static var activeCamera: RMXCamera? {
         return self.world?.activeCamera
     }
     static var itemBody: RMSPhysicsBody? {
         return self.activeSprite?.actions?.item?.body
     }
-    static var activeSprite: RMXParticle? {
+    static var activeSprite: RMSParticle? {
         return self.world?.activeSprite
     }
     var displayPtr: CFunctionPointer<(Void)->Void>?
@@ -39,7 +40,10 @@ import Foundation
             RMXGLPostRedisplay()
         }
     }
-    class func initialize(world: RMXWorld, callbacks: ()->Void ...){
+    class func performAction(action: String!, speed: Float, point: [Float]){
+        self.actions?.movement(action, speed: speed, point: point)
+    }
+    class func initialize(world: RMSWorld, callbacks: ()->Void ...){
         self.world = world
         self.activeCamera?.effect = self.effect
         for function in callbacks {
@@ -47,9 +51,6 @@ import Foundation
         }
     }
     
-    class func message(function: String, args: [AnyObject]?){
-        self.world?.message(function, args: args)
-    }
     
 //initializeFrom(RMXGLProxy.reshape)
         
