@@ -124,10 +124,17 @@ extension RMXController {
         self.world.action(action: "right", speed: 1)
         _handleRelease(recognizer.state)
     }
-    func handlePinch(recognizer: UIPinchGestureRecognizer) {
-        let x: Float = Float(recognizer.scale)
+    func handlePinchLeft(recognizer: UIPinchGestureRecognizer) {
+        let x: Float = Float(recognizer.scale) * 0.01
         self.log()
         self.world.action(action: "enlargeItem", speed: x)
+        _handleRelease(recognizer.state)
+    }
+    
+    func handlePinchRight(recognizer: UIPinchGestureRecognizer) {
+        let x: Float = Float(recognizer.scale) * 0.01
+        self.log()
+        self.world.action(action: "extendArm", speed: x)
         _handleRelease(recognizer.state)
     }
     

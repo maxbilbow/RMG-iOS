@@ -37,7 +37,7 @@ class RMSPhysicsBody {
     }
     
     init(parent: RMSParticle, mass: Float = 1, radius: Float = 1, dragC: Float = 0.1,
-        accRate: Float = 0.5, rotSpeed:Float = 0.01){
+        accRate: Float = 1, rotSpeed:Float = 0.01){
         self.theta = 0
         self.phi = 0
         self.mass = mass
@@ -122,7 +122,7 @@ class RMSPhysicsBody {
         
         var newPhi = self.phi + phi
         
-        
+        /** May be causing a problem with rotation
         if newPhi > _phiLimit {
             newPhi = _phiLimit
             phi = 0
@@ -130,6 +130,7 @@ class RMSPhysicsBody {
             newPhi = -_phiLimit
             phi = 0
         }
+        */
         
         self.phi = newPhi
         self.theta += theta

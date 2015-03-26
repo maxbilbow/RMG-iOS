@@ -49,30 +49,33 @@ class RMXDPad : RMXInterface {
         
         func setLeftView() {
             
+            let view = leftView
             let lPan:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self,action: "handlePanLeftSide:")
-            leftView.addGestureRecognizer(lPan)
+            view.addGestureRecognizer(lPan)
             
             let tapLeft: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleTapLeft:")
-            leftView.addGestureRecognizer(tapLeft)
+            view.addGestureRecognizer(tapLeft)
             
             
+            view.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: "handlePinchLeft:"))
             
-            leftView.userInteractionEnabled = true
+            view.userInteractionEnabled = true
             
             self.gvc.view.addSubview(leftView)
         }
         
         func setRightView() {
             
-            
+            let view = rightView
             let rPan:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self,action: "handlePanRightSide:")
-            rightView.addGestureRecognizer(rPan)
+            view.addGestureRecognizer(rPan)
             
             let tapRight: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleTapRight:")
-            rightView.addGestureRecognizer(tapRight)
+            view.addGestureRecognizer(tapRight)
             
+            view.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: "handlePinchRight:"))
             
-            rightView.userInteractionEnabled = true
+            view.userInteractionEnabled = true
             self.gvc.view.addSubview(rightView)
             
         }
@@ -81,23 +84,18 @@ class RMXDPad : RMXInterface {
         
         func setForBothViews(){
             
-            let tap: UIGestureRecognizer = UIGestureRecognizer(target: self,  action: "noTouches:")
-            self.view.addGestureRecognizer(tap)
             
-//            let twoPan:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self,action: "handlePanDownTwo:")
-//            rightView.addGestureRecognizer(twoPan)
-//            rightView.addGestureRecognizer(twoPan)
+            let view = self.gvc.view
             
-            self.gvc.view.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: "handlePinch:"))
             
             let twoFingerTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,  action: "handleDoubleTouchTap:")
             twoFingerTap.numberOfTouchesRequired = 2
             twoFingerTap.numberOfTapsRequired = 1
-            self.gvc.view.addGestureRecognizer(twoFingerTap)
+            view.addGestureRecognizer(twoFingerTap)
             
             let lp: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self,  action: "longPressGestureRecognizer:")
             //        lp.minimumPressDuration =
-            self.gvc.view.addGestureRecognizer(lp)
+            view.addGestureRecognizer(lp)
             
         }
         

@@ -7,7 +7,7 @@
 //
 
 
-class RMXObject {
+public class RMXObject {
     private static var COUNT: Int = 0
     var rmxID: Int
     var isAnimated: Bool = true

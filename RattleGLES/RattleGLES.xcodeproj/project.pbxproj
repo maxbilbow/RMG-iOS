@@ -1731,6 +1731,8 @@
 				6CF5B1051AC40DBE004D5477 /* RMXViewController.swift */,
 				50AEE2851AC32A8F008296E6 /* iOS */,
 				50787F451AC317180018A460 /* RMXInterface.swift */,
+				6C3C74B11AC48BE80021F0B3 /* OSX */,
+				506229531AC053F800CBC40A /* RMXInitialize.swift */,
 				506229431AC053F800CBC40A /* RMSActionProcessor.swift */,
 				506229441AC053F800CBC40A /* RMSArt.swift */,
 				506229461AC053F800CBC40A /* RMSKeys.swift */,
@@ -1743,8 +1745,6 @@
 				5062294D1AC053F800CBC40A /* RMXCamera.swift */,
 				5062294E1AC053F800CBC40A /* RMXController.swift */,
 				5062294F1AC053F800CBC40A /* RMXDebugger.swift */,
-				506229531AC053F800CBC40A /* RMXInitialize.swift */,
-				506229541AC053F800CBC40A /* RMXMouse.swift */,
 				506229551AC053F800CBC40A /* RMXObject.swift */,
 				506229561AC053F800CBC40A /* RMXPhysics.swift */,
 				506229581AC053F800CBC40A /* RMXShape.swift */,
@@ -1777,6 +1777,14 @@
 			);
 			name = Redundant;
 			path = ../RattleGLS/Swift;
+			sourceTree = "<group>";
+		};
+		6C3C74B11AC48BE80021F0B3 /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				506229541AC053F800CBC40A /* RMXMouse.swift */,
+			);
+			name = OSX;
 			sourceTree = "<group>";
 		};
 		6C90E37B1AC477D300713B31 /* Objc */ = {
@@ -5130,7 +5138,7 @@
 				OTHER_SWIFT_FLAGS = "-DOPENGL_ES";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "RattleGLES/RattleGLES-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/RattleGLES-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -5154,7 +5162,7 @@
 				OTHER_SWIFT_FLAGS = "-DOPENGL_ES";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "RattleGLES/RattleGLES-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/RattleGLES-Bridging-Header.h";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -5352,6 +5360,7 @@
 				6CF0CDE11AC487FF0088D2ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6CF5B1031AC40D17004D5477 /* Build configuration list for PBXNativeTarget "RattleOSX" */ = {
 			isa = XCConfigurationList;

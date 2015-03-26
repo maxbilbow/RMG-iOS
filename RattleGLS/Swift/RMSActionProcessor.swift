@@ -120,13 +120,19 @@ class RMSActionProcessor {
             
             
         }
-        if action == "enlargeItem" && self.activeSprite.hasItem {
-            let size = (self.activeSprite.actions?.item?.body.radius)! * speed
-            if size > 0.5 {
-                self.activeSprite.actions?.item?.body.radius = size
-                self.activeSprite.actions?.item?.body.mass *= size
-            }
+        if self.activeSprite.hasItem {
+            if action == "enlargeItem"   {
+                let size = (self.activeSprite.actions?.item?.body.radius)! * speed
+                if size > 0.5 {
+                    self.activeSprite.actions?.item?.body.radius = size
+                    self.activeSprite.actions?.item?.body.mass *= size
+                }
 
+            }
+            
+            if action == "extendArm" {
+                self.activeSprite.actions?.extendArmLength(speed)
+            }
         }
         
         
