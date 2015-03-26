@@ -17,14 +17,14 @@ class RMXShape {
 //    enum Type: Int { case NULL = 0, CUBE = 1 , PLANE = 2, SPHERE = 3}
     var type: ShapeType = .NULL
     
-    public var scaleMatrix: GLKMatrix4 {
+    var scaleMatrix: GLKMatrix4 {
         return GLKMatrix4MakeScale(self.radius,self.radius,self.radius)
     }
-    public var rotationMatrix: GLKMatrix4 {
+    var rotationMatrix: GLKMatrix4 {
         return GLKMatrix4MakeRotation(self.rotation, self.parent.rAxis.x,self.parent.rAxis.y,self.parent.rAxis.z)
     }
 //    var geometry: RMSGeometry!
-    public var translationMatrix: GLKMatrix4 {
+    var translationMatrix: GLKMatrix4 {
         let p = self.parent.position
         return GLKMatrix4MakeTranslation(p.x, p.y, p.z)
     }
@@ -38,7 +38,7 @@ class RMXShape {
     var color: GLKVector4 = GLKVector4Make(0,0,0,0)
     var isLight: Bool = false
     var gl_light_type, gl_light: Int32
-    public var render: ((Float) -> Void)?//UnsafeMutablePointer<(Float) -> Void> = UnsafeMutablePointer<(Float) -> Void>()//.alloc(sizeof(<(Float) -> Void>))
+    var render: ((Float) -> Void)?//UnsafeMutablePointer<(Float) -> Void> = UnsafeMutablePointer<(Float) -> Void>()//.alloc(sizeof(<(Float) -> Void>))
     var parent: RMSParticle!
     var world: RMSWorld?
     var visible: Bool = true;
